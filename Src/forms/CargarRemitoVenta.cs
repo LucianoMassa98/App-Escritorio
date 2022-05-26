@@ -1,0 +1,245 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace E_Shop
+{
+    public partial class CargarRemitoVenta : Form
+    {
+        Usuario xUsuario;
+        Form FormularioAnterior;
+        RemitoVenta RemitoX;
+        int inicio;
+        public CargarRemitoVenta(object x, ref Form y)
+        {
+            InitializeComponent();
+            xUsuario = (Usuario)x;
+            FormularioAnterior = y;
+            RemitoX = new RemitoVenta();
+            textBox4.Text = RemitoX.Emisor = xUsuario.Nombre;
+            textBox3.Text = RemitoX.FechaEmision = DateTime.Now.Date.ToShortDateString();
+            inicio = 0;
+            LoadCombox();
+        }
+        public void LoadCombox()
+        {
+            
+            //cargar Clientes
+            Cliente.CargarComboBox(ref comboBox3);
+            // cargr codigos barra y nombres de productos
+            Producto.CargarComboBox(ref comboBox1, ref comboBox4);
+            comboBox1.Items.Add("aaa");
+            comboBox1.Items.Add("bbb");
+
+            //cargar formas de pago
+            Pago.CargarComboBox(ref comboBox2,"1.1.1");
+            comboBox2.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
+            //cargar Descuento
+            Descuento.CargarComboBox(ref comboBox5);
+
+
+            //selecciona cliente x
+            if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
+            // seleccion Descuento nr1
+            if (comboBox5.Items.Count > 0) { comboBox5.SelectedIndex = 0; }
+            // selecciona tipo de pago 1
+           // if (comboBox2.Items.Count>0) { comboBox2.SelectedIndex = 0;  }
+            
+        }
+
+        // agregar Producto
+        public void AgregarProducto() {
+            Producto p = new Producto();
+            p.Codigo = comboBox1.Text;
+            p.Nombre = comboBox4.Text;
+            Descuento Dsc = new Descuento();
+            Dsc.Nombre = comboBox5.Text;
+            if (Dsc != null)
+            {
+                try
+                {
+                    p.Cantidad = double.Parse(textBox2.Text);
+                    p.Precio = double.Parse(textBox2.Text);
+
+                    if (RemitoX.AgregarProducto(p, Dsc))
+                    {
+
+                        RemitoX.MostrarDataGrid(ref dataGridView1);
+                        label1.Text = "Total: $" + RemitoX.TotalVenta();
+                        if (comboBox1.Text != "") { comboBox1.Focus(); }
+                        else { comboBox4.Focus(); }
+                        comboBox1.Text = comboBox4.Text = textBox2.Text = "";
+
+                    }
+
+                }
+                catch (Exception) { }
+            }
+
+        }
+       
+        // iniciar nuevo remito
+        public void NuevoRemito()
+        {
+            RemitoX.Pagos.Clear();
+            RemitoX.ListaProdutos.Clear();
+            RemitoX.Receptor = null;
+            RemitoX.MostrarDataGrid(ref dataGridView1);
+            label1.Text = "Total: $0000";
+            comboBox1.Text =
+            comboBox2.Text =
+            comboBox4.Text =
+            textBox2.Text = "";
+            comboBox2.Enabled = true;
+            
+        }
+
+        //crear remito de venta
+        public void CrearRemitoVenta() {
+            //buscarpagoycolocarimporte
+            if (RemitoVenta.Crear(RemitoX))
+            {
+                try
+                {
+                   // RemitoX.Imprimir();
+                }
+                catch (Exception) { new Alert("Error al imprimir ticket!!").Show(); }
+                NuevoRemito();
+                comboBox3.SelectedIndex = 0;
+                comboBox2.SelectedIndex = 0;
+                comboBox1.Focus();
+
+            }
+            else { new Alert("Error, no se pudo guardar tu venta!!").Show(); }
+        }
+
+        // -------------- EVENTOS -------------------
+        // selecionar cliente
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RemitoX.Receptor = comboBox3.Text;
+            comboBox2.Focus();
+        }
+        // crear remito
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CrearRemitoVenta();
+        }
+        //eliminar remito
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NuevoRemito();
+        }
+        private void CargarRemitoVenta_Load(object sender, EventArgs e)
+        {
+            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+        }
+        // eliminar producto
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                
+                int i = dataGridView1.CurrentRow.Index;
+
+                RemitoX.EliminarProducto(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                RemitoX.MostrarDataGrid(ref dataGridView1);
+                label1.Text = "Total: $" + RemitoX.TotalCosto();
+
+                // seleccion Descuento nr1
+                if (comboBox5.Items.Count > 0) { comboBox5.SelectedIndex = 0; }
+                // selecciona tipo de pago 1
+                // if (comboBox2.Items.Count > 0) { comboBox2.SelectedIndex = 0; }
+
+            }
+            catch (Exception) { }
+        }
+        //agregar producto
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AgregarProducto();
+        }
+        // buscar producto por nombre
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox2.Focus();
+        }
+        //seleccionar tipo de pago
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Pago x = new Pago();
+            x.Codigo = Pago.BuscarPorNombre(comboBox2.Text).Codigo;
+            x.Nombre = comboBox2.Text;
+            RemitoX.Pagos.Clear();
+            RemitoX.Pagos.Add(x);
+            button3.Focus();
+            comboBox2.Enabled = false;
+        }
+        // selecciona descuento
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button1.Focus();
+        }
+        // selecciona producto por codigo
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          /*  if (comboBox1.Text != "aaa")
+            {
+                textBox2.Text = "1";
+                AgregarProducto();
+            }
+            else
+            {
+                RemitoX.Receptor = "x";
+                Pago x = new Pago();
+                x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[0].ToString()).Codigo;
+                x.Nombre = comboBox2.Items[0].ToString();
+                RemitoX.Pagos.Add(x);
+                CrearRemitoVenta();
+            }
+          */
+            switch (comboBox1.Text) {
+
+                case "aaa":
+                    {
+                        RemitoX.Receptor = "x";
+                        Pago x = new Pago();
+                        x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[0].ToString()).Codigo;
+                        x.Nombre = comboBox2.Items[0].ToString();
+                        RemitoX.Pagos.Add(x);
+                        CrearRemitoVenta();
+                        break; }
+                case "bbb": {
+                        RemitoX.Receptor = "x";
+                        Pago x = new Pago();
+                        x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[1].ToString()).Codigo;
+                        x.Nombre = comboBox2.Items[0].ToString();
+                        RemitoX.Pagos.Add(x);
+                        CrearRemitoVenta(); 
+                        break; }
+                default: {
+                        /*  textBox2.Text = "1";
+                          AgregarProducto(); */
+                        comboBox4.Text = Producto.BuscarPorCodigo(comboBox1.Text).Nombre;
+                        textBox2.Focus();
+                        break; }
+            
+            
+            }
+
+        }
+        // seleciona cantidad
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13) { button1.Focus(); }
+
+        }
+    }
+}
