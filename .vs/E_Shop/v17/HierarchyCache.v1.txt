@@ -12,16 +12,20 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\
 ++Yemas del Sol
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\
-++IndexYMS.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.cs
 ++Alert.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\alert.cs
 ++CargarCliente.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cargarcliente.cs
 ++CargarDescuento.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cargardescuento.cs
+++CargarGastos.cs
+++CargarGastos.Designer.cs
+++CargarGastos.resx
 ++CargarPago.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cargarpago.cs
+++CargarPedido.cs
+++CargarPedido.Designer.cs
+++CargarPedido.resx
 ++CargarProducto.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cargarproducto.cs
 ++CargarProveedor.cs
@@ -38,6 +42,9 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\carga
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cargarusuario.cs
 ++CobroCliente.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\cobrocliente.cs
+++ConsolidadoPedidos.cs
+++ConsolidadoPedidos.Designer.cs
+++ConsolidadoPedidos.resx
 ++ImpirmirCodigoBarra.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\impirmircodigobarra.cs
 ++InformeCompras.cs
@@ -48,6 +55,9 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\infor
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\informeyemasdelsol.cs
 ++ListaCompras.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.cs
+++ListaPedido.cs
+++ListaPedido.Designer.cs
+++ListaPedido.resx
 ++ListaVentas.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listaventas.cs
 ++PagoProveedor.cs
@@ -58,40 +68,12 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\modules\
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\services\
 ++validators
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\
-++ClienteValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\clientevalidador.cs
-++DescuentoValidator.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\descuentovalidator.cs
-++PagoValidator.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\pagovalidator.cs
-++ProductoValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\productovalidador.cs
-++ProveedorValidator.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\proveedorvalidator.cs
-++RemitoCobroClienteValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitocobroclientevalidador.cs
-++RemitoCompraValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitocompravalidador.cs
-++RemitoPagoProveedorValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitopagoproveedorvalidador.cs
-++RemitoProduccionValidator.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoproduccionvalidator.cs
-++RemitoRegistradoraValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoregistradoravalidador.cs
-++RemitoVentaValidador.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoventavalidador.cs
-++UsuarioValidator.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\usuariovalidator.cs
 ++Router.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\router.cs
 ++App.config
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\app.config
 ++Index.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\index.cs
-++Index.Designer.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\index.designer.cs
-++Index.resx
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\index.resx
 ++packages.config
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\packages.config
 ++Program.cs
@@ -152,10 +134,8 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:
 ++System.Xml.Linq
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:
-++IndexYMS.Designer.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.designer.cs
-++IndexYMS.resx
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.resx
+++IndexYMS.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.cs
 ++Alert.Designer.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\alert.designer.cs
 ++Alert.resx
@@ -264,7 +244,45 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\services\re
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\services\remitoventaservice.cs
 ++UsuarioService.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\services\usuarioservice.cs
+++ClienteValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\clientevalidador.cs
+++DescuentoValidator.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\descuentovalidator.cs
+++PagoValidator.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\pagovalidator.cs
+++ProductoValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\productovalidador.cs
+++ProveedorValidator.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\proveedorvalidator.cs
+++RemitoCobroClienteValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitocobroclientevalidador.cs
+++RemitoCompraValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitocompravalidador.cs
+++RemitoPagoProveedorValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitopagoproveedorvalidador.cs
+++RemitoProduccionValidator.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoproduccionvalidator.cs
+++RemitoRegistradoraValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoregistradoravalidador.cs
+++RemitoVentaValidador.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\remitoventavalidador.cs
+++UsuarioValidator.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\validators\usuariovalidator.cs
+++Index.Designer.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\index.designer.cs
+++Index.resx
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\index.resx
 ++Resources.Designer.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\properties\resources.designer.cs
 ++Settings.Designer.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\properties\settings.designer.cs
+++IndexYMS.Designer.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.designer.cs
+++IndexYMS.resx
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\yemas del sol\indexyms.resx
+++RemitoPedidoService.cs
+++GastoService.cs
+++RemitoPedidoValidador.cs
+++GastosValidador.cs
+++E_Shop (descargado)
+++Solución "E_Shop" ‎(0 de 1 proyecto)
