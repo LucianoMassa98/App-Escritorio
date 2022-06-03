@@ -75,17 +75,15 @@ namespace E_Shop
         public void LoadCombox()
         { 
             // cargr codigos barra y nombres de productos
-            Producto.CargarComboBox(ref comboBox1, ref comboBox4,"Huevo");
+            Producto.CargarComboBox( ref comboBox4,"Huevo");
             //comboBox1.Items.Add("aaa");
 
         }
         public void NuevoRemito()
         {
-            RemitoX.Xpago=null;
             RemitoX.ListaProdutos.Clear();
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
-            comboBox1.Text =
             comboBox4.Text =
             textBox2.Text =
             textBox1.Text="";
@@ -104,24 +102,25 @@ namespace E_Shop
             catch (Exception) { }
         }
         public void AgregarProducto() {
-            Producto p = new Producto();
-            p.Codigo = comboBox1.Text;
-            p.Nombre = comboBox4.Text;
+            Producto p =Producto.BuscarPorCodigo(comboBox4.Text);
+            if (p == null) { p = Producto.BuscarPorNombre(comboBox4.Text); }
+            if (p!=null) {
                 try
                 {
                     p.Cantidad = double.Parse(textBox2.Text);
                     p.Precio = double.Parse(textBox1.Text);
-                if (RemitoX.AgregarProducto(p))
-                {
-                    RemitoX.MostrarDataGrid(ref dataGridView1);
-                    label1.Text = "Total: $" + RemitoX.Total();
-                    if (comboBox1.Text != "") { comboBox1.Focus(); }
-                    else { comboBox4.Focus(); }
-                    comboBox1.Text = comboBox4.Text = textBox2.Text = textBox1.Text = "";
-                }
-                else {  }
+                    if (RemitoX.AgregarProducto(p))
+                    {
+                        RemitoX.MostrarDataGrid(ref dataGridView1);
+                        label1.Text = "Total: $" + RemitoX.Total();
+                        comboBox4.Focus(); 
+                        comboBox4.Text = textBox2.Text = textBox1.Text = "";
+                    }
+                    else { }
                 }
                 catch (Exception) { }
+            }
+               
             
                     
         }
@@ -132,7 +131,7 @@ namespace E_Shop
             if (RemitoRegistradora.Crear(RemitoX))
             {
                 NuevoRemito();
-                comboBox1.Focus();
+                comboBox4.Focus();
             }
             else { new Alert("Error, no se pudo guardar tu venta!!").Show(); }
         }

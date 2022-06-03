@@ -33,9 +33,9 @@ namespace E_Shop
             //cargar Clientes
             Cliente.CargarComboBox(ref comboBox3);
             // cargr codigos barra y nombres de productos
-            Producto.CargarComboBox(ref comboBox1, ref comboBox4);
-            comboBox1.Items.Add("aaa");
-            comboBox1.Items.Add("bbb");
+            Producto.CargarComboBox( ref comboBox4);
+            comboBox4.Items.Add("aaa");
+            comboBox4.Items.Add("bbb");
 
             //cargar formas de pago
             Pago.CargarComboBox(ref comboBox2,"1.1.1");
@@ -55,45 +55,48 @@ namespace E_Shop
 
         // agregar Producto
         public void AgregarProducto() {
-            Producto p = new Producto();
-            p.Codigo = comboBox1.Text;
-            p.Nombre = comboBox4.Text;
-            Descuento Dsc = new Descuento();
-            Dsc.Nombre = comboBox5.Text;
-            if (Dsc != null)
+            Producto p = Producto.BuscarPorCodigo(comboBox4.Text);
+
+            if (p == null)
             {
-                try
+                p = Producto.BuscarPorNombre(comboBox4.Text);
+            }
+
+            if (p != null) {
+                Descuento Dsc = Descuento.BuscarPorNombre(comboBox5.Text);
+                
+                if (Dsc != null)
                 {
-                    p.Cantidad = double.Parse(textBox2.Text);
-                    p.Precio = double.Parse(textBox2.Text);
-
-                    if (RemitoX.AgregarProducto(p, Dsc))
+                    try
                     {
+                        p.Cantidad = double.Parse(textBox2.Text);
+                        p.Precio = double.Parse(textBox2.Text);
 
-                        RemitoX.MostrarDataGrid(ref dataGridView1);
-                        label1.Text = "Total: $" + RemitoX.TotalVenta();
-                        if (comboBox1.Text != "") { comboBox1.Focus(); }
-                        else { comboBox4.Focus(); }
-                        comboBox1.Text = comboBox4.Text = textBox2.Text = "";
+                        if (RemitoX.AgregarProducto(p, Dsc))
+                        {
+
+                            RemitoX.MostrarDataGrid(ref dataGridView1);
+                            label1.Text = "Total: $" + RemitoX.TotalVenta();
+                             comboBox4.Text = textBox2.Text = "";
+                            comboBox4.Focus();
+                        }
 
                     }
-
+                    catch (Exception) { }
                 }
-                catch (Exception) { }
             }
+            
 
         }
        
         // iniciar nuevo remito
         public void NuevoRemito()
         {
-            RemitoX.Pagos.Clear();
+           
             RemitoX.ListaProdutos.Clear();
-            RemitoX.Receptor = null;
+            RemitoX.Receptor = "x";
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
-            comboBox1.Text =
-            comboBox2.Text =
             comboBox4.Text =
             textBox2.Text = "";
             comboBox2.Enabled = true;
@@ -111,9 +114,6 @@ namespace E_Shop
                 }
                 catch (Exception) { new Alert("Error al imprimir ticket!!").Show(); }
                 NuevoRemito();
-                comboBox3.SelectedIndex = 0;
-                comboBox2.SelectedIndex = 0;
-                comboBox1.Focus();
 
             }
             else { new Alert("Error, no se pudo guardar tu venta!!").Show(); }
@@ -169,7 +169,12 @@ namespace E_Shop
         // buscar producto por nombre
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox2.Focus();
+            switch (comboBox4.Text)
+            {
+                case "aaa": { break; }
+                case "bbb": { break; }
+                default: { textBox2.Focus(); break; }
+            }    
         }
         //seleccionar tipo de pago
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,62 +184,15 @@ namespace E_Shop
             x.Nombre = comboBox2.Text;
             RemitoX.Pagos.Clear();
             RemitoX.Pagos.Add(x);
-            button3.Focus();
-            comboBox2.Enabled = false;
+            comboBox4.Focus();
+            
         }
         // selecciona descuento
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             button1.Focus();
         }
-        // selecciona producto por codigo
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          /*  if (comboBox1.Text != "aaa")
-            {
-                textBox2.Text = "1";
-                AgregarProducto();
-            }
-            else
-            {
-                RemitoX.Receptor = "x";
-                Pago x = new Pago();
-                x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[0].ToString()).Codigo;
-                x.Nombre = comboBox2.Items[0].ToString();
-                RemitoX.Pagos.Add(x);
-                CrearRemitoVenta();
-            }
-          */
-            switch (comboBox1.Text) {
-
-                case "aaa":
-                    {
-                        RemitoX.Receptor = "x";
-                        Pago x = new Pago();
-                        x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[0].ToString()).Codigo;
-                        x.Nombre = comboBox2.Items[0].ToString();
-                        RemitoX.Pagos.Add(x);
-                        CrearRemitoVenta();
-                        break; }
-                case "bbb": {
-                        RemitoX.Receptor = "x";
-                        Pago x = new Pago();
-                        x.Codigo = Pago.BuscarPorNombre(comboBox2.Items[1].ToString()).Codigo;
-                        x.Nombre = comboBox2.Items[0].ToString();
-                        RemitoX.Pagos.Add(x);
-                        CrearRemitoVenta(); 
-                        break; }
-                default: {
-                        /*  textBox2.Text = "1";
-                          AgregarProducto(); */
-                        comboBox4.Text = Producto.BuscarPorCodigo(comboBox1.Text).Nombre;
-                        textBox2.Focus();
-                        break; }
-            
-            
-            }
-
-        }
+       
         // seleciona cantidad
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {

@@ -33,7 +33,7 @@ namespace E_Shop
             Proveedor.CargarComboBox(ref comboBox3);
             // cargar codigos barra y nombres de productos
 
-            Producto.CargarComboBox(ref comboBox1, ref comboBox4,"Mercaderia");
+            Producto.CargarComboBox(ref comboBox4,"Mercaderia");
 
             //cargar formas de pago
 
@@ -64,22 +64,28 @@ namespace E_Shop
         //agregar producto al remito
         private void button1_Click(object sender, EventArgs e)
         {
-            Producto p = new Producto();
-            p.Codigo = comboBox1.Text;
-            p.Nombre = comboBox4.Text;
-            try {
-                p.Cantidad = double.Parse(textBox2.Text);
-                p.Costo = double.Parse(textBox1.Text);
+            Producto p = Producto.BuscarPorCodigo(comboBox4.Text);
+            if (p==null) { p = Producto.BuscarPorNombre(comboBox4.Text); }
+            if (p!=null) {
+                try
+                {
+                    p.Cantidad = double.Parse(textBox2.Text);
+                    p.Costo = double.Parse(textBox1.Text);
 
-                if (RemitoX.AgregarProducto(p)) {
+                    if (RemitoX.AgregarProducto(p))
+                    {
 
-                    RemitoX.MostrarDataGrid(ref dataGridView1);
-                    label1.Text = "Total: $" + RemitoX.TotalCosto();
-                    comboBox1.Text = comboBox4.Text = textBox2.Text = textBox1.Text = "";
-                    comboBox4.Focus();
+                        RemitoX.MostrarDataGrid(ref dataGridView1);
+                        label1.Text = "Total: $" + RemitoX.TotalCosto();
+                        comboBox4.Text = textBox2.Text = textBox1.Text = "";
+                        comboBox4.Focus();
+                    }
+
                 }
+                catch (Exception) { }
+            }
 
-            } catch (Exception) { }
+           
             
         }
         //seleccionar proveedor
@@ -115,12 +121,9 @@ namespace E_Shop
         // iniciar nuevo remito
 
         public void NuevoRemito() {
-            RemitoX.Pagos.Clear();
             RemitoX.ListaProdutos.Clear();
-            RemitoX.Emisor = "";
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
-            comboBox1.Text =
             comboBox2.Text =
             comboBox3.Text =
             comboBox4.Text =

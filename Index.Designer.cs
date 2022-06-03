@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button15 = new System.Windows.Forms.Button();
@@ -56,6 +57,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -86,6 +88,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(378, 151);
             this.panel3.TabIndex = 90;
+            this.toolTip1.SetToolTip(this.panel3, "Software Destored V0.004\r\ndesarrollado por Luciano Massa");
             // 
             // button15
             // 
@@ -188,7 +191,9 @@
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(223, 35);
             this.button18.TabIndex = 10;
-            this.button18.Text = "Ingreso Huevos";
+            this.button18.Text = "Cargar Huevos";
+            this.toolTip1.SetToolTip(this.button18, "Cargar Huevos\r\nEsta sección sirve para cargar el ingreso de huevos que trae el ca" +
+        "mion desde los galpones.");
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
@@ -200,6 +205,8 @@
             this.button17.Size = new System.Drawing.Size(223, 35);
             this.button17.TabIndex = 9;
             this.button17.Text = "Cargar Registradora";
+            this.toolTip1.SetToolTip(this.button17, "Cargar Registradora\r\nEsta sección sirve para cargar el Z que arroja la maquina re" +
+        "gistradora.\r\n\r\n");
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
@@ -210,7 +217,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(223, 35);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Ingreso Mercadería";
+            this.button2.Text = "Cargar Mercadería";
+            this.toolTip1.SetToolTip(this.button2, "Cargar Mercadería\r\nEsta sección sirve para cargar el ingreso de mercaderia de los" +
+        " proveedores.");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -221,6 +230,9 @@
             this.button10.Size = new System.Drawing.Size(223, 35);
             this.button10.TabIndex = 6;
             this.button10.Text = "Lista Compras";
+            this.toolTip1.SetToolTip(this.button10, "Lista Compras\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas " +
+        "de mercadería\r\n                - Imprimir boleta de compra\r\n                - An" +
+        "ular boleta de compra \r\n");
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
@@ -232,8 +244,10 @@
             this.button1.Size = new System.Drawing.Size(223, 35);
             this.button1.TabIndex = 0;
             this.button1.Text = "Cargar Venta";
+            this.toolTip1.SetToolTip(this.button1, "Cargar Ventas\r\nEste modulo sirve para cargar las ventas directas a clientes");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button1_MouseMove);
             // 
             // button9
             // 
@@ -242,6 +256,8 @@
             this.button9.Size = new System.Drawing.Size(223, 35);
             this.button9.TabIndex = 5;
             this.button9.Text = "Lista Ventas";
+            this.toolTip1.SetToolTip(this.button9, "Lista Ventas\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las ventas d" +
+        "e un dia\r\n                - Imprimir boleta\r\n                - Anular boleta \r\n");
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
@@ -432,6 +448,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

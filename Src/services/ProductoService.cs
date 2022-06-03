@@ -211,29 +211,29 @@ namespace E_Shop
             }
 
         }
-        static public void CargarComboBox(ref ComboBox xCod, ref ComboBox yNom)
+        static public void CargarComboBox( ref ComboBox yNom)
         {
-            xCod.Items.Clear();
+            
             yNom.Items.Clear();
             List<Producto> x = Producto.Buscar();
             for (int i = 0; i < x.Count(); i++)
             {
-                xCod.Items.Add(x[i].Codigo);
+                yNom.Items.Add(x[i].Codigo);
                 yNom.Items.Add(x[i].Nombre);
             }
 
         }
 
-        static public void CargarComboBox(ref ComboBox xCod, ref ComboBox yNom,string descripcion)
+        static public void CargarComboBox(ref ComboBox yNom,string descripcion)
         {
-            xCod.Items.Clear();
+            
             yNom.Items.Clear();
             List<Producto> x = Producto.Buscar();
             for (int i = 0; i < x.Count(); i++)
             {
                 if (x[i].descripcion==descripcion){
 
-                    xCod.Items.Add(x[i].Codigo);
+                    yNom.Items.Add(x[i].Codigo);
                     yNom.Items.Add(x[i].Nombre);
                 }
             }

@@ -189,5 +189,10 @@ namespace E_Shop
         {
             new CargarRemitoProduccion(Xusuario, ref y).Show();
         }
+
+        private void button1_MouseMove(object sender, MouseEventArgs e)
+        {
+           
+        }
     }
 }
