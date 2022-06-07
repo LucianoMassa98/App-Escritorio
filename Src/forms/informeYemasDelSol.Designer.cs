@@ -631,7 +631,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(537, 180);
+            this.dataGridView1.Size = new System.Drawing.Size(537, 227);
             this.dataGridView1.TabIndex = 134;
             // 
             // Codigo
@@ -1357,9 +1357,9 @@
             this.label91.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label91.Location = new System.Drawing.Point(2, 18);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(147, 18);
+            this.label91.Size = new System.Drawing.Size(151, 18);
             this.label91.TabIndex = 145;
-            this.label91.Text = "Cliente   Credito";
+            this.label91.Text = "Lista de creditos";
             // 
             // listBox1
             // 
@@ -1377,9 +1377,9 @@
             this.label94.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label94.Location = new System.Drawing.Point(2, 292);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(134, 18);
+            this.label94.Size = new System.Drawing.Size(140, 18);
             this.label94.TabIndex = 147;
-            this.label94.Text = "Cliente Ventas";
+            this.label94.Text = "Lista de ventas";
             this.label94.Click += new System.EventHandler(this.label94_Click);
             // 
             // listBox2
