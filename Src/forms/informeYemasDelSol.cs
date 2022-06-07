@@ -37,11 +37,12 @@ namespace E_Shop
             listBox1.Items.Clear();
             // estado cliente
             for (int i =0; i<lventas.Count();i++) {
-
+                if (listBox2.Items.Contains(lventas[i].Receptor) == false) { listBox2.Items.Add(lventas[i].Receptor); }
                 if (lventas[i].Pagos[0].Codigo=="1.1.3") {
 
                     listBox1.Items.Add(lventas[i].Receptor+" \t "+lventas[i].Pagos[0].Importe);
 
+                    
                 }
             }
 
@@ -238,5 +239,9 @@ namespace E_Shop
             }
         }
 
+        private void label94_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

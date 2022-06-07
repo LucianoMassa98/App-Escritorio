@@ -47,7 +47,7 @@ namespace E_Shop
             //selecciona cliente x
             if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
             // seleccion Descuento nr1
-            if (comboBox5.Items.Count > 0) { comboBox5.SelectedIndex = 0; }
+           
             // selecciona tipo de pago 1
            // if (comboBox2.Items.Count>0) { comboBox2.SelectedIndex = 0;  }
             
@@ -190,13 +190,13 @@ namespace E_Shop
         // selecciona descuento
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button1.Focus();
+            AgregarProducto();
         }
        
         // seleciona cantidad
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { button1.Focus(); }
+            if (e.KeyChar == 13) { comboBox5.Focus(); }
 
         }
     }

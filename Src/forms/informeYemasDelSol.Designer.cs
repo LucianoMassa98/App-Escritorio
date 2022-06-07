@@ -34,12 +34,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -141,17 +135,17 @@
             this.label68 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label91 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label94 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.panel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -165,7 +159,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1284, 125);
+            this.panel2.Size = new System.Drawing.Size(1267, 125);
             this.panel2.TabIndex = 93;
             // 
             // button5
@@ -173,7 +167,7 @@
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(238, 66);
+            this.button5.Location = new System.Drawing.Point(229, 66);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 53);
             this.button5.TabIndex = 144;
@@ -199,7 +193,7 @@
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Location = new System.Drawing.Point(-6, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(229, 119);
             this.panel3.TabIndex = 81;
@@ -215,68 +209,6 @@
             this.label9.Size = new System.Drawing.Size(189, 45);
             this.label9.TabIndex = 79;
             this.label9.Text = "Informe";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.dataGridView2);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Location = new System.Drawing.Point(1338, 224);
-            this.panel6.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(562, 348);
-            this.panel6.TabIndex = 96;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.AntiqueWhite;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 51);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(537, 278);
-            this.dataGridView2.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 14);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 23);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.dataGridView3);
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Location = new System.Drawing.Point(1338, 615);
-            this.panel7.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(562, 348);
-            this.panel7.TabIndex = 100;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.BackgroundColor = System.Drawing.Color.AntiqueWhite;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(12, 51);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(537, 278);
-            this.dataGridView3.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 14);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 23);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "label5";
             // 
             // label1
             // 
@@ -1408,33 +1340,65 @@
             this.label74.TabIndex = 141;
             this.label74.Text = "Registradora";
             // 
-            // listBox1
+            // panel8
             // 
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(25, 418);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(207, 252);
-            this.listBox1.TabIndex = 142;
+            this.panel8.Controls.Add(this.label94);
+            this.panel8.Controls.Add(this.listBox2);
+            this.panel8.Controls.Add(this.label91);
+            this.panel8.Controls.Add(this.listBox1);
+            this.panel8.Location = new System.Drawing.Point(12, 374);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(243, 436);
+            this.panel8.TabIndex = 142;
             // 
             // label91
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(11, 392);
+            this.label91.Location = new System.Drawing.Point(2, 18);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(147, 18);
-            this.label91.TabIndex = 143;
+            this.label91.TabIndex = 145;
             this.label91.Text = "Cliente   Credito";
+            // 
+            // listBox1
+            // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(16, 44);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(207, 252);
+            this.listBox1.TabIndex = 144;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(2, 292);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(134, 18);
+            this.label94.TabIndex = 147;
+            this.label94.Text = "Cliente Ventas";
+            this.label94.Click += new System.EventHandler(this.label94_Click);
+            // 
+            // listBox2
+            // 
+            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 18;
+            this.listBox2.Location = new System.Drawing.Point(14, 318);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(207, 252);
+            this.listBox2.TabIndex = 146;
             // 
             // informeYemasDelSol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 701);
-            this.Controls.Add(this.label91);
-            this.Controls.Add(this.listBox1);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1284, 724);
+            this.Controls.Add(this.panel8);
             this.Controls.Add(this.label74);
             this.Controls.Add(this.label71);
             this.Controls.Add(this.label68);
@@ -1451,8 +1415,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -1462,12 +1424,6 @@
             this.Load += new System.EventHandler(this.informeYemasDelSol_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -1475,6 +1431,8 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1484,12 +1442,6 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -1588,13 +1540,16 @@
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label91;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descipcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
