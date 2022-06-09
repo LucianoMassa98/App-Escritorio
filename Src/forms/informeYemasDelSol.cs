@@ -143,90 +143,82 @@ namespace E_Shop
                 CrearTicket ticket = new CrearTicket(32);
                 ticket.AbreCajon();
                 ticket.TextoCentro(dir.Space);
-                ticket.TextoCentro("Informe");
+                ticket.TextoCentro("Informe "+new Direcciones().Space);
                 ticket.TextoIzquierda("FECHA: " + DateTime.Now.ToShortDateString());
                 ticket.TextoIzquierda("HORA: " + DateTime.Now.ToShortTimeString());
+                ticket.TextoIzquierda("");
+                ticket.TextoCentro("Ventas");
                 ticket.lineasAsteriscos();
-                ticket.TextoCentro("Clientes\tCreditos");
-                for (int i = 0; i < listBox1.Items.Count; i++)
-                {
-                    string linea = listBox1.Items[i].ToString();
-                    ticket.TextoCentro(linea);
+                ticket.EncabezadoHuevos();
+                ticket.TextoIzquierda("");
+                for (int i =0; i<dataGridView1.RowCount;i++) {
+
+                    if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Huevo"){
+                        ticket.AgregaArticulo(
+                            dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                            double.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString()),
+                            double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString())
+                            );
+                    }
                 }
-                ticket.lineasAsteriscos();
-                ticket.TextoCentro("Resumen Huevos");
-                ticket.TextoIzquierda("Ingreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda("Produccion");
-                ticket.TextoIzquierda(label12.Text + "\t" + label13.Text);
-                ticket.TextoIzquierda("Egreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda("Efectivo");
-                ticket.TextoIzquierda(label20.Text + "\t" + label18.Text);
-                ticket.TextoIzquierda("Mercado Pago");
-                ticket.TextoIzquierda(label23.Text + "\t" + label21.Text);
-                ticket.TextoIzquierda("Credito");
-                ticket.TextoIzquierda(label26.Text + "\t" + label24.Text);
-                ticket.TextoIzquierda("Bonificados");
-                ticket.TextoIzquierda(label29.Text + "\t" + label27.Text);
-                ticket.TextoIzquierda("Registradora");
-                ticket.TextoIzquierda(label88.Text + "\t" + label86.Text);
-                ticket.TextoIzquierda("Total");
-                ticket.TextoIzquierda(label32.Text + "\t" + label30.Text);
-
-                ticket.lineasAsteriscos();
-                ticket.TextoCentro("Resumen Mercaderia");
-                ticket.TextoIzquierda("Ingreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda("Compras");
-                ticket.TextoIzquierda(label59.Text + "\t" + label56.Text);
-                ticket.TextoIzquierda("Egreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda("Efectivo");
-                ticket.TextoIzquierda(label48.Text + "\t" + label46.Text);
-                ticket.TextoIzquierda("Mercado Pago");
-                ticket.TextoIzquierda(label45.Text + "\t" + label43.Text);
-                ticket.TextoIzquierda("Credito");
-                ticket.TextoIzquierda(label42.Text + "\t" + label40.Text);
-                ticket.TextoIzquierda("Bonificados");
-                ticket.TextoIzquierda(label39.Text + "\t" + label37.Text);
-                ticket.TextoIzquierda("Registradora");
-                ticket.TextoIzquierda(label85.Text + "\t" + label76.Text);
-                ticket.TextoIzquierda("Total");
-                ticket.TextoIzquierda(label36.Text + "\t" + label34.Text);
-
-
-
-                ticket.lineasAsteriscos();
-                ticket.TextoCentro("Resumen Total");
-                ticket.TextoIzquierda("Ingreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda(label83.Text + "\t" + label82.Text);
-                ticket.TextoIzquierda(label93.Text + "\t" + label92.Text);
-                ticket.TextoIzquierda("Egreso");
-                ticket.lineasGuio();
-                ticket.TextoIzquierda(label90.Text + "\t" + label89.Text);
-                ticket.TextoIzquierda(label73.Text + "\t" + label72.Text);
-                ticket.TextoIzquierda(label70.Text + "\t" + label69.Text);
-                ticket.TextoIzquierda(label67.Text + "\t" + label66.Text);
-                ticket.TextoIzquierda(label61.Text + "\t" + label60.Text);
-                ticket.TextoIzquierda(label64.Text + "\t" + label63.Text);
-
-                ticket.lineasAsteriscos();
-                ticket.TextoCentro("Ventas y Registradora");
+                ticket.lineasIgual();
+                ticket.EncabezadoMercaderia();
+                ticket.TextoIzquierda("");
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    // articulos
-                    ticket.TextoCentro(dataGridView1.Rows[i].Cells[1].Value.ToString());
-                    ticket.TextoCentro(
-                        dataGridView1.Rows[i].Cells[3].Value.ToString() + "\t - $" +
-                        dataGridView1.Rows[i].Cells[4].Value.ToString()
 
-
-                        );
+                    if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Mercaderia")
+                    {
+                        ticket.AgregaArticulo(
+                            dataGridView1.Rows[i].Cells[1].Value.ToString(),
+                            double.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString()),
+                            double.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString())
+                            );
+                    }
                 }
-
+                ticket.TextoIzquierda("");
+                ticket.lineasBarra();
+                ticket.TextoIzquierda("");
+                ticket.TextoIzquierda("Informe Cartones");
                 ticket.lineasAsteriscos();
+                ticket.TextoExtremos("Ingresaron:",label12.Text);
+                ticket.TextoExtremos("Egresaron:", label32.Text);
+                ticket.lineasGuio();
+                ticket.TextoIzquierda("EFECTIVO");
+                ticket.TextoExtremos("Egresaron:", label20.Text);
+                ticket.TextoExtremos("Importe:", label18.Text);
+                ticket.lineasGuio();
+                ticket.TextoIzquierda("REGISTRADORA");
+                ticket.TextoExtremos("Egresaron:", label88.Text);
+                ticket.TextoExtremos("Importe:", label86.Text);
+                ticket.lineasGuio();
+                ticket.TextoIzquierda("CUENTA CORRIENTE");
+                ticket.TextoExtremos("Egresaron:", label26.Text);
+                ticket.TextoExtremos("Importe:", label24.Text);
+                ticket.lineasGuio();
+                ticket.TextoIzquierda("BONIFICADOS");
+                ticket.TextoExtremos("Egresaron:", label29.Text);
+                ticket.TextoIzquierda("");
+                ticket.lineasBarra();
+                ticket.TextoIzquierda("");
+                ticket.TextoIzquierda("Informe Mercaderia");
+                ticket.lineasAsteriscos();
+                ticket.TextoExtremos("Cantidad:", label36.Text);
+                ticket.TextoExtremos("Importe:", label34.Text);
+                ticket.TextoIzquierda("");
+                ticket.lineasBarra();
+                ticket.TextoIzquierda("");
+                ticket.TextoIzquierda("Cuentas Corrientes");
+                ticket.lineasAsteriscos();
+                ticket.EncabezadoClientes();
+                ticket.TextoIzquierda("");
+                for (int i =0; i<lventas.Count();i++) {
+                   
+                    if (lventas[i].Pagos[0].Codigo == "1.1.3")
+                    {
+                        ticket.AgregaArticulo(lventas[i].Receptor, lventas[i].CantidadHuevos(), lventas[i].Pagos[0].Importe);
+                    }
+                }
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");
                 ticket.TextoIzquierda("");

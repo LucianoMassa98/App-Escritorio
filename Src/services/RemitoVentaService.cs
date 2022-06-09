@@ -154,10 +154,16 @@ namespace E_Shop
 
 
         }
-        public void EgresoPorTipo(ref double[] x) {
-        
-        
-        
+
+        public double CantidadHuevos() {
+            double sum = 0;
+
+            for (int i =0; i<ListaDeProductos.Count();i++) {
+
+                if (ListaDeProductos[i].Descripcion == "Huevo") { sum += ListaDeProductos[i].Cantidad; }
+            }
+
+            return sum;
         }
         static public bool Crear(RemitoVenta x)
         {

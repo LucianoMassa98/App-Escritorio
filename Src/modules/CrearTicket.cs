@@ -42,7 +42,15 @@ namespace E_Shop
             }
             return linea.AppendLine(lineasAsterisco).ToString(); //Devolvemos la linea con asteriscos
         }
-
+        public string lineasBarra()
+        {
+            string lineasAsterisco = "";
+            for (int i = 0; i < maxCar; i++)
+            {
+                lineasAsterisco += "|";//Agregara un asterisco hasta llegar la numero maximo de caracteres.
+            }
+            return linea.AppendLine(lineasAsterisco).ToString(); //Devolvemos la linea con asteriscos
+        }
         //Realizamos el mismo procedimiento para dibujar una lineas con el signo igual
         public string lineasIgual()
         {
@@ -67,6 +75,19 @@ namespace E_Shop
             } 
         }
 
+        public void EncabezadoHuevos()
+        {
+            linea.AppendLine("HUEVOS      | CANTIDAD | IMPORTE");
+        }
+        public void EncabezadoMercaderia()
+        {
+            linea.AppendLine("MERCADERIA  | CANTIDAD | IMPORTE");
+        }
+
+        public void EncabezadoClientes()
+        {
+            linea.AppendLine("CLIENTE     | CANTIDAD | IMPORTE");
+        }
         //Creamos un metodo para poner el texto a la izquierda
         public void TextoIzquierda(string texto)
         {
@@ -172,24 +193,28 @@ namespace E_Shop
         //Metodo para poner texto a los extremos
         public void TextoExtremos(string textoIzquierdo, string textoDerecho)
         {
+            // cantidad maxcar = 
             //variables que utilizaremos
             string textoIzq, textoDer, textoCompleto = "", espacios = "";
 
             //Si el texto que va a la izquierda es mayor a 18, cortamos el texto.
-            if (textoIzquierdo.Length > 18)
+            int espacioIzquierdo = 18;
+            if (textoIzquierdo.Length > espacioIzquierdo)
             {
-                cortar = textoIzquierdo.Length - 18;
-                textoIzq = textoIzquierdo.Remove(18, cortar);
+                cortar = textoIzquierdo.Length - espacioIzquierdo;
+                textoIzq = textoIzquierdo.Remove(espacioIzquierdo, cortar);
             }
             else
             { textoIzq = textoIzquierdo; }
 
             textoCompleto = textoIzq;//Agregamos el primer texto.
 
-            if (textoDerecho.Length > 20)//Si es mayor a 20 lo cortamos
+            int espacioDerecho = 14;
+            if (textoDerecho.Length > espacioDerecho)//Si es mayor a 20 lo cortamos
             {
-                cortar = textoDerecho.Length - 20;
-                textoDer = textoDerecho.Remove(20, cortar);
+                cortar = textoDerecho.Length - espacioDerecho;
+                textoDer = textoDerecho.Remove(espacioDerecho, cortar);
+                
             }
             else
             { textoDer = textoDerecho; }
@@ -210,10 +235,11 @@ namespace E_Shop
             //Variables que usaremos
             string resumen, valor, textoCompleto, espacios = "";
 
-            if (texto.Length > 25)//Si es mayor a 25 lo cortamos
+            int espacioTexto = 18;
+            if (texto.Length > espacioTexto)//Si es mayor a 25 lo cortamos
             {
-                cortar = texto.Length - 25;
-                resumen = texto.Remove(25, cortar);
+                cortar = texto.Length - espacioTexto;
+                resumen = texto.Remove(espacioTexto, cortar);
             }
             else
             { resumen = texto; }
@@ -405,6 +431,53 @@ namespace E_Shop
             }
         }
 
+        public void AgregaArticulo(string articulo, double cant, double importe)
+        {
+            //Valida que cant precio e importe esten dentro del rango.
+            
+            
+            int espacioArticulo = 17;
+            int espacioCantidad = 6;
+            int espacioImporte = 9;
+            //Valida que cant precio e importe esten dentro del rango.
+            if (cant.ToString().Length <= espacioCantidad && importe.ToString().Length <= espacioImporte)
+            {
+                string elemento = "", espacios = "";
+                bool bandera = false;//Indicara si es la primera linea que se escribe cuando bajemos a la segunda si el nombre del articulo no entra en la primera linea
+                int nroEspacios = 0;
+
+                //Si el nombre o descripcion del articulo es mayor a 20, bajar a la siguiente linea
+                if (articulo.Length > espacioArticulo)
+                {
+                    cortar = espacioArticulo - articulo.Length;
+                    articulo = articulo.Remove(17, cortar);
+                }
+                for (int i = 0; i < (espacioArticulo - articulo.Length); i++)
+                {
+                    espacios += " ";
+                }
+                elemento = articulo + espacios;
+
+                //Colocar la cantidad a la derecha.
+                nroEspacios = (espacioArticulo - cant.ToString().Length);
+                espacios = "";
+                for (int i = 0; i < nroEspacios; i++)
+                {
+                    espacios += " ";
+                }
+                elemento += cant.ToString() + espacios;
+
+                elemento += "$" + importe.ToString();
+
+                linea.AppendLine(elemento);//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
+            }
+            else
+            {
+                linea.AppendLine("Los valores ingresados para esta fila");
+                linea.AppendLine("superan las columnas soportdas por éste.");
+                throw new Exception("Los valores ingresados para algunas filas del ticket\nsuperan las columnas soportdas por éste.");
+            }
+        }
         //Metodos para enviar secuencias de escape a la impresora
         //Para cortar el ticket
         public void CortaTicket()

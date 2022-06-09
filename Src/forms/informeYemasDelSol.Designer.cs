@@ -136,10 +136,10 @@
             this.label71 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label91 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label94 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.label91 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1351,26 +1351,6 @@
             this.panel8.Size = new System.Drawing.Size(243, 436);
             this.panel8.TabIndex = 142;
             // 
-            // label91
-            // 
-            this.label91.AutoSize = true;
-            this.label91.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(2, 18);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(151, 18);
-            this.label91.TabIndex = 145;
-            this.label91.Text = "Lista de creditos";
-            // 
-            // listBox1
-            // 
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(16, 44);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(207, 252);
-            this.listBox1.TabIndex = 144;
-            // 
             // label94
             // 
             this.label94.AutoSize = true;
@@ -1391,6 +1371,26 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(207, 252);
             this.listBox2.TabIndex = 146;
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.Location = new System.Drawing.Point(2, 18);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(151, 18);
+            this.label91.TabIndex = 145;
+            this.label91.Text = "Lista de creditos";
+            // 
+            // listBox1
+            // 
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 18;
+            this.listBox1.Location = new System.Drawing.Point(16, 44);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(207, 252);
+            this.listBox1.TabIndex = 144;
             // 
             // informeYemasDelSol
             // 
