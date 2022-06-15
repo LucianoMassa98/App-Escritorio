@@ -41,7 +41,11 @@ namespace E_Shop
                     listBox2.Items.Add(lventas[i].Receptor + "\t $"+ lventas[i].TotalVenta()); }
                 if (lventas[i].Pagos[0].Codigo=="1.1.3") {
 
-                    listBox1.Items.Add(lventas[i].Receptor+" \t "+lventas[i].Pagos[0].Importe);
+                    listBox1.Items.Add(
+                        lventas[i].Receptor+" \t "+
+                        lventas[i].CantidadHuevos() + " -" +
+                        lventas[i].CantidadMercaderia() + " - " +
+                        "$"+lventas[i].Pagos[0].Importe);
 
                     
                 }
@@ -142,7 +146,6 @@ namespace E_Shop
                 Direcciones dir = new Direcciones();
                 CrearTicket ticket = new CrearTicket(32);
                 ticket.AbreCajon();
-                ticket.TextoCentro(dir.Space);
                 ticket.TextoCentro("Informe "+new Direcciones().Space);
                 ticket.TextoIzquierda("FECHA: " + DateTime.Now.ToShortDateString());
                 ticket.TextoIzquierda("HORA: " + DateTime.Now.ToShortTimeString());
@@ -216,7 +219,16 @@ namespace E_Shop
                    
                     if (lventas[i].Pagos[0].Codigo == "1.1.3")
                     {
-                        ticket.AgregaArticulo(lventas[i].Receptor, lventas[i].CantidadHuevos(), lventas[i].Pagos[0].Importe);
+                        ticket.AgregaArticulo(lventas[i].Receptor,
+                            lventas[i].CantidadHuevos(),
+                            lventas[i].CantidadMercaderia(),
+                            lventas[i].Pagos[0].Importe);
+
+                        for (int j = 0;j<lventas[i].ListaProdutos.Count();j++) {
+                            ticket.TextoExtremos(lventas[i].ListaProdutos[j].Nombre, lventas[i].ListaProdutos[j].Cantidad.ToString());
+                        }
+
+                        ticket.lineasGuio();
                     }
                 }
                 ticket.TextoIzquierda("");

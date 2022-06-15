@@ -86,7 +86,7 @@ namespace E_Shop
 
         public void EncabezadoClientes()
         {
-            linea.AppendLine("CLIENTE     | CANTIDAD | IMPORTE");
+            linea.AppendLine("CLIENTE    |HVOS | MRIA| IMPORTE");
         }
         //Creamos un metodo para poner el texto a la izquierda
         public void TextoIzquierda(string texto)
@@ -262,73 +262,32 @@ namespace E_Shop
         public void AgregaArticulo(string articulo, double cant, double precio, double importe)
         {
             //Valida que cant precio e importe esten dentro del rango.
-            if (cant.ToString().Length <= 8 && precio.ToString().Length <= 1 && importe.ToString().Length <= 11)
+            int espacioArticulo = 11;
+            int espacioCnt = 6;
+            int espacioPrecio = 6;
+            int espacioImporte = 9;
+            if (cant.ToString().Length <= espacioCnt && 
+                precio.ToString().Length <= espacioPrecio && 
+                importe.ToString().Length <= espacioImporte)
             {
                 string elemento = "", espacios = "";
                 bool bandera = false;//Indicara si es la primera linea que se escribe cuando bajemos a la segunda si el nombre del articulo no entra en la primera linea
                 int nroEspacios = 0;
 
                 //Si el nombre o descripcion del articulo es mayor a 20, bajar a la siguiente linea
-                if (articulo.Length > 12)
+                   if (articulo.Length > espacioArticulo)
                 {
-                    //Colocar la cantidad a la derecha.
-                    nroEspacios = (5 - cant.ToString().Length);
-                    espacios = "";
-                    for (int i = 0; i < nroEspacios; i++)
-                    {
-                        espacios += " ";//Generamos los espacios necesarios para alinear a la derecha
-                    }
-                    elemento += espacios + cant.ToString();//agregamos la cantidad con los espacios
-
-                    //Colocar el precio a la derecha.
-                    nroEspacios = (7 - precio.ToString().Length);
-                    espacios = "";
-                    for (int i = 0; i < nroEspacios; i++)
-                    {
-                        espacios += " ";//Genera los espacios
-                    }
-                    //el operador += indica que agregar mas cadenas a lo que ya existe.
-                    elemento += espacios + precio.ToString();//Agregamos el precio a la variable elemento
-
-                    //Colocar el importe a la derecha.
-                    nroEspacios = (8 - importe.ToString().Length);
-                    espacios = "";
-                    for (int i = 0; i < nroEspacios; i++)
-                    {
-                        espacios += " ";
-                    }
-                    elemento += espacios + importe.ToString();//Agregamos el importe alineado a la derecha
-
-                    int caracterActual = 0;//Indicara en que caracter se quedo al bajae a la siguiente linea
-
-                    //Por cada 20 caracteres se agregara una linea siguiente
-                    for (int longitudTexto = articulo.Length; longitudTexto > 20; longitudTexto -= 20)
-                    {
-                        if (bandera == false)//si es false o la primera linea en recorrerer, continuar...
-                        {
-                            //agregamos los primeros 20 caracteres del nombre del articulos, mas lo que ya tiene la variable elemento
-                            linea.AppendLine(articulo.Substring(caracterActual, 20) + elemento);
-                            bandera = true;//cambiamos su valor a verdadero
-                        }
-                        else
-                            linea.AppendLine(articulo.Substring(caracterActual, 20));//Solo agrega el nombre del articulo
-
-                        caracterActual += 20;//incrementa en 20 el valor de la variable caracterActual
-                    }
-                    //Agrega el resto del fragmento del  nombre del articulo
-                    linea.AppendLine(articulo.Substring(caracterActual, articulo.Length - caracterActual));
+                    articulo = articulo.Substring(0, espacioArticulo);
 
                 }
-                else //Si no es mayor solo agregarlo, sin dar saltos de lineas
-                {
-                    for (int i = 0; i < (8 - articulo.Length); i++)
+                   for (int i = 0; i < (espacioArticulo - articulo.Length); i++)
                     {
                         espacios += " "; //Agrega espacios para completar los 20 caracteres
                     }
                     elemento = articulo + espacios;
 
                     //Colocar la cantidad a la derecha.
-                    nroEspacios = (8 - cant.ToString().Length);// +(20 - elemento.Length);
+                    nroEspacios = (espacioCnt - cant.ToString().Length);// +(20 - elemento.Length);
                     espacios = "";
                     for (int i = 0; i < nroEspacios; i++)
                     {
@@ -337,16 +296,16 @@ namespace E_Shop
                     elemento += espacios + cant.ToString();
 
                     //Colocar el precio a la derecha.
-                    nroEspacios = (1 - precio.ToString().Length);
+                    nroEspacios = (espacioPrecio - precio.ToString().Length);
                     espacios = "";
                     for (int i = 0; i < nroEspacios; i++)
                     {
                         espacios += " ";
                     }
-                    elemento += espacios;
+                    elemento += espacios+ precio.ToString();
 
                     //Colocar el importe a la derecha.
-                    nroEspacios = (13 - importe.ToString().Length);
+                    nroEspacios = (espacioImporte - importe.ToString().Length);
                     espacios = "";
                     for (int i = 0; i < nroEspacios; i++)
                     {
@@ -355,7 +314,7 @@ namespace E_Shop
                     elemento += espacios + importe.ToString();
 
                     linea.AppendLine(elemento);//Agregamos todo el elemento: nombre del articulo, cant, precio, importe.
-                }
+                
             }
             else
             {
@@ -443,14 +402,14 @@ namespace E_Shop
             if (cant.ToString().Length <= espacioCantidad && importe.ToString().Length <= espacioImporte)
             {
                 string elemento = "", espacios = "";
-                bool bandera = false;//Indicara si es la primera linea que se escribe cuando bajemos a la segunda si el nombre del articulo no entra en la primera linea
+               
                 int nroEspacios = 0;
 
                 //Si el nombre o descripcion del articulo es mayor a 20, bajar a la siguiente linea
                 if (articulo.Length > espacioArticulo)
                 {
                     cortar = espacioArticulo - articulo.Length;
-                    articulo = articulo.Remove(17, cortar);
+                    articulo = articulo.Substring(0, 17);
                 }
                 for (int i = 0; i < (espacioArticulo - articulo.Length); i++)
                 {
@@ -459,7 +418,7 @@ namespace E_Shop
                 elemento = articulo + espacios;
 
                 //Colocar la cantidad a la derecha.
-                nroEspacios = (espacioArticulo - cant.ToString().Length);
+                nroEspacios = (espacioImporte - cant.ToString().Length - 1);
                 espacios = "";
                 for (int i = 0; i < nroEspacios; i++)
                 {

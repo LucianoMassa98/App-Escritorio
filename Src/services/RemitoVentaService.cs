@@ -160,7 +160,19 @@ namespace E_Shop
 
             for (int i =0; i<ListaDeProductos.Count();i++) {
 
-                if (ListaDeProductos[i].Descripcion == "Huevo") { sum += ListaDeProductos[i].Cantidad; }
+                if (Producto.BuscarPorCodigo(ListaDeProductos[i].Codigo).Descripcion == "Huevo") { sum += ListaDeProductos[i].Cantidad; }
+            }
+
+            return sum;
+        }
+        public double CantidadMercaderia()
+        {
+            double sum = 0;
+
+            for (int i = 0; i < ListaDeProductos.Count(); i++)
+            {
+
+                if (Producto.BuscarPorCodigo(ListaDeProductos[i].Codigo).Descripcion == "Mercaderia") { sum += ListaDeProductos[i].Cantidad; }
             }
 
             return sum;

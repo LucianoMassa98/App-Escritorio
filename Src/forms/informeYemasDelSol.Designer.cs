@@ -140,6 +140,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label91 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1344,11 +1345,12 @@
             // 
             this.panel8.Controls.Add(this.label94);
             this.panel8.Controls.Add(this.listBox2);
+            this.panel8.Controls.Add(this.label4);
             this.panel8.Controls.Add(this.label91);
             this.panel8.Controls.Add(this.listBox1);
             this.panel8.Location = new System.Drawing.Point(12, 374);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(243, 436);
+            this.panel8.Size = new System.Drawing.Size(243, 800);
             this.panel8.TabIndex = 142;
             // 
             // label94
@@ -1366,17 +1368,18 @@
             // 
             this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox2.FormattingEnabled = true;
+            this.listBox2.HorizontalScrollbar = true;
             this.listBox2.ItemHeight = 18;
-            this.listBox2.Location = new System.Drawing.Point(14, 318);
+            this.listBox2.Location = new System.Drawing.Point(3, 313);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(207, 252);
+            this.listBox2.Size = new System.Drawing.Size(229, 468);
             this.listBox2.TabIndex = 146;
             // 
             // label91
             // 
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.Location = new System.Drawing.Point(2, 18);
+            this.label91.Location = new System.Drawing.Point(4, 2);
             this.label91.Name = "label91";
             this.label91.Size = new System.Drawing.Size(151, 18);
             this.label91.TabIndex = 145;
@@ -1386,18 +1389,30 @@
             // 
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 18;
             this.listBox1.Location = new System.Drawing.Point(16, 44);
             this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(207, 252);
             this.listBox1.TabIndex = 144;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(27, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(176, 16);
+            this.label4.TabIndex = 145;
+            this.label4.Text = "Cliente |Hvos |Mria | Imp";
             // 
             // informeYemasDelSol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1284, 724);
+            this.ClientSize = new System.Drawing.Size(1284, 746);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.label74);
             this.Controls.Add(this.label71);
@@ -1551,5 +1566,6 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
