@@ -5,6 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,7 +26,8 @@ namespace E_Shop
         private void informeYemasDelSol_Load(object sender, EventArgs e)
         {
             Direcciones dir = new Direcciones();
-            panel3.BackgroundImage = Image.FromFile(dir.Logo);
+            panel3.BackgroundImage = System.Drawing.Image.FromFile(dir.Logo);
+            
         }
         public void Filtrar(string desde, string hasta) { 
             lventas = RemitoVenta.BuscarPorFecha(desde, hasta);
@@ -252,6 +256,152 @@ namespace E_Shop
         private void label115_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            
+            GenerarPdfInormeYemas();
+
+        }
+        public void GenerarPdfInormeYemas()
+        {
+            
+            string FechaActual = DateTime.Now.Date.ToString();
+            FileStream p = new FileStream(new Direcciones().ArchivoPdf + "fecha actual" + ".pdf", FileMode.Create);
+            Document doc = new Document(PageSize.LETTER, 5, 5, 7, 7);
+            PdfWriter pw = PdfWriter.GetInstance(doc, p);
+            doc.Open();
+            //titulo y autor
+            doc.AddTitle("Informe");
+            doc.AddAuthor("lgmassa98@gmail.com");
+            // define tipo de fuente (tipo,tamaño,forma,color)
+
+            iTextSharp.text.Font StandarFont = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                8,
+                iTextSharp.text.Font.NORMAL,
+                BaseColor.BLACK
+                );
+
+            //escribir encabezado
+
+            doc.Add(new Paragraph("Informe Yemas del sol"));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Fecha: " + FechaActual, StandarFont));
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Paragraph("INFORME HUEVOS"));
+            
+            doc.Add(new Paragraph("Cantidad Ingreso: "+label12.Text));
+         
+            //encabezado columnas
+            doc.Add(new Paragraph("tabla de Egresos"));
+          
+
+            PdfPTable tablePagos = new PdfPTable(3);
+            tablePagos.WidthPercentage = 100;
+
+            //configurando el titulo de las comunas
+            PdfPCell medio = new PdfPCell(new Phrase("Medio", StandarFont));
+            medio.BorderWidth = 0;
+            medio.BorderWidthBottom = 0.75f;
+
+            PdfPCell egreso = new PdfPCell(new Phrase("Egreso", StandarFont));
+            egreso.BorderWidth = 0;
+            egreso.BorderWidthBottom = 0.75f;
+
+            PdfPCell monto = new PdfPCell(new Phrase("Monto", StandarFont));
+            monto.BorderWidth = 0;
+            monto.BorderWidthBottom = 0.75f;
+
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+
+            medio = new PdfPCell(new Phrase("Efectivo", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label20.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label18.Text, StandarFont));
+            monto.BorderWidth = 0;
+
+
+
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(tablePagos);
+            doc.Add(new Phrase("Total: " + label30.Text, StandarFont));
+
+            
+            doc.Close();
+            pw.Close();
+
+            MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+            /*
+            PdfPTable tableEjemplo = new PdfPTable(4);
+            tableEjemplo.WidthPercentage = 100;
+
+            //configurando el titulo de las comunas
+            PdfPCell clProducto = new PdfPCell(new Phrase("Producto", StandarFont));
+            clProducto.BorderWidth = 0;
+            clProducto.BorderWidthBottom = 0.75f;
+
+            PdfPCell clCantidad = new PdfPCell(new Phrase("Cantidad", StandarFont));
+            clCantidad.BorderWidth = 0;
+            clCantidad.BorderWidthBottom = 0.75f;
+
+            PdfPCell clPrecio = new PdfPCell(new Phrase("Precio", StandarFont));
+            clPrecio.BorderWidth = 0;
+            clPrecio.BorderWidthBottom = 0.75f;
+
+            PdfPCell clImporte = new PdfPCell(new Phrase("Importe", StandarFont));
+            clImporte.BorderWidth = 0;
+            clImporte.BorderWidthBottom = 0.75f;
+
+            //añadir las columnas a la tabla
+
+            tableEjemplo.AddCell(clProducto);
+            tableEjemplo.AddCell(clCantidad);
+            tableEjemplo.AddCell(clPrecio);
+            tableEjemplo.AddCell(clImporte);
+            //agregando datos
+
+            for (int i = 0; i < x.ListaProdutos.Count(); i++)
+            {
+                clProducto = new PdfPCell(new Phrase(x.ListaProdutos[i].Nombre, StandarFont));
+                clProducto.BorderWidth = 0;
+
+                clCantidad = new PdfPCell(new Phrase(x.ListaProdutos[i].Cantidad.ToString(), StandarFont));
+                clCantidad.BorderWidth = 0;
+
+                clPrecio = new PdfPCell(new Phrase(x.ListaProdutos[i].Precio.ToString(), StandarFont));
+                clPrecio.BorderWidth = 0;
+
+                clImporte = new PdfPCell(new Phrase(x.ListaProdutos[i].ImportePrecio().ToString(), StandarFont));
+                clPrecio.BorderWidth = 0;
+
+                tableEjemplo.AddCell(clProducto);
+                tableEjemplo.AddCell(clCantidad);
+                tableEjemplo.AddCell(clPrecio);
+                tableEjemplo.AddCell(clImporte);
+
+            }
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(new Phrase("Total: $" + x.TotalVenta(), StandarFont));
+
+            doc.Add(tableEjemplo);
+            doc.Close();
+            pw.Close();
+
+            MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            */
         }
     }
 }

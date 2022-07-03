@@ -138,9 +138,10 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.label94 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -152,6 +153,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.SlateGray;
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.panel3);
@@ -1375,6 +1377,16 @@
             this.listBox2.Size = new System.Drawing.Size(229, 468);
             this.listBox2.TabIndex = 146;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(27, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(176, 16);
+            this.label4.TabIndex = 145;
+            this.label4.Text = "Cliente |Hvos |Mria | Imp";
+            // 
             // label91
             // 
             this.label91.AutoSize = true;
@@ -1397,15 +1409,16 @@
             this.listBox1.Size = new System.Drawing.Size(207, 252);
             this.listBox1.TabIndex = 144;
             // 
-            // label4
+            // button2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(27, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(176, 16);
-            this.label4.TabIndex = 145;
-            this.label4.Text = "Cliente |Hvos |Mria | Imp";
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(300, 66);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 53);
+            this.button2.TabIndex = 143;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // informeYemasDelSol
             // 
@@ -1567,5 +1580,6 @@
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
     }
 }

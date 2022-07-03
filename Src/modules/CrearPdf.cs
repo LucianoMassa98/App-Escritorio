@@ -104,6 +104,9 @@ namespace E_Shop
             MessageBox.Show("Documento generado existosamente","Exito",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+    
+    
+        
     }
 
     
