@@ -265,11 +265,314 @@ namespace E_Shop
             GenerarPdfInormeYemas();
 
         }
+        public void pdfHuevo(ref Document doc, iTextSharp.text.Font StandarFont) {
+
+            doc.Add(new Paragraph("INFORME HUEVOS"));
+            doc.Add(new Phrase("Total Ingreso: " + label12.Text, StandarFont));
+            doc.Add(new Phrase("\t Total Egreso: " + label32.Text, StandarFont));
+
+            PdfPTable tablePagos = new PdfPTable(3);
+            tablePagos.WidthPercentage = 70;
+
+            PdfPCell medio = new PdfPCell(new Phrase("Medio de Pago", StandarFont));
+            medio.BorderWidth = 0;
+            medio.BorderWidthBottom = 0.75f;
+
+            PdfPCell egreso = new PdfPCell(new Phrase("Egresaron", StandarFont));
+            egreso.BorderWidth = 0;
+            egreso.BorderWidthBottom = 0.75f;
+
+            PdfPCell monto = new PdfPCell(new Phrase("Importe", StandarFont));
+            monto.BorderWidth = 0;
+            monto.BorderWidthBottom = 0.75f;
+
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Eefectivo", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label20.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label18.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Registradora", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label88.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label86.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Cuenta Corriente", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label26.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label24.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Bonificados", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label29.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase("0", StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            doc.Add(tablePagos);
+
+
+            // tabla de ventas
+            doc.Add(new Paragraph("Ventas x Huevos"));
+            doc.Add(new Phrase("Total: " + label30.Text, StandarFont));
+            PdfPTable tableVentas = new PdfPTable(3);
+            tableVentas.WidthPercentage = 80;
+
+            PdfPCell huevo = new PdfPCell(new Phrase("Huevo", StandarFont));
+            huevo.BorderWidth = 0;
+            huevo.BorderWidthBottom = 0.75f;
+
+            PdfPCell cnt = new PdfPCell(new Phrase("Cantidad", StandarFont));
+            cnt.BorderWidth = 0;
+            cnt.BorderWidthBottom = 0.75f;
+
+            PdfPCell imp = new PdfPCell(new Phrase("Importe", StandarFont));
+            imp.BorderWidth = 0;
+            imp.BorderWidthBottom = 0.75f;
+
+            tableVentas.AddCell(huevo);
+            tableVentas.AddCell(cnt);
+            tableVentas.AddCell(imp);
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+
+                if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Huevo")
+                {
+                    huevo = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                    huevo.BorderWidth = 0;
+                    cnt = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[3].Value.ToString(), StandarFont));
+                    cnt.BorderWidth = 0;
+                    imp = new PdfPCell(new Phrase("$" + dataGridView1.Rows[i].Cells[4].Value.ToString(), StandarFont));
+                    imp.BorderWidth = 0;
+                    tableVentas.AddCell(huevo);
+                    tableVentas.AddCell(cnt);
+                    tableVentas.AddCell(imp);
+                }
+            }
+            doc.Add(tableVentas);
+        }
+        public void pdfMercaderia(ref Document doc, iTextSharp.text.Font StandarFont) {
+
+            doc.Add(new Paragraph("INFORME MERCADERIA"));
+            doc.Add(new Phrase("Total Ingreso: " + label59.Text, StandarFont));
+            doc.Add(new Phrase("\t Total Egreso: " + label36.Text, StandarFont));
+
+            PdfPTable tablePagos = new PdfPTable(3);
+            tablePagos.WidthPercentage = 70;
+
+            PdfPCell medio = new PdfPCell(new Phrase("Medio de Pago", StandarFont));
+            medio.BorderWidth = 0;
+            medio.BorderWidthBottom = 0.75f;
+
+            PdfPCell egreso = new PdfPCell(new Phrase("Egresaron", StandarFont));
+            egreso.BorderWidth = 0;
+            egreso.BorderWidthBottom = 0.75f;
+
+            PdfPCell monto = new PdfPCell(new Phrase("Importe", StandarFont));
+            monto.BorderWidth = 0;
+            monto.BorderWidthBottom = 0.75f;
+
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Eefectivo", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label48.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label46.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Registradora", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label85.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label76.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Cuenta Corriente", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label42.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase(label40.Text, StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            medio = new PdfPCell(new Phrase("Bonificados", StandarFont));
+            medio.BorderWidth = 0;
+            egreso = new PdfPCell(new Phrase(label39.Text, StandarFont));
+            egreso.BorderWidth = 0;
+            monto = new PdfPCell(new Phrase("0", StandarFont));
+            monto.BorderWidth = 0;
+            tablePagos.AddCell(medio);
+            tablePagos.AddCell(egreso);
+            tablePagos.AddCell(monto);
+
+            doc.Add(tablePagos);
+
+
+            // tabla de ventas
+            doc.Add(new Paragraph("Ventas x Mercaderia"));
+            doc.Add(new Phrase("Total: " + label34.Text, StandarFont));
+            PdfPTable tableVentas = new PdfPTable(3);
+            tableVentas.WidthPercentage = 80;
+
+            PdfPCell huevo = new PdfPCell(new Phrase("Mercaderia", StandarFont));
+            huevo.BorderWidth = 0;
+            huevo.BorderWidthBottom = 0.75f;
+
+            PdfPCell cnt = new PdfPCell(new Phrase("Cantidad", StandarFont));
+            cnt.BorderWidth = 0;
+            cnt.BorderWidthBottom = 0.75f;
+
+            PdfPCell imp = new PdfPCell(new Phrase("Importe", StandarFont));
+            imp.BorderWidth = 0;
+            imp.BorderWidthBottom = 0.75f;
+
+            tableVentas.AddCell(huevo);
+            tableVentas.AddCell(cnt);
+            tableVentas.AddCell(imp);
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+
+                if (dataGridView1.Rows[i].Cells[2].Value.ToString() == "Mercaderia")
+                {
+                    huevo = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                    huevo.BorderWidth = 0;
+                    cnt = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[3].Value.ToString(), StandarFont));
+                    cnt.BorderWidth = 0;
+                    imp = new PdfPCell(new Phrase("$" + dataGridView1.Rows[i].Cells[4].Value.ToString(), StandarFont));
+                    imp.BorderWidth = 0;
+                    tableVentas.AddCell(huevo);
+                    tableVentas.AddCell(cnt);
+                    tableVentas.AddCell(imp);
+                }
+            }
+            doc.Add(tableVentas);
+        }
+
+        public void pdfCuentaCorriente(ref Document doc, iTextSharp.text.Font StandarFont)
+        {
+
+            doc.Add(new Paragraph("INFORME CUENTA CORRIENTE"));
+            for (int i =0; i< lventas.Count(); i++) {
+
+                if (lventas[i].Pagos[0].Codigo == "1.1.3")
+                {
+
+                    PdfPTable tableCliente = new PdfPTable(4);
+                    tableCliente.WidthPercentage = 70;
+
+                    PdfPCell cliente = new PdfPCell(new Phrase("Cliente", StandarFont));
+                    cliente.BorderWidth = 0;
+                    cliente.BorderWidthBottom = 0.75f;
+
+                    PdfPCell huevo = new PdfPCell(new Phrase("Huevo", StandarFont));
+                    huevo.BorderWidth = 0;
+                    huevo.BorderWidthBottom = 0.75f;
+
+                    PdfPCell mercaderia = new PdfPCell(new Phrase("Mercaderia", StandarFont));
+                    mercaderia.BorderWidth = 0;
+                    mercaderia.BorderWidthBottom = 0.75f;
+
+                    PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
+                    importe.BorderWidth = 0;
+                    importe.BorderWidthBottom = 0.75f;
+
+                    tableCliente.AddCell(cliente);
+                    tableCliente.AddCell(huevo);
+                    tableCliente.AddCell(mercaderia);
+                    tableCliente.AddCell(importe);
+
+                    cliente = new PdfPCell(new Phrase(lventas[i].Receptor, StandarFont));
+                    cliente.BorderWidth = 0;
+                    huevo = new PdfPCell(new Phrase(lventas[i].CantidadHuevos().ToString(), StandarFont));
+                    huevo.BorderWidth = 0;
+                    mercaderia = new PdfPCell(new Phrase(lventas[i].CantidadMercaderia().ToString(), StandarFont));
+                    mercaderia.BorderWidth = 0;
+                    importe = new PdfPCell(new Phrase("$" + lventas[i].Pagos[0].Importe, StandarFont));
+                    importe.BorderWidth = 0;
+
+                    tableCliente.AddCell(cliente);
+                    tableCliente.AddCell(huevo);
+                    tableCliente.AddCell(mercaderia);
+                    tableCliente.AddCell(importe);
+                    doc.Add(tableCliente);
+
+                    PdfPTable tableProductos= new PdfPTable(2);
+                    tableProductos.WidthPercentage = 40;
+
+                    PdfPCell producto = new PdfPCell(new Phrase("Producto", StandarFont));
+                    producto.BorderWidth = 0;
+                    producto.BorderWidthBottom = 0.75f;
+
+                    PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad", StandarFont));
+                    cantidad.BorderWidth = 0;
+                    cantidad.BorderWidthBottom = 0.75f;
+
+                    tableProductos.AddCell(producto);
+                    tableProductos.AddCell(cantidad);
+
+                    for (int j =0; j<lventas[i].ListaProdutos.Count();j++) {
+                        producto = new PdfPCell(new Phrase(lventas[i].ListaProdutos[j].Nombre, StandarFont));
+                        producto.BorderWidth = 0;
+                        cantidad = new PdfPCell(new Phrase(lventas[i].ListaProdutos[j].Cantidad.ToString(), StandarFont));
+                        cantidad.BorderWidth = 0;
+
+                        tableProductos.AddCell(producto);
+                        tableProductos.AddCell(cantidad);
+                    }
+
+
+                    doc.Add(tableProductos);
+
+
+                    doc.Add(Chunk.NEWLINE);
+
+                }
+          
+            }
+
+            
+
+
+        }
         public void GenerarPdfInormeYemas()
         {
-            
-            string FechaActual = DateTime.Now.Date.ToString();
-            FileStream p = new FileStream(new Direcciones().ArchivoPdf + "fecha actual" + ".pdf", FileMode.Create);
+
+            string FechaActual = DateTime.Now.Date.ToLongDateString();
+            FileStream p = new FileStream(new Direcciones().ArchivoPdf +"Informe -"+ FechaActual + ".pdf", FileMode.Create);
             Document doc = new Document(PageSize.LETTER, 5, 5, 7, 7);
             PdfWriter pw = PdfWriter.GetInstance(doc, p);
             doc.Open();
@@ -288,120 +591,29 @@ namespace E_Shop
             //escribir encabezado
 
             doc.Add(new Paragraph("Informe Yemas del sol"));
+            doc.Add(new Phrase("\nFecha emision: " + FechaActual, StandarFont));
+            doc.Add(new Phrase("\nHora  emision: " + DateTime.Now.ToShortTimeString(), StandarFont));
+            doc.Add(new Phrase("\nPeriodo desde: " + dateTimePicker1.Value.ToShortDateString(), StandarFont));
+            doc.Add(new Phrase("\nPeriodo Hasta: " + dateTimePicker2.Value.ToShortDateString(), StandarFont));
             doc.Add(Chunk.NEWLINE);
-            doc.Add(new Phrase("Fecha: " + FechaActual, StandarFont));
             doc.Add(Chunk.NEWLINE);
-            doc.Add(new Paragraph("INFORME HUEVOS"));
-            
-            doc.Add(new Paragraph("Cantidad Ingreso: "+label12.Text));
-         
-            //encabezado columnas
-            doc.Add(new Paragraph("tabla de Egresos"));
-          
-
-            PdfPTable tablePagos = new PdfPTable(3);
-            tablePagos.WidthPercentage = 100;
-
-            //configurando el titulo de las comunas
-            PdfPCell medio = new PdfPCell(new Phrase("Medio", StandarFont));
-            medio.BorderWidth = 0;
-            medio.BorderWidthBottom = 0.75f;
-
-            PdfPCell egreso = new PdfPCell(new Phrase("Egreso", StandarFont));
-            egreso.BorderWidth = 0;
-            egreso.BorderWidthBottom = 0.75f;
-
-            PdfPCell monto = new PdfPCell(new Phrase("Monto", StandarFont));
-            monto.BorderWidth = 0;
-            monto.BorderWidthBottom = 0.75f;
-
-            tablePagos.AddCell(medio);
-            tablePagos.AddCell(egreso);
-            tablePagos.AddCell(monto);
-
-
-            medio = new PdfPCell(new Phrase("Efectivo", StandarFont));
-            medio.BorderWidth = 0;
-            egreso = new PdfPCell(new Phrase(label20.Text, StandarFont));
-            egreso.BorderWidth = 0;
-            monto = new PdfPCell(new Phrase(label18.Text, StandarFont));
-            monto.BorderWidth = 0;
-
-
-
-            tablePagos.AddCell(medio);
-            tablePagos.AddCell(egreso);
-            tablePagos.AddCell(monto);
+            pdfHuevo(ref doc, StandarFont);
             doc.Add(Chunk.NEWLINE);
-            doc.Add(tablePagos);
-            doc.Add(new Phrase("Total: " + label30.Text, StandarFont));
+            doc.Add(Chunk.NEWLINE);
+            pdfMercaderia(ref doc,StandarFont);
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(Chunk.NEWLINE);
+            pdfCuentaCorriente(ref doc, StandarFont);
 
-            
             doc.Close();
             pw.Close();
 
             MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
+        private void label32_Click(object sender, EventArgs e)
+        {
 
-
-            /*
-            PdfPTable tableEjemplo = new PdfPTable(4);
-            tableEjemplo.WidthPercentage = 100;
-
-            //configurando el titulo de las comunas
-            PdfPCell clProducto = new PdfPCell(new Phrase("Producto", StandarFont));
-            clProducto.BorderWidth = 0;
-            clProducto.BorderWidthBottom = 0.75f;
-
-            PdfPCell clCantidad = new PdfPCell(new Phrase("Cantidad", StandarFont));
-            clCantidad.BorderWidth = 0;
-            clCantidad.BorderWidthBottom = 0.75f;
-
-            PdfPCell clPrecio = new PdfPCell(new Phrase("Precio", StandarFont));
-            clPrecio.BorderWidth = 0;
-            clPrecio.BorderWidthBottom = 0.75f;
-
-            PdfPCell clImporte = new PdfPCell(new Phrase("Importe", StandarFont));
-            clImporte.BorderWidth = 0;
-            clImporte.BorderWidthBottom = 0.75f;
-
-            //añadir las columnas a la tabla
-
-            tableEjemplo.AddCell(clProducto);
-            tableEjemplo.AddCell(clCantidad);
-            tableEjemplo.AddCell(clPrecio);
-            tableEjemplo.AddCell(clImporte);
-            //agregando datos
-
-            for (int i = 0; i < x.ListaProdutos.Count(); i++)
-            {
-                clProducto = new PdfPCell(new Phrase(x.ListaProdutos[i].Nombre, StandarFont));
-                clProducto.BorderWidth = 0;
-
-                clCantidad = new PdfPCell(new Phrase(x.ListaProdutos[i].Cantidad.ToString(), StandarFont));
-                clCantidad.BorderWidth = 0;
-
-                clPrecio = new PdfPCell(new Phrase(x.ListaProdutos[i].Precio.ToString(), StandarFont));
-                clPrecio.BorderWidth = 0;
-
-                clImporte = new PdfPCell(new Phrase(x.ListaProdutos[i].ImportePrecio().ToString(), StandarFont));
-                clPrecio.BorderWidth = 0;
-
-                tableEjemplo.AddCell(clProducto);
-                tableEjemplo.AddCell(clCantidad);
-                tableEjemplo.AddCell(clPrecio);
-                tableEjemplo.AddCell(clImporte);
-
-            }
-            doc.Add(Chunk.NEWLINE);
-            doc.Add(new Phrase("Total: $" + x.TotalVenta(), StandarFont));
-
-            doc.Add(tableEjemplo);
-            doc.Close();
-            pw.Close();
-
-            MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            */
         }
     }
 }

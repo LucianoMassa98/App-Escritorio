@@ -66,6 +66,10 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\infor
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\informeyemasdelsol.cs
 ++ListaCompras.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.cs
+++ListaCompras.Designer.cs
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.designer.cs
+++ListaCompras.resx
+i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.resx
 ++ListaVentas.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listaventas.cs
 ++ListaVentas.Designer.cs
@@ -248,10 +252,6 @@ i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\infor
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\informeyemasdelsol.designer.cs
 ++informeYemasDelSol.resx
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\informeyemasdelsol.resx
-++ListaCompras.Designer.cs
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.designer.cs
-++ListaCompras.resx
-i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\listacompras.resx
 ++PagoProveedor.Designer.cs
 i:{bc40169f-db3a-42b5-9688-4077ea47dfd0}:c:\users\luciano\e_shop\src\forms\pagoproveedor.designer.cs
 ++PagoProveedor.resx

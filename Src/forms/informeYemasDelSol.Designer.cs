@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(informeYemasDelSol));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -141,7 +142,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label91 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -164,6 +164,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1267, 125);
             this.panel2.TabIndex = 93;
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(300, 66);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 53);
+            this.button2.TabIndex = 143;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button5
             // 
@@ -403,6 +414,7 @@
             this.label32.Size = new System.Drawing.Size(97, 16);
             this.label32.TabIndex = 130;
             this.label32.Text = "0000000000";
+            this.label32.Click += new System.EventHandler(this.label32_Click);
             // 
             // label27
             // 
@@ -1408,17 +1420,6 @@
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(207, 252);
             this.listBox1.TabIndex = 144;
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(300, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(59, 53);
-            this.button2.TabIndex = 143;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // informeYemasDelSol
             // 
