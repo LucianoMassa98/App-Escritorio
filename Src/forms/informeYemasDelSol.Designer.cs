@@ -167,9 +167,10 @@
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(300, 66);
+            this.button2.Location = new System.Drawing.Point(229, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(59, 53);
             this.button2.TabIndex = 143;

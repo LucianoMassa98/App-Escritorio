@@ -219,6 +219,10 @@ namespace E_Shop
                 ticket.lineasAsteriscos();
                 ticket.EncabezadoClientes();
                 ticket.TextoIzquierda("");
+
+                lventas = RemitoVenta.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
                 for (int i =0; i<lventas.Count();i++) {
                    
                     if (lventas[i].Pagos[0].Codigo == "1.1.3")
@@ -484,6 +488,9 @@ namespace E_Shop
 
         public void pdfCuentaCorriente(ref Document doc, iTextSharp.text.Font StandarFont)
         {
+            lventas = RemitoVenta.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
 
             doc.Add(new Paragraph("INFORME CUENTA CORRIENTE"));
             for (int i =0; i< lventas.Count(); i++) {

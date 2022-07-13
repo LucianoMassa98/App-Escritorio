@@ -387,11 +387,12 @@ namespace E_Shop
             double[] res =new double[8];
             for (int i =0; i<x.Count();i++) {
 
-                for (int j =0; j<x[i].ListaDeProductos.Count();j++) {
+                for (int j = 0; j < x[i].ListaDeProductos.Count(); j++) {
 
                     if (Producto.BuscarPorCodigo(x[i].ListaDeProductos[j].Codigo).Descripcion == descripcion)
                     {
-                        if (x[i].ListaDeProductos[j].Precio == 0) {
+                        if (x[i].ListaDeProductos[j].Precio == 0)
+                        {
                             // si es bonificado
                             res[0] += x[i].ListaDeProductos[j].Cantidad;
                             res[1] += x[i].ListaDeProductos[j].Precio;
@@ -400,24 +401,31 @@ namespace E_Shop
                         {
                             switch (x[i].Pagos[0].Nombre)
                             {
-                                case "Efectivo": {
+                                case "Efectivo":
+                                    {
                                         res[2] += x[i].ListaDeProductos[j].Cantidad;
                                         res[3] += x[i].ListaDeProductos[j].ImportePrecio();
-                                        break; }
-                                case "Mercado Pago": {
+                                        break;
+                                    }
+                                case "Mercado Pago":
+                                    {
                                         res[4] += x[i].ListaDeProductos[j].Cantidad;
-                                        res[5] += x[i].ListaDeProductos[j].ImportePrecio(); 
-                                        break; }
-                                case "Creditos x Venta": {
+                                        res[5] += x[i].ListaDeProductos[j].ImportePrecio();
+                                        break;
+                                    }
+                                case "Creditos x Venta":
+                                    {
                                         res[6] += x[i].ListaDeProductos[j].Cantidad;
-                                        res[7] += x[i].ListaDeProductos[j].ImportePrecio(); 
-                                        break; }
+                                        res[7] += x[i].ListaDeProductos[j].ImportePrecio();
+                                        break;
+                                    }
 
                             }
                         }
                     }
+
                 }
-            
+
             } 
             return res;
         }
