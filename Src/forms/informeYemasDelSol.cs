@@ -220,23 +220,28 @@ namespace E_Shop
                 ticket.EncabezadoClientes();
                 ticket.TextoIzquierda("");
 
-                lventas = RemitoVenta.BuscarPorFecha(
-                 dateTimePicker1.Value.Date.ToShortDateString(),
-                dateTimePicker2.Value.Date.ToShortDateString());
-                for (int i =0; i<lventas.Count();i++) {
-                   
-                    if (lventas[i].Pagos[0].Codigo == "1.1.3")
+                if (dateTimePicker1.Value.Date.ToShortDateString()== dateTimePicker2.Value.Date.ToShortDateString())
+                {
+                    lventas = RemitoVenta.BuscarPorFecha(
+         dateTimePicker1.Value.Date.ToShortDateString(),
+        dateTimePicker2.Value.Date.ToShortDateString());
+                    for (int i = 0; i < lventas.Count(); i++)
                     {
-                        ticket.AgregaArticulo(lventas[i].Receptor,
-                            lventas[i].CantidadHuevos(),
-                            lventas[i].CantidadMercaderia(),
-                            lventas[i].Pagos[0].Importe);
 
-                        for (int j = 0;j<lventas[i].ListaProdutos.Count();j++) {
-                            ticket.TextoExtremos(lventas[i].ListaProdutos[j].Nombre, lventas[i].ListaProdutos[j].Cantidad.ToString());
+                        if (lventas[i].Pagos[0].Codigo == "1.1.3")
+                        {
+                            ticket.AgregaArticulo(lventas[i].Receptor,
+                                lventas[i].CantidadHuevos(),
+                                lventas[i].CantidadMercaderia(),
+                                lventas[i].Pagos[0].Importe);
+
+                            for (int j = 0; j < lventas[i].ListaProdutos.Count(); j++)
+                            {
+                                ticket.TextoExtremos(lventas[i].ListaProdutos[j].Nombre, lventas[i].ListaProdutos[j].Cantidad.ToString());
+                            }
+
+                            ticket.lineasGuio();
                         }
-
-                        ticket.lineasGuio();
                     }
                 }
                 ticket.TextoIzquierda("");
