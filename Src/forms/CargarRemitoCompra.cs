@@ -33,7 +33,7 @@ namespace E_Shop
             Proveedor.CargarComboBox(ref comboBox3);
             // cargar codigos barra y nombres de productos
 
-            Producto.CargarComboBox(ref comboBox4,"Mercaderia");
+            Producto.CargarComboBox(ref comboBox4);
 
             //cargar formas de pago
 

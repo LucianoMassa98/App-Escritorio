@@ -38,9 +38,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,7 +53,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -160,9 +156,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button17);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button1);
@@ -170,45 +163,9 @@
             this.panel1.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(14, 192);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(282, 437);
+            this.panel1.Size = new System.Drawing.Size(282, 320);
             this.panel1.TabIndex = 81;
             this.panel1.Visible = false;
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(24, 375);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(223, 35);
-            this.button19.TabIndex = 11;
-            this.button19.Text = "Lista Producciones";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Visible = false;
-            // 
-            // button18
-            // 
-            this.button18.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(24, 163);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(223, 35);
-            this.button18.TabIndex = 10;
-            this.button18.Text = "Cargar Huevos";
-            this.toolTip1.SetToolTip(this.button18, "Cargar Huevos\r\nEsta sección sirve para cargar el ingreso de huevos que trae el ca" +
-        "mion desde los galpones.");
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // button17
-            // 
-            this.button17.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button17.Location = new System.Drawing.Point(24, 216);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(223, 35);
-            this.button17.TabIndex = 9;
-            this.button17.Text = "Cargar Registradora";
-            this.toolTip1.SetToolTip(this.button17, "Cargar Registradora\r\nEsta sección sirve para cargar el Z que arroja la maquina re" +
-        "gistradora.\r\n\r\n");
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button2
             // 
@@ -217,7 +174,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(223, 35);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Cargar Mercadería";
+            this.button2.Text = "Cargar Compra";
             this.toolTip1.SetToolTip(this.button2, "Cargar Mercadería\r\nEsta sección sirve para cargar el ingreso de mercaderia de los" +
         " proveedores.");
             this.button2.UseVisualStyleBackColor = true;
@@ -225,7 +182,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(24, 321);
+            this.button10.Location = new System.Drawing.Point(29, 213);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(223, 35);
             this.button10.TabIndex = 6;
@@ -251,7 +208,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(24, 271);
+            this.button9.Location = new System.Drawing.Point(29, 163);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(223, 35);
             this.button9.TabIndex = 5;
@@ -332,7 +289,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(30, 215);
+            this.button8.Location = new System.Drawing.Point(30, 161);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(223, 35);
             this.button8.TabIndex = 84;
@@ -342,7 +299,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(30, 107);
+            this.button4.Location = new System.Drawing.Point(30, 53);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(223, 35);
             this.button4.TabIndex = 3;
@@ -352,7 +309,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(30, 161);
+            this.button3.Location = new System.Drawing.Point(30, 107);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(223, 35);
             this.button3.TabIndex = 2;
@@ -368,7 +325,6 @@
             this.panel5.Controls.Add(this.button4);
             this.panel5.Controls.Add(this.button8);
             this.panel5.Controls.Add(this.button3);
-            this.panel5.Controls.Add(this.button5);
             this.panel5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel5.Location = new System.Drawing.Point(652, 194);
             this.panel5.Name = "panel5";
@@ -378,23 +334,13 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(30, 269);
+            this.button16.Location = new System.Drawing.Point(30, 215);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(223, 35);
             this.button16.TabIndex = 85;
             this.button16.Text = "Informe";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(30, 53);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(223, 35);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Consolidado Venta";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Index
             // 
@@ -433,7 +379,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -445,9 +390,6 @@
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }

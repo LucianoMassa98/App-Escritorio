@@ -239,7 +239,19 @@ namespace E_Shop
             }
 
         }
+        static public void AgregarProductosCompra(ref List<Producto> x, Producto y)
+        {
 
+            int ind = Producto.BuscarIndexPorCodigo(y.Codigo, x);
+            y.precio = y.ImporteCosto();
+            if (ind < x.Count())
+            {
+                x[ind].SumarCantidad(y.Cantidad);
+                x[ind].SumarCosto(y.precio);
+            }
+            else { x.Add(y); }
+
+        }
         static public void AgregarProductosVenta(ref List<Producto> x, Producto y) {
 
             int ind = Producto.BuscarIndexPorCodigo(y.Codigo, x);

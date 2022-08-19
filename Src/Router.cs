@@ -14,7 +14,7 @@ namespace E_Shop
 
         public Direcciones() {
             user = Environment.UserName;
-            space = "Yemas del Sol";
+            space = "MyG";
            
           
         }

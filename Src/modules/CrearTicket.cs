@@ -75,6 +75,19 @@ namespace E_Shop
             } 
         }
 
+        public void EncabezadoCompra()
+        {
+            //Escribimos los espacios para mostrar el articulo. En total tienen que ser 40 caracteres
+            if (maxCar == 32)
+            {
+                linea.AppendLine("ARTICULO        |CANT|IMPORTE");
+            }
+            else
+            {
+                linea.AppendLine("ARTICULO                        |CANT|IMPORTE");
+            }
+        }
+
         public void EncabezadoHuevos()
         {
             linea.AppendLine("HUEVOS      | CANTIDAD | IMPORTE");

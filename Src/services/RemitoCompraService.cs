@@ -285,6 +285,69 @@ namespace E_Shop
             imp.Text = "$" + sumimp;
 
         }
+        static public double[] Ingreso(List<RemitoCompra> x)
+        {
+            double[] res = new double[8];
+            for (int i = 0; i < x.Count(); i++)
+            {
+
+                for (int j = 0; j < x[i].ListaDeProductos.Count(); j++)
+                {
+
+
+                    if (x[i].ListaDeProductos[j].Costo == 0)
+                    {
+                        // si es bonificado
+                        res[0] += x[i].ListaDeProductos[j].Cantidad;
+                        res[1] += x[i].ListaDeProductos[j].Costo;
+                    }
+                    else
+                    {
+                        switch (x[i].Pagos[0].Nombre)
+                        {
+                            case "Efectivo":
+                                {
+                                    res[2] += x[i].ListaDeProductos[j].Cantidad;
+                                    res[3] += x[i].ListaDeProductos[j].ImporteCosto();
+                                    break;
+                                }
+                            case "Mercado Pago":
+                                {
+                                    res[4] += x[i].ListaDeProductos[j].Cantidad;
+                                    res[5] += x[i].ListaDeProductos[j].ImporteCosto();
+                                    break;
+                                }
+                            case "Proveedores":
+                                {
+                                    res[6] += x[i].ListaDeProductos[j].Cantidad;
+                                    res[7] += x[i].ListaDeProductos[j].ImporteCosto();
+                                    break;
+                                }
+
+                        }
+                    }
+
+                }
+
+            }
+            return res;
+        }
+
+        static public void ConsolidarMostrar(List<RemitoCompra> x, ref DataGridView y)
+        {
+
+            List<Producto> Lista = new List<Producto>();
+            for (int i = 0; i < x.Count(); i++)
+            {
+
+                for (int j = 0; j < x[i].ListaProdutos.Count(); j++)
+                {
+                    Producto.AgregarProductosCompra(ref Lista, x[i].ListaProdutos[j]);
+                }
+
+            }
+            Producto.MostrarVentas(ref y, Lista);
+        }
 
     }
 }
