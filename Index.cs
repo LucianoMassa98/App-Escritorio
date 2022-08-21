@@ -194,5 +194,11 @@ namespace E_Shop
         {
            
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            CargarRemitoRegistradora n = new CargarRemitoRegistradora(Xusuario, ref y);
+            n.Show();
+        }
     }
 }

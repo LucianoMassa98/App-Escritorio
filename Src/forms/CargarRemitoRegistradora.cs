@@ -75,7 +75,7 @@ namespace E_Shop
         public void LoadCombox()
         { 
             // cargr codigos barra y nombres de productos
-            Producto.CargarComboBox( ref comboBox4,"Huevo");
+            Producto.CargarComboBox( ref comboBox4);
             //comboBox1.Items.Add("aaa");
 
         }

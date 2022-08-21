@@ -10,6 +10,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace E_Shop
 {
@@ -34,6 +35,9 @@ namespace E_Shop
             label65.Text = "Ventas: " + lventas.Count();
             lcompras = RemitoCompra.BuscarPorFecha(desde,hasta);
             label68.Text = "Compras: " + lcompras.Count();
+            lregistradoras = RemitoRegistradora.BuscarPorFecha(desde,hasta);
+
+
             listBox1.Items.Clear();
 
             // estado cliente
@@ -63,6 +67,8 @@ namespace E_Shop
             label69.Text = "$" + res[7].ToString();
             //bonificado
             label66.Text = "$" + res[1].ToString();
+            //Registradora
+            label60.Text = "$" + lregistradoras;
             //total
             label63.Text = "$" + (res[7] + res[3] + res[5]).ToString();
 
@@ -392,6 +398,11 @@ namespace E_Shop
             pw.Close();
 
             MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process n = new Process();
+            string file = new Direcciones().ArchivoPdf + "Informe -" + FechaActual + ".pdf";
+            n.StartInfo.FileName = file;
+            n.Start();
+            
         }
     }
 }

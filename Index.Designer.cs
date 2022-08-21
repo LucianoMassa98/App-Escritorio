@@ -54,6 +54,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -156,6 +157,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button1);
@@ -182,7 +184,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(29, 213);
+            this.button10.Location = new System.Drawing.Point(29, 269);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(223, 35);
             this.button10.TabIndex = 6;
@@ -208,7 +210,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(29, 163);
+            this.button9.Location = new System.Drawing.Point(29, 215);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(223, 35);
             this.button9.TabIndex = 5;
@@ -342,6 +344,19 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(29, 163);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(223, 35);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "Registradora";
+            this.toolTip1.SetToolTip(this.button5, "Cargar Mercadería\r\nEsta sección sirve para cargar el ingreso de mercaderia de los" +
+        " proveedores.");
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +406,7 @@
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button5;
     }
 }
 
