@@ -33,7 +33,7 @@ namespace E_Shop
         public string CobroClientes { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\"+ space +"\\cbocl.txt"; } }
         public string PagoProveedores { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\pgpv.txt"; } }
         public string ArchivoPdf { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\Pdfs\\Pdf-"; } }
-        public string Logo { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\Images\\logo.png"; } }
+        public string Logo { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\Images\\logo.jpg"; } }
         //"TP806L   |     POS-58"
         public string Impresora { get { return "POS-58"; } }
 

@@ -117,8 +117,6 @@ namespace E_Shop
         }
         public void Imprimir() {
 
-            
-
                 Direcciones dir = new Direcciones();
                 CrearTicket ticket = new CrearTicket(32);
                 ticket.AbreCajon();
@@ -429,54 +427,6 @@ namespace E_Shop
             } 
             return res;
         }
-
-        static public double[] Egreso(List<RemitoVenta> x)
-        {
-            double[] res = new double[8];
-            for (int i = 0; i < x.Count(); i++)
-            {
-
-                for (int j = 0; j < x[i].ListaDeProductos.Count(); j++)
-                {
-
-
-                    if (x[i].ListaDeProductos[j].Precio == 0)
-                    {
-                        // si es bonificado
-                        res[0] += x[i].ListaDeProductos[j].Cantidad;
-                        res[1] += x[i].ListaDeProductos[j].Precio;
-                    }
-                    else
-                    {
-                        switch (x[i].Pagos[0].Nombre)
-                        {
-                            case "Efectivo":
-                                {
-                                    res[2] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[3] += x[i].ListaDeProductos[j].ImportePrecio();
-                                    break;
-                                }
-                            case "Mercado Pago":
-                                {
-                                    res[4] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[5] += x[i].ListaDeProductos[j].ImportePrecio();
-                                    break;
-                                }
-                            case "Creditos x Venta":
-                                {
-                                    res[6] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[7] += x[i].ListaDeProductos[j].ImportePrecio();
-                                    break;
-                                }
-
-                        }
-                    }
-
-                }
-
-            }
-            return res;
-        }
-
+    
     }
 }
