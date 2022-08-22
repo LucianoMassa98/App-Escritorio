@@ -112,7 +112,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1267, 125);
+            this.panel2.Size = new System.Drawing.Size(1284, 125);
             this.panel2.TabIndex = 93;
             // 
             // button2
@@ -120,7 +120,7 @@
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(229, 3);
+            this.button2.Location = new System.Drawing.Point(238, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(59, 53);
             this.button2.TabIndex = 143;
@@ -132,7 +132,7 @@
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(229, 66);
+            this.button5.Location = new System.Drawing.Point(238, 66);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 53);
             this.button5.TabIndex = 144;
@@ -158,7 +158,7 @@
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(-6, 3);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(229, 119);
             this.panel3.TabIndex = 81;
@@ -792,7 +792,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1284, 746);
+            this.ClientSize = new System.Drawing.Size(1301, 746);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel8);

@@ -285,5 +285,22 @@ namespace E_Shop
             imp.Text = "$" + sumimp.ToString();
         
         }
+        static public double Egreso(List<RemitoRegistradora> x)
+        {
+            double sumimp = 0;
+            for (int i = 0; i < x.Count(); i++)
+            {
+
+                for (int j = 0; j < x[i].ListaDeProductos.Count(); j++)
+                {
+                        sumimp += x[i].ListaDeProductos[j].Precio;
+                }
+
+
+            }
+            return sumimp;
+
+        }
+
     }
 }

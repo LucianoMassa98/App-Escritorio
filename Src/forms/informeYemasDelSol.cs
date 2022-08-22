@@ -68,10 +68,11 @@ namespace E_Shop
             //bonificado
             label66.Text = "$" + res[1].ToString();
             //Registradora
-            label60.Text = "$" + lregistradoras;
+            double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
+            label60.Text ="$"+ impRegistradora.ToString();
             //total
-            label63.Text = "$" + (res[7] + res[3] + res[5]).ToString();
-
+            label63.Text = "$" + (res[7] + res[3] + res[5]+ impRegistradora).ToString();
+           
             //COMPRAS
             double[] res2 = RemitoCompra.Ingreso(lcompras);
 
@@ -87,9 +88,9 @@ namespace E_Shop
 
 
             //consolidado de ventas y registradora
-             RemitoVenta.ConsolidarMostrar(lventas, ref dataGridView1);
+            // RemitoVenta.ConsolidarMostrar(lventas, ref dataGridView1);
             RemitoCompra.ConsolidarMostrar(lcompras,ref dataGridView2);
-            //Producto.Consolidar(ref dataGridView1,lventas,lregistradoras);
+            Producto.Consolidar(ref dataGridView1,lventas,lregistradoras);
         }
         public void BorrarTodo() {
 
