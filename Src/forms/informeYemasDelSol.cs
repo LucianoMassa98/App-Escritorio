@@ -16,7 +16,9 @@ namespace E_Shop
 {
     public partial class informeYemasDelSol : Form
     {
-        List<RemitoVenta> lventas; 
+        List<RemitoVenta> lventas;
+        List<RemitoPagoProveedor> lpagos;
+        List<RemitoCobroCliente> lcobros;
         List<RemitoCompra> lcompras;
         List<RemitoProduccion> lproducciones;
         List<RemitoRegistradora> lregistradoras;
@@ -58,33 +60,25 @@ namespace E_Shop
 
 
             //VENTAS
-            double[] res = RemitoVenta.Egreso(lventas);
-            //efectivo
-            label89.Text = "$"+res[3].ToString();
-            //mercado pago
-            label72.Text = "$"+res[5].ToString();
-            //credito
-            label69.Text = "$" + res[7].ToString();
-            //bonificado
-            label66.Text = "$" + res[1].ToString();
+            List<Pago> lista  = RemitoVenta.Egreso(lventas);
+            dataGridView3.Rows.Clear();
+            for (int i =0; i<lista.Count();i++) {
+                dataGridView3.Rows.Add(lista[i].Nombre,lista[i].Importe);
+            }
             //Registradora
             double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
-            label60.Text ="$"+ impRegistradora.ToString();
-            //total
-            label63.Text = "$" + (res[7] + res[3] + res[5]+ impRegistradora).ToString();
-           
+            dataGridView3.Rows.Add("Registradora", impRegistradora);
+
+
+
             //COMPRAS
-            double[] res2 = RemitoCompra.Ingreso(lcompras);
+            List<Pago> lista2 = RemitoCompra.Ingreso(lcompras);
+            dataGridView4.Rows.Clear();
+            for (int i = 0; i < lista2.Count(); i++)
+            {
+                dataGridView4.Rows.Add(lista2[i].Nombre, lista2[i].Importe);
+            }
 
-            label17.Text = "$" + res2[3].ToString();
-
-            label14.Text = "$" + res2[5].ToString();
-
-            label12.Text = "$" + res2[7].ToString();
-
-            label10.Text = "$" + res2[1].ToString();
-
-            label7.Text = "$" + (res2[7]+ res2[3] + res2[5]).ToString();
 
 
             //consolidado de ventas y registradora
@@ -135,11 +129,13 @@ namespace E_Shop
                    ticket.lineasAsteriscos();
                    ticket.TextoCentro("Compras");
                 ticket.TextoIzquierda("");
-                ticket.TextoExtremos("Efectivo:", label17.Text);
-                ticket.TextoExtremos("Mercado Pago:", label14.Text);
-                ticket.TextoExtremos("Credito:", label12.Text);
-                ticket.TextoExtremos("Bonificado:", label10.Text);
-                ticket.TextoExtremos("Total:", label7.Text);
+
+                for (int i =0; i<dataGridView4.RowCount; i++) {
+                    ticket.TextoExtremos(dataGridView4.Rows[i].Cells[0].Value.ToString(), dataGridView4.Rows[i].Cells[1].Value.ToString()) ;
+                }
+
+
+
                 ticket.TextoIzquierda("");
                 ticket.EncabezadoCompra();
                    for (int i =0; i<dataGridView2.RowCount;i++) {
@@ -152,12 +148,10 @@ namespace E_Shop
                    ticket.lineasIgual();
                 ticket.TextoCentro("Ventas");
                 ticket.TextoIzquierda("");
-                ticket.TextoExtremos("Efectivo:", label89.Text);
-                ticket.TextoExtremos("Mercado Pago:", label72.Text);
-                ticket.TextoExtremos("Credito:", label69.Text);
-                ticket.TextoExtremos("Bonificado:", label66.Text);
-                ticket.TextoExtremos("Registradora:", label60.Text);
-                ticket.TextoExtremos("Total:", label63.Text);
+                for (int i = 0; i < dataGridView3.RowCount; i++)
+                {
+                    ticket.TextoExtremos(dataGridView3.Rows[i].Cells[0].Value.ToString(), dataGridView3.Rows[i].Cells[1].Value.ToString());
+                }
                 ticket.TextoIzquierda("");
                 ticket.EncabezadoVenta();
                   for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -228,12 +222,14 @@ namespace E_Shop
 
             // tabla de ventas
             doc.Add(new Paragraph("VENTAS"));
-            doc.Add(new Phrase("Efectivo: " + label89.Text, StandarFont));
-            doc.Add(new Phrase("\nMercado Pago: " + label72.Text, StandarFont));
-            doc.Add(new Phrase("\nCredito: " + label69.Text, StandarFont));
-            doc.Add(new Phrase("\nBonificado: " + label66.Text, StandarFont));
-            doc.Add(new Phrase("\nRegistradora: " + label60.Text, StandarFont));
-            doc.Add(new Phrase("\nTotal: " + label63.Text, StandarFont));
+
+
+           
+            for (int i = 0; i < dataGridView4.RowCount; i++)
+            {
+                doc.Add(new Phrase(dataGridView4.Rows[i].Cells[0].Value.ToString()+": "+
+                    dataGridView4.Rows[i].Cells[1].Value.ToString(), StandarFont));
+            }
             PdfPTable tableVentas = new PdfPTable(3);
             tableVentas.WidthPercentage = 80;
 
@@ -274,11 +270,12 @@ namespace E_Shop
         {
 
             doc.Add(new Paragraph("COMPRAS"));
-            doc.Add(new Phrase("Efectivo: " + label17.Text, StandarFont));
-            doc.Add(new Phrase("\nMercado Pago: " + label14.Text, StandarFont));
-            doc.Add(new Phrase("\nCredito: " + label10.Text, StandarFont));
-            doc.Add(new Phrase("\nBonificado: " + label7.Text, StandarFont));
-            doc.Add(new Phrase("\nTotal: " + label7.Text, StandarFont));
+
+            for (int i = 0; i < dataGridView3.RowCount; i++)
+            {
+                doc.Add(new Phrase(dataGridView3.Rows[i].Cells[0].Value.ToString() + ": " +
+                    dataGridView3.Rows[i].Cells[1].Value.ToString(), StandarFont));
+            }
 
             PdfPTable tableCompras= new PdfPTable(3);
             tableCompras.WidthPercentage = 80;
@@ -360,7 +357,146 @@ namespace E_Shop
 
 
         }
-    
+        public void pdfProveedores(ref Document doc, iTextSharp.text.Font StandarFont)
+        {
+            lcompras = RemitoCompra.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
+
+            doc.Add(new Paragraph("INFORME PROVEEDORES"));
+
+            PdfPTable tableProveedor= new PdfPTable(2);
+            tableProveedor.WidthPercentage = 70;
+
+            PdfPCell proveedor = new PdfPCell(new Phrase("Proveedor", StandarFont));
+            proveedor.BorderWidth = 0;
+            proveedor.BorderWidthBottom = 0.75f;
+
+            PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
+            importe.BorderWidth = 0;
+            importe.BorderWidthBottom = 0.75f;
+
+            tableProveedor.AddCell(proveedor);
+            tableProveedor.AddCell(importe);
+
+            for (int i = 0; i < lcompras.Count(); i++)
+            {
+
+                if (lcompras[i].Pagos[0].Codigo == "2.1.1")
+                {
+                    proveedor = new PdfPCell(new Phrase(lcompras[i].Emisor, StandarFont));
+                    proveedor.BorderWidth = 0;
+
+                    importe = new PdfPCell(new Phrase("$" + lcompras[i].Pagos[0].Importe, StandarFont));
+                    importe.BorderWidth = 0;
+
+                    tableProveedor.AddCell(proveedor);
+                    tableProveedor.AddCell(importe);
+                }
+
+            }
+
+            doc.Add(tableProveedor);
+
+
+        }
+        public void pdfPagos(ref Document doc, iTextSharp.text.Font StandarFont)
+        {
+            lpagos = RemitoPagoProveedor.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
+
+            doc.Add(new Paragraph("INFORME PAGOS"));
+
+            PdfPTable tableProveedor = new PdfPTable(3);
+            tableProveedor.WidthPercentage = 70;
+
+            PdfPCell proveedor = new PdfPCell(new Phrase("Proveedor", StandarFont));
+            proveedor.BorderWidth = 0;
+            proveedor.BorderWidthBottom = 0.75f;
+            PdfPCell medio = new PdfPCell(new Phrase("Medio", StandarFont));
+            medio.BorderWidth = 0;
+            medio.BorderWidthBottom = 0.75f;
+
+            PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
+            importe.BorderWidth = 0;
+            importe.BorderWidthBottom = 0.75f;
+
+            tableProveedor.AddCell(proveedor);
+            tableProveedor.AddCell(medio);
+            tableProveedor.AddCell(importe);
+
+            for (int i = 0; i < lpagos.Count(); i++)
+            {
+
+                
+                    proveedor = new PdfPCell(new Phrase(lpagos[i].Emisor, StandarFont));
+                    proveedor.BorderWidth = 0;
+                    medio = new PdfPCell(new Phrase(lpagos[i].Pagos[0].Nombre, StandarFont));
+                    medio.BorderWidth = 0;
+                importe = new PdfPCell(new Phrase("$" + lpagos[i].Pagos[0].Importe, StandarFont));
+                    importe.BorderWidth = 0;
+
+                    tableProveedor.AddCell(proveedor);
+                tableProveedor.AddCell(medio);
+                tableProveedor.AddCell(importe);
+                
+
+            }
+
+            doc.Add(tableProveedor);
+
+
+        }
+        public void pdfCobros(ref Document doc, iTextSharp.text.Font StandarFont)
+        {
+            lcobros = RemitoCobroCliente.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
+
+            doc.Add(new Paragraph("INFORME COBROS"));
+
+            PdfPTable tableCliente= new PdfPTable(3);
+            tableCliente.WidthPercentage = 70;
+
+            PdfPCell cliente = new PdfPCell(new Phrase("Cliente", StandarFont));
+            cliente.BorderWidth = 0;
+            cliente.BorderWidthBottom = 0.75f;
+            PdfPCell medio = new PdfPCell(new Phrase("Medio", StandarFont));
+            medio.BorderWidth = 0;
+            medio.BorderWidthBottom = 0.75f;
+
+            PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
+            importe.BorderWidth = 0;
+            importe.BorderWidthBottom = 0.75f;
+
+            tableCliente.AddCell(cliente);
+            tableCliente.AddCell(medio);
+            tableCliente.AddCell(importe);
+
+            for (int i = 0; i < lcobros.Count(); i++)
+            {
+
+                
+                    cliente = new PdfPCell(new Phrase(lcobros[i].Emisor, StandarFont));
+                    cliente.BorderWidth = 0;
+                medio = new PdfPCell(new Phrase(lcobros[i].Pagos[0].Nombre, StandarFont));
+                medio.BorderWidth = 0;
+
+                importe = new PdfPCell(new Phrase("$" + lcobros[i].Pagos[0].Importe, StandarFont));
+                    importe.BorderWidth = 0;
+
+                    tableCliente.AddCell(cliente);
+                tableCliente.AddCell(medio);
+                tableCliente.AddCell(importe);
+                
+
+            }
+
+            doc.Add(tableCliente);
+
+
+        }
         public void GenerarPdfInforme() {
 
             string FechaActual = DateTime.Now.Date.ToLongDateString();
@@ -394,7 +530,12 @@ namespace E_Shop
             pdfInformeVenta(ref doc, StandarFont);
             doc.Add(Chunk.NEWLINE);
             pdfCuentaCorriente(ref doc, StandarFont);
-
+            doc.Add(Chunk.NEWLINE);
+            pdfCobros(ref doc, StandarFont);
+            doc.Add(Chunk.NEWLINE);
+            pdfProveedores(ref doc, StandarFont);
+            doc.Add(Chunk.NEWLINE);
+            pdfPagos(ref doc, StandarFont);
             doc.Close();
             pw.Close();
 

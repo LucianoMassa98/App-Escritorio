@@ -15,6 +15,7 @@ namespace E_Shop
         Usuario xUsuario;
         Form FormularioAnterior;
         RemitoVenta RemitoX;
+        ProductoCliente lista;
         int inicio;
         public CargarRemitoVenta(object x, ref Form y)
         {
@@ -22,6 +23,7 @@ namespace E_Shop
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
             RemitoX = new RemitoVenta();
+            lista = new ProductoCliente();
             textBox4.Text = RemitoX.Emisor = xUsuario.Nombre;
             textBox3.Text = RemitoX.FechaEmision = DateTime.Now.Date.ToShortDateString();
             inicio = 0;
@@ -40,12 +42,11 @@ namespace E_Shop
             //cargar formas de pago
             Pago.CargarComboBox(ref comboBox2,"1.1.1");
             comboBox2.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
-            //cargar Descuento
-            Descuento.CargarComboBox(ref comboBox5);
+            
 
 
             //selecciona cliente x
-            if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
+          //  if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
             // seleccion Descuento nr1
            
             // selecciona tipo de pago 1
@@ -63,27 +64,39 @@ namespace E_Shop
             }
 
             if (p != null) {
-                Descuento Dsc = Descuento.BuscarPorNombre(comboBox5.Text);
+                //buscar producto por cliente
                 
-                if (Dsc != null)
-                {
+                
                     try
                     {
-                        p.Cantidad = double.Parse(textBox2.Text);
-                        p.Precio = double.Parse(textBox2.Text);
+                    Producto newProd;
 
-                        if (RemitoX.AgregarProducto(p, Dsc))
+                    if (lista!=null) {
+                        if ((newProd = lista.FindOneProduct(p.Codigo)) != null)
+                       {
+                           
+                            p.Precio = newProd.Precio;
+                        }
+                    }
+                    
+
+                    
+                    p.Bulto = double.Parse(textBox1.Text);
+                        p.Cantidad = double.Parse(textBox2.Text);
+                    
+
+                        if (RemitoX.AgregarProducto(p))
                         {
 
                             RemitoX.MostrarDataGrid(ref dataGridView1);
                             label1.Text = "Total: $" + RemitoX.TotalVenta();
-                             comboBox4.Text = textBox2.Text = "";
+                             comboBox4.Text = textBox2.Text = textBox1.Text="";
                             comboBox4.Focus();
                         }
 
                     }
                     catch (Exception) { }
-                }
+                
             }
             
 
@@ -124,17 +137,21 @@ namespace E_Shop
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             RemitoX.Receptor = comboBox3.Text;
+            lista = ProductoCliente.findOne(Cliente.BuscarPorNombre(RemitoX.Receptor).Codigo);  
+            comboBox3.Enabled = false;
             comboBox2.Focus();
         }
         // crear remito
         private void button3_Click(object sender, EventArgs e)
         {
             CrearRemitoVenta();
+            comboBox3.Enabled = true;
         }
         //eliminar remito
         private void button4_Click(object sender, EventArgs e)
         {
             NuevoRemito();
+            comboBox3.Enabled = true;
         }
         private void CargarRemitoVenta_Load(object sender, EventArgs e)
         {
@@ -153,8 +170,7 @@ namespace E_Shop
                 RemitoX.MostrarDataGrid(ref dataGridView1);
                 label1.Text = "Total: $" + RemitoX.TotalCosto();
 
-                // seleccion Descuento nr1
-                if (comboBox5.Items.Count > 0) { comboBox5.SelectedIndex = 0; }
+               
                 // selecciona tipo de pago 1
                 // if (comboBox2.Items.Count > 0) { comboBox2.SelectedIndex = 0; }
 
@@ -173,7 +189,7 @@ namespace E_Shop
             {
                 case "aaa": { break; }
                 case "bbb": { break; }
-                default: { textBox2.Focus(); break; }
+                default: { textBox1.Focus(); break; }
             }    
         }
         //seleccionar tipo de pago
@@ -196,8 +212,13 @@ namespace E_Shop
         // seleciona cantidad
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { comboBox5.Focus(); }
+            if (e.KeyChar == 13) { button1.Focus(); }
 
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13) { textBox2.Focus(); }
         }
     }
 }

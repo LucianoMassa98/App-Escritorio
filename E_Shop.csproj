@@ -208,6 +208,18 @@
     <Compile Include="Src\forms\PagoProveedor.Designer.cs">
       <DependentUpon>PagoProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\ProductosCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ProductosCliente.Designer.cs">
+      <DependentUpon>ProductosCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\ProductosProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ProductosProveedor.Designer.cs">
+      <DependentUpon>ProductosProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\Yemas del Sol\IndexYMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +233,8 @@
     <Compile Include="Src\modules\CrearTicket.cs" />
     <Compile Include="Src\modules\CrearCodBarra.cs" />
     <Compile Include="Src\Router.cs" />
+    <Compile Include="Src\services\ProductoProveedorService.cs" />
+    <Compile Include="Src\services\ProductoClienteService.cs" />
     <Compile Include="Src\services\ClienteService.cs" />
     <Compile Include="Src\services\DescuentoService.cs" />
     <Compile Include="Src\services\InformeService.cs" />
@@ -311,6 +325,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\PagoProveedor.resx">
       <DependentUpon>PagoProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ProductosCliente.resx">
+      <DependentUpon>ProductosCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ProductosProveedor.resx">
+      <DependentUpon>ProductosProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\Yemas del Sol\IndexYMS.resx">
       <DependentUpon>IndexYMS.cs</DependentUpon>

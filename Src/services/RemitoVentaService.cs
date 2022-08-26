@@ -41,6 +41,7 @@ namespace E_Shop
 
                     ListaDeProductos[i].Codigo + "/" +
                      ListaDeProductos[i].Nombre + "/" +
+                      ListaDeProductos[i].Bulto + "/" +
                       ListaDeProductos[i].Cantidad + "/" +
                        ListaDeProductos[i].Precio
 
@@ -79,6 +80,15 @@ namespace E_Shop
             }
             return false;
         }
+        public bool AgregarProducto(Producto x)
+        {
+            if (RemitoVentaValidador.AgregarProducto(ref x))
+            {
+                ListaDeProductos.Add(x);
+                return true;
+            }
+            return false;
+        }
         public bool EliminarProducto(string codigo)
         {
             if (RemitoVentaValidador.GetRemitoVenta(codigo))
@@ -109,6 +119,7 @@ namespace E_Shop
                     this.ListaProdutos[i].Codigo,
                     this.ListaProdutos[i].Nombre,
                     this.ListaProdutos[i].Descripcion,
+                     this.ListaProdutos[i].Bulto,
                     this.ListaProdutos[i].Cantidad,
                     this.ListaProdutos[i].Precio,
                     this.ListaProdutos[i].ImportePrecio()
@@ -296,14 +307,15 @@ namespace E_Shop
                 // leer lista de productos por cada boleta 
                 string[] ListaProductos = dat[4].Split('/');
 
-                for (int i = 0; i < ListaProductos.Count(); i = i + 4)
+                for (int i = 0; i < ListaProductos.Count(); i = i + 5)
                 {
 
                     Producto pr = new Producto();
                     pr.Codigo = ListaProductos[i];
                     pr.Nombre = ListaProductos[i + 1];
-                    pr.Cantidad = double.Parse(ListaProductos[i + 2]);
-                    pr.Precio = double.Parse(ListaProductos[i + 3]);
+                    pr.Bulto= double.Parse(ListaProductos[i + 2]);
+                    pr.Cantidad = double.Parse(ListaProductos[i + 3]);
+                    pr.Precio = double.Parse(ListaProductos[i + 4]);
                     newRemitoVenta.ListaDeProductos.Add(pr);
                     
                 }
@@ -380,7 +392,6 @@ namespace E_Shop
             }
             Producto.MostrarVentas(ref y, Lista);
         }
-
         static public double[] Egreso(List<RemitoVenta> x, string descripcion) {
             double[] res =new double[8];
             for (int i =0; i<x.Count();i++) {
@@ -427,6 +438,19 @@ namespace E_Shop
             } 
             return res;
         }
-    
+        static public List<Pago> Egreso(List<RemitoVenta> x)
+        {
+            List<Pago> lista = new List<Pago>();
+            double[] res = new double[8];
+            for (int i = 0; i < x.Count(); i++)
+            {
+                for (int j =0; j<x[i].Pagos.Count();j++) {
+                    Pago.AgregarCuenta(ref lista, x[i].Pagos[j]);
+                } 
+
+            }
+            return lista;
+        }
+
     }
 }

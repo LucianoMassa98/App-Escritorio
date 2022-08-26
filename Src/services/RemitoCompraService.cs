@@ -46,6 +46,7 @@ namespace E_Shop
 
                     ListaDeProductos[i].Codigo + "/" +
                      ListaDeProductos[i].Nombre + "/" +
+                     ListaDeProductos[i].Bulto + "/" +
                       ListaDeProductos[i].Cantidad + "/" +
                        ListaDeProductos[i].Costo
                        
@@ -240,13 +241,14 @@ namespace E_Shop
                 // leer lista de productos por cada boleta (falta desarrollar)
                 string[]ListaProductos = dat[4].Split('/');
 
-                for (int i = 0; i<ListaProductos.Count(); i = i +4) {
+                for (int i = 0; i<ListaProductos.Count(); i = i +5) {
 
                     Producto pr = new Producto();
                     pr.Codigo = ListaProductos[i];
                     pr.Nombre = ListaProductos[i + 1];
-                    pr.Cantidad = double.Parse(ListaProductos[i+2]);
-                    pr.Costo = double.Parse(ListaProductos[i + 3]);
+                    pr.Bulto = double.Parse(ListaProductos[i + 2]);
+                    pr.Cantidad = double.Parse(ListaProductos[i+3]);
+                    pr.Costo = double.Parse(ListaProductos[i + 4]);
                     newRemitoCompra.ListaDeProductos.Add(pr);
                 }
                 newRemitoCompra.FechaEmision = dat[5];
@@ -285,52 +287,20 @@ namespace E_Shop
             imp.Text = "$" + sumimp;
 
         }
-        static public double[] Ingreso(List<RemitoCompra> x)
+        static public List<Pago> Ingreso(List<RemitoCompra> x)
         {
+
+            List<Pago> lista = new List<Pago>();
             double[] res = new double[8];
             for (int i = 0; i < x.Count(); i++)
             {
-
-                for (int j = 0; j < x[i].ListaDeProductos.Count(); j++)
+                for (int j = 0; j < x[i].Pagos.Count(); j++)
                 {
-
-
-                    if (x[i].ListaDeProductos[j].Costo == 0)
-                    {
-                        // si es bonificado
-                        res[0] += x[i].ListaDeProductos[j].Cantidad;
-                        res[1] += x[i].ListaDeProductos[j].Costo;
-                    }
-                    else
-                    {
-                        switch (x[i].Pagos[0].Nombre)
-                        {
-                            case "Efectivo":
-                                {
-                                    res[2] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[3] += x[i].ListaDeProductos[j].ImporteCosto();
-                                    break;
-                                }
-                            case "Mercado Pago":
-                                {
-                                    res[4] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[5] += x[i].ListaDeProductos[j].ImporteCosto();
-                                    break;
-                                }
-                            case "Proveedores":
-                                {
-                                    res[6] += x[i].ListaDeProductos[j].Cantidad;
-                                    res[7] += x[i].ListaDeProductos[j].ImporteCosto();
-                                    break;
-                                }
-
-                        }
-                    }
-
+                    Pago.AgregarCuenta(ref lista, x[i].Pagos[j]);
                 }
 
             }
-            return res;
+            return lista;
         }
 
         static public void ConsolidarMostrar(List<RemitoCompra> x, ref DataGridView y)
@@ -346,7 +316,7 @@ namespace E_Shop
                 }
 
             }
-            Producto.MostrarVentas(ref y, Lista);
+            Producto.MostrarCompras(ref y, Lista);
         }
 
     }

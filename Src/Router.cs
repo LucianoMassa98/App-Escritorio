@@ -27,7 +27,10 @@ namespace E_Shop
 
         public string RemitoVentas { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\vnts.txt"; } }
         public string Clientes { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\clnts.txt"; } }
+        public string ProductosCliente { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\prodclie.txt"; } }
         public string Proveedores { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\pvds.txt"; } }
+        public string ProductosProveedor { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\prodprov.txt"; } }
+
         public string Descuentos { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\dcts.txt"; } }
         public string RemitoRegistradoras { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\rgts.txt"; } }
         public string CobroClientes { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\"+ space +"\\cbocl.txt"; } }

@@ -12,17 +12,18 @@ namespace E_Shop
     {
         string codigo, nombre, tel, correo, direccion;
         double saldo;
+        List<Producto> listaX;
 
-
-        public Cliente(){saldo =0; }
+        public Cliente(){saldo =0; listaX = new List<Producto>(); }
         public string Codigo { get { return codigo; } set { codigo = value; } }
         public string Nombre { get { return nombre; }set { nombre = value; } }
         public string Tel { get { return tel; }set { tel = value; } }
         public string Correo { get { return correo; } set { correo = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public double Saldo{get{return saldo;}set{saldo = value;}}
+        public List<Producto> ListaX { get { return listaX; } set { listaX= value; } }
 
-        
+
         static public bool Crear(Cliente x){
             
             if(ClienteValidador.CrearCliente(ref x)){
@@ -50,13 +51,15 @@ namespace E_Shop
                 newCliente.Correo = dat[3];
                 newCliente.Direccion = dat[4];
                 newCliente.Saldo = double.Parse(dat[5]);
-
+            
                 ListaDeClientes.Add(newCliente);
             }
             p.Close(); p.Dispose();
 
             return ListaDeClientes;
         }
+        
+
         static public bool Borrar(string codigo){
 
             if (ClienteValidador.GetCliente(codigo))

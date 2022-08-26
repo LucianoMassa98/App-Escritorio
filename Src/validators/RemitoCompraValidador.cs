@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace E_Shop
 {
     static class RemitoCompraValidador
@@ -11,15 +11,29 @@ namespace E_Shop
         static public bool CrearRemitoCompra(ref RemitoCompra x)
         {
             
-            if (x.Emisor == "") { return false; }
-            if (x.Receptor == "") { return false; }
-            if (x.FechaEmision == "") { return false; }
-            if (x.Pagos.Count()==0) { return false; }
-            if (x.ListaProdutos.Count()==0) { return false; }
-            try { x.Pagos[0].Importe = x.TotalCosto();
+            if (x.Emisor == "") {
+                MessageBox.Show("Falta Emisor");
+                return false; }
+            if (x.Receptor == "") {
+                MessageBox.Show("Falta Receotir");
+                return false; }
+            if (x.FechaEmision == "") {
+                MessageBox.Show("Falta Fecha Emision");
+                return false; }
+            if (x.Pagos.Count()==0) {
+                MessageBox.Show("Falta Pagos");
+                return false; }
+            if (x.ListaProdutos.Count()==0) {
+                MessageBox.Show("Falta Productos");
+                return false; }
+            try {
+                x.Pagos[0].Importe = x.TotalCosto();
                 List<RemitoCompra> Lista = RemitoCompra.Buscar();
                 x.Codigo = (Lista.Count() + 1).ToString();
-            } catch (Exception) { return false; }
+            } catch (Exception) {
+
+                MessageBox.Show("err3");
+                return false; }
 
            
             return true;

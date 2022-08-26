@@ -48,7 +48,7 @@ namespace E_Shop
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox2.Focus();
+            textBox5.Focus();
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -69,6 +69,7 @@ namespace E_Shop
             if (p!=null) {
                 try
                 {
+                    p.Bulto = double.Parse(textBox5.Text);
                     p.Cantidad = double.Parse(textBox2.Text);
                     p.Costo = double.Parse(textBox1.Text);
 
@@ -77,7 +78,7 @@ namespace E_Shop
 
                         RemitoX.MostrarDataGrid(ref dataGridView1);
                         label1.Text = "Total: $" + RemitoX.TotalCosto();
-                        comboBox4.Text = textBox2.Text = textBox1.Text = "";
+                        comboBox4.Text = textBox2.Text = textBox1.Text = textBox5.Text="";
                         comboBox4.Focus();
                     }
 
@@ -91,7 +92,7 @@ namespace E_Shop
         //seleccionar proveedor
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            comboBox3.Enabled = false;
             RemitoX.Emisor = comboBox3.Text;
             comboBox2.Focus();
         }
@@ -102,7 +103,7 @@ namespace E_Shop
             x.Codigo =  Pago.BuscarPorNombre(comboBox2.Text).Codigo;
             x.Nombre = comboBox2.Text;
             RemitoX.Pagos.Add(x);
-            button3.Focus();
+            comboBox4.Focus();
             comboBox2.Enabled = false;
         }
         // eliminar producto
@@ -143,13 +144,18 @@ namespace E_Shop
         {
             if (RemitoCompra.Crear(RemitoX)) {
                 NuevoRemito();
-            
+                comboBox3.Enabled = true;
             } else { }
         }
 
         private void CargarRemitoCompra_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==13) { textBox2.Focus(); }
         }
     }
 }

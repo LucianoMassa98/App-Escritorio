@@ -257,9 +257,42 @@ namespace E_Shop
 
 
         }
+        static public void CerearCuenta(List<Pago> x)
+        {
 
-      
-    
+            List<Pago> y = Pago.Buscar();
+
+            for (int i = 0; i < x.Count(); i++)
+            {
+                int ind = Pago.BuscarIndexPorCodigo(x[i].Codigo, y);
+                if (ind < y.Count())
+                {
+                    y[ind].Importe = 0;
+                }
+
+
+            }
+            Pago.Guardar(y);
+
+
+
+        }
+        static public void AgregarCuenta(ref List<Pago> x, Pago y)
+        {
+               
+            int ind = Pago.BuscarIndexPorCodigo(y.Codigo, x);
+                if (ind < x.Count())
+                {
+                    x[ind].Importe += y.importe;
+                }
+            else
+            {
+                x.Add(y);
+            }
+
+
+        }
+
     }
 
 }

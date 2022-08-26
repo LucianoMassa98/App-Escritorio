@@ -80,5 +80,35 @@ namespace E_Shop
             }
             return false; 
         }
+        static public bool AgregarProducto(ref Producto x)
+        {
+            
+
+            List<Producto> Stock = Producto.Buscar();
+          
+            if (x.Bulto == 0) { return false; }
+            if (x.Cantidad == 0) { return false; }
+
+            int i;
+            if ((i = Producto.BuscarIndexPorCodigo(x.Codigo, Stock)) < Stock.Count())
+            {
+
+                x.Nombre = Stock[i].Nombre;
+                x.Descripcion = Stock[i].Descripcion;
+                
+                return true;
+            }
+
+            if ((i = Producto.BuscarIndexPorNombre(x.Nombre, Stock)) < Stock.Count())
+            {
+
+                x.Codigo = Stock[i].Codigo;
+                x.Descripcion = Stock[i].Descripcion;
+             
+                return true;
+
+            }
+            return false;
+        }
     }
 }

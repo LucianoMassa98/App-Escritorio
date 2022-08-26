@@ -89,14 +89,20 @@ namespace E_Shop
                 textBox5.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
                 //Descipcion
                 textBox6.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                //bulto
+                textBox11.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 //cantidad
-                textBox7.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                textBox7.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
                 //cantida estandar
-                textBox8.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                textBox8.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
                 //costo
-                textBox9.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                textBox9.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
                 //Venta
-                textBox4.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                textBox4.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                //Venta2
+                textBox12.Text = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                //Venta3
+                textBox13.Text = dataGridView1.Rows[i].Cells[9].Value.ToString();
 
             }
             catch (Exception) { }
@@ -111,7 +117,10 @@ namespace E_Shop
             upProducto.Descripcion = textBox6.Text;
            
             try
-            { //cantidad
+            {
+                //cantidad
+                upProducto.Bulto = double.Parse(textBox11.Text);
+                //cantidad
                 upProducto.Cantidad = double.Parse(textBox7.Text);
                 //cantidad estandar
                 upProducto.CantidadEstandar = double.Parse(textBox8.Text);
@@ -119,6 +128,10 @@ namespace E_Shop
                 upProducto.Costo = double.Parse(textBox9.Text);
                 //venta
                 upProducto.Precio = double.Parse(textBox4.Text);
+                //venta
+                upProducto.Precio2 = double.Parse(textBox12.Text);
+                //venta
+                upProducto.Precio3 = double.Parse(textBox13.Text);
 
                 Producto.Actualizar(textBox10.Text, upProducto);
                 Producto.MostrarDataGrid(ref dataGridView1);
@@ -126,6 +139,7 @@ namespace E_Shop
             }
             catch (Exception)
             {  //Error
+                MessageBox.Show("Error en los campos del producto");
             }
         }
 

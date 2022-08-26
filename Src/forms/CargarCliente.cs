@@ -67,7 +67,8 @@ namespace E_Shop
 
                 Cliente.MostrarDataGrid(ref dataGridView1);
 
-                textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = ""; 
+                textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = "";
+                textBox1.Focus();
             }
             else { 
             
@@ -142,6 +143,11 @@ namespace E_Shop
         private void CargarCliente_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            new ProductosCliente(textBox10.Text).Show();
         }
     }
 }

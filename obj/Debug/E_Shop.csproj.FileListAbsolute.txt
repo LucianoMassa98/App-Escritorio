@@ -52,3 +52,5 @@ C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ImpirmirCodigoBarra.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarRemitoRegistradora.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarRemitoProduccion.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.Src.forms.Yemas_del_Sol.IndexYMS.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosCliente.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosProveedor.resources

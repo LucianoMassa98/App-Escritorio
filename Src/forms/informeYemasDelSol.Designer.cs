@@ -41,40 +41,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descipcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label75 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.label89 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label62 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -88,16 +54,33 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Prd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descipcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.v = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bulto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel5.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -112,7 +95,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1284, 125);
+            this.panel2.Size = new System.Drawing.Size(931, 125);
             this.panel2.TabIndex = 93;
             // 
             // button2
@@ -120,7 +103,7 @@
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(238, 3);
+            this.button2.Location = new System.Drawing.Point(244, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(59, 53);
             this.button2.TabIndex = 143;
@@ -132,7 +115,7 @@
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(238, 66);
+            this.button5.Location = new System.Drawing.Point(244, 66);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 53);
             this.button5.TabIndex = 144;
@@ -158,7 +141,7 @@
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Location = new System.Drawing.Point(0, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(229, 119);
             this.panel3.TabIndex = 81;
@@ -230,384 +213,17 @@
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
             this.Prd,
             this.Descipcion,
+            this.v,
             this.Cantidad,
             this.Importe});
-            this.dataGridView1.Location = new System.Drawing.Point(699, 577);
+            this.dataGridView1.Location = new System.Drawing.Point(319, 916);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(537, 372);
+            this.dataGridView1.Size = new System.Drawing.Size(537, 209);
             this.dataGridView1.TabIndex = 134;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            // 
-            // Prd
-            // 
-            this.Prd.HeaderText = "Producto";
-            this.Prd.Name = "Prd";
-            this.Prd.ReadOnly = true;
-            // 
-            // Descipcion
-            // 
-            this.Descipcion.HeaderText = "Descripcion";
-            this.Descipcion.Name = "Descipcion";
-            this.Descipcion.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Importe
-            // 
-            this.Importe.HeaderText = "Importe";
-            this.Importe.Name = "Importe";
-            this.Importe.ReadOnly = true;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.label8);
-            this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label11);
-            this.panel5.Controls.Add(this.label12);
-            this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.label15);
-            this.panel5.Controls.Add(this.label16);
-            this.panel5.Controls.Add(this.label17);
-            this.panel5.Controls.Add(this.label60);
-            this.panel5.Controls.Add(this.label75);
-            this.panel5.Controls.Add(this.label61);
-            this.panel5.Controls.Add(this.label77);
-            this.panel5.Controls.Add(this.label63);
-            this.panel5.Controls.Add(this.label78);
-            this.panel5.Controls.Add(this.label64);
-            this.panel5.Controls.Add(this.label79);
-            this.panel5.Controls.Add(this.label80);
-            this.panel5.Controls.Add(this.label66);
-            this.panel5.Controls.Add(this.label67);
-            this.panel5.Controls.Add(this.label69);
-            this.panel5.Controls.Add(this.label84);
-            this.panel5.Controls.Add(this.label70);
-            this.panel5.Controls.Add(this.label72);
-            this.panel5.Controls.Add(this.label90);
-            this.panel5.Controls.Add(this.label73);
-            this.panel5.Controls.Add(this.label89);
-            this.panel5.Location = new System.Drawing.Point(283, 141);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(392, 403);
-            this.panel5.TabIndex = 132;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label7.Location = new System.Drawing.Point(229, 145);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 16);
-            this.label7.TabIndex = 162;
-            this.label7.Text = "$000000000";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label8.Location = new System.Drawing.Point(16, 145);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 16);
-            this.label8.TabIndex = 161;
-            this.label8.Text = "Total";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(229, 126);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 16);
-            this.label10.TabIndex = 160;
-            this.label10.Text = "$000000000";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(16, 126);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 16);
-            this.label11.TabIndex = 159;
-            this.label11.Text = "Bonificado";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label12.Location = new System.Drawing.Point(229, 108);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(97, 16);
-            this.label12.TabIndex = 158;
-            this.label12.Text = "$000000000";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label13.Location = new System.Drawing.Point(16, 108);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 16);
-            this.label13.TabIndex = 157;
-            this.label13.Text = "Credito";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(229, 90);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(97, 16);
-            this.label14.TabIndex = 156;
-            this.label14.Text = "$000000000";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(16, 72);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 16);
-            this.label15.TabIndex = 153;
-            this.label15.Text = "Efectivo";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label16.Location = new System.Drawing.Point(16, 90);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(109, 16);
-            this.label16.TabIndex = 155;
-            this.label16.Text = "Mercado Pago";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label17.Location = new System.Drawing.Point(229, 72);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(97, 16);
-            this.label17.TabIndex = 154;
-            this.label17.Text = "$000000000";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label60.Location = new System.Drawing.Point(229, 332);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(97, 16);
-            this.label60.TabIndex = 152;
-            this.label60.Text = "$000000000";
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label75.Location = new System.Drawing.Point(235, 233);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(80, 18);
-            this.label75.TabIndex = 116;
-            this.label75.Text = "Importe";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label61.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label61.Location = new System.Drawing.Point(16, 332);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(100, 16);
-            this.label61.TabIndex = 150;
-            this.label61.Text = "Registradora";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label77.Location = new System.Drawing.Point(15, 233);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(69, 18);
-            this.label77.TabIndex = 114;
-            this.label77.Text = "Ventas";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label63.Location = new System.Drawing.Point(229, 350);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(97, 16);
-            this.label63.TabIndex = 149;
-            this.label63.Text = "$000000000";
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label78.Location = new System.Drawing.Point(4, 175);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(360, 18);
-            this.label78.TabIndex = 113;
-            this.label78.Text = "________________________________";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.label64.Location = new System.Drawing.Point(16, 350);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(43, 16);
-            this.label64.TabIndex = 147;
-            this.label64.Text = "Total";
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(3, 10);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(203, 23);
-            this.label79.TabIndex = 106;
-            this.label79.Text = "Consolidado Total";
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label80.Location = new System.Drawing.Point(235, 47);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(80, 18);
-            this.label80.TabIndex = 109;
-            this.label80.Text = "Importe";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label66.Location = new System.Drawing.Point(229, 314);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(97, 16);
-            this.label66.TabIndex = 146;
-            this.label66.Text = "$000000000";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label67.Location = new System.Drawing.Point(16, 314);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(83, 16);
-            this.label67.TabIndex = 144;
-            this.label67.Text = "Bonificado";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label69.Location = new System.Drawing.Point(229, 296);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(97, 16);
-            this.label69.TabIndex = 143;
-            this.label69.Text = "$000000000";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.Location = new System.Drawing.Point(15, 47);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(86, 18);
-            this.label84.TabIndex = 107;
-            this.label84.Text = "Compras";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label70.Location = new System.Drawing.Point(16, 296);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(60, 16);
-            this.label70.TabIndex = 141;
-            this.label70.Text = "Credito";
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label72.Location = new System.Drawing.Point(229, 278);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(97, 16);
-            this.label72.TabIndex = 140;
-            this.label72.Text = "$000000000";
-            // 
-            // label90
-            // 
-            this.label90.AutoSize = true;
-            this.label90.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label90.Location = new System.Drawing.Point(16, 260);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(66, 16);
-            this.label90.TabIndex = 135;
-            this.label90.Text = "Efectivo";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label73.Location = new System.Drawing.Point(16, 278);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(109, 16);
-            this.label73.TabIndex = 138;
-            this.label73.Text = "Mercado Pago";
-            // 
-            // label89
-            // 
-            this.label89.AutoSize = true;
-            this.label89.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label89.Location = new System.Drawing.Point(229, 260);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(97, 16);
-            this.label89.TabIndex = 137;
-            this.label89.Text = "$000000000";
             // 
             // button1
             // 
@@ -720,7 +336,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(696, 556);
+            this.label33.Location = new System.Drawing.Point(316, 680);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(135, 18);
             this.label33.TabIndex = 135;
@@ -730,7 +346,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(696, 151);
+            this.label5.Location = new System.Drawing.Point(310, 157);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 18);
             this.label5.TabIndex = 144;
@@ -745,23 +361,117 @@
             this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
+            this.bulto,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dataGridView2.Location = new System.Drawing.Point(699, 172);
+            this.dataGridView2.Location = new System.Drawing.Point(313, 399);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(537, 372);
+            this.dataGridView2.Size = new System.Drawing.Size(537, 209);
             this.dataGridView2.TabIndex = 143;
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridView3
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Codigo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn10});
+            this.dataGridView3.Location = new System.Drawing.Point(319, 701);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(317, 209);
+            this.dataGridView3.TabIndex = 145;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Cuenta";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Importe";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView4.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8});
+            this.dataGridView4.Location = new System.Drawing.Point(313, 178);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView4.Size = new System.Drawing.Size(323, 209);
+            this.dataGridView4.TabIndex = 146;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Cuenta";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Importe";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(647, 726);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(155, 18);
+            this.label6.TabIndex = 148;
+            this.label6.Text = "Detalle Ganancia";
+            // 
+            // Prd
+            // 
+            this.Prd.HeaderText = "Producto";
+            this.Prd.Name = "Prd";
+            this.Prd.ReadOnly = true;
+            // 
+            // Descipcion
+            // 
+            this.Descipcion.HeaderText = "Descripcion";
+            this.Descipcion.Name = "Descipcion";
+            this.Descipcion.ReadOnly = true;
+            // 
+            // v
+            // 
+            this.v.HeaderText = "Bulto";
+            this.v.Name = "v";
+            this.v.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Importe
+            // 
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -775,6 +485,12 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
+            // bulto
+            // 
+            this.bulto.HeaderText = "Bulto";
+            this.bulto.Name = "bulto";
+            this.bulto.ReadOnly = true;
+            // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.HeaderText = "Cantidad";
@@ -787,12 +503,46 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
+            // dataGridView5
+            // 
+            this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView5.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn9});
+            this.dataGridView5.Location = new System.Drawing.Point(650, 747);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.RowHeadersVisible = false;
+            this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView5.Size = new System.Drawing.Size(206, 163);
+            this.dataGridView5.TabIndex = 149;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Tipo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Importe";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
             // informeYemasDelSol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1301, 746);
+            this.ClientSize = new System.Drawing.Size(948, 746);
+            this.Controls.Add(this.dataGridView5);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dataGridView4);
+            this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel8);
@@ -800,7 +550,6 @@
             this.Controls.Add(this.label65);
             this.Controls.Add(this.label62);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker2);
@@ -818,11 +567,12 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -839,31 +589,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label75;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Label label80;
-        private System.Windows.Forms.Label label69;
-        private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.Label label72;
-        private System.Windows.Forms.Label label90;
-        private System.Windows.Forms.Label label73;
-        private System.Windows.Forms.Label label89;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descipcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label94;
@@ -873,26 +603,27 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Prd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descipcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn v;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bulto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
     }
 }
