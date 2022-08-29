@@ -15,7 +15,6 @@ namespace E_Shop
         Usuario xUsuario;
         Form FormularioAnterior;
         RemitoVenta RemitoX;
-        ProductoCliente lista;
         int inicio;
         public CargarRemitoVenta(object x, ref Form y)
         {
@@ -23,7 +22,6 @@ namespace E_Shop
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
             RemitoX = new RemitoVenta();
-            lista = new ProductoCliente();
             textBox4.Text = RemitoX.Emisor = xUsuario.Nombre;
             textBox3.Text = RemitoX.FechaEmision = DateTime.Now.Date.ToShortDateString();
             inicio = 0;
@@ -69,19 +67,14 @@ namespace E_Shop
                 
                     try
                     {
-                    Producto newProd;
 
-                    if (lista!=null) {
-                        if ((newProd = lista.FindOneProduct(p.Codigo)) != null)
-                       {
-                           
-                            p.Precio = newProd.Precio;
-                        }
-                    }
-                    
+                    switch (Cliente.BuscarPorNombre(RemitoX.Receptor).Tipo.ToString()) {
+                        case "1":{ break; }
+                        case "2": { p.Precio = p.Precio2; break; }
+                        case "3": { p.Precio = p.Precio3; break; }
+                    }    
 
-                    
-                    p.Bulto = double.Parse(textBox1.Text);
+                        p.Bulto = double.Parse(textBox1.Text);
                         p.Cantidad = double.Parse(textBox2.Text);
                     
 
@@ -137,7 +130,6 @@ namespace E_Shop
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             RemitoX.Receptor = comboBox3.Text;
-            lista = ProductoCliente.findOne(Cliente.BuscarPorNombre(RemitoX.Receptor).Codigo);  
             comboBox3.Enabled = false;
             comboBox2.Focus();
         }

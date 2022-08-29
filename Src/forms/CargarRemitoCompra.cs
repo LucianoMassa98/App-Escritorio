@@ -35,10 +35,6 @@ namespace E_Shop
 
             Producto.CargarComboBox(ref comboBox4);
 
-            //cargar formas de pago
-
-            Pago.CargarComboBox(ref comboBox2, "1.1.1");
-            comboBox2.Items.Add(Pago.BuscarPorCodigo("2.1.1").Nombre);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,7 +44,7 @@ namespace E_Shop
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox5.Focus();
+            if (comboBox4.Text == "aaa") { button3.Focus(); } else { textBox5.Focus(); }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -94,18 +90,8 @@ namespace E_Shop
         {
             comboBox3.Enabled = false;
             RemitoX.Emisor = comboBox3.Text;
-            comboBox2.Focus();
         }
-        //seleccionar tipo de pago
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Pago x = new Pago();
-            x.Codigo =  Pago.BuscarPorNombre(comboBox2.Text).Codigo;
-            x.Nombre = comboBox2.Text;
-            RemitoX.Pagos.Add(x);
-            comboBox4.Focus();
-            comboBox2.Enabled = false;
-        }
+       
         // eliminar producto
         private void button2_Click(object sender, EventArgs e)
         {
@@ -125,12 +111,11 @@ namespace E_Shop
             RemitoX.ListaProdutos.Clear();
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
-            comboBox2.Text =
+         
             comboBox3.Text =
             comboBox4.Text =
             textBox1.Text =
             textBox2.Text = "";
-            comboBox2.Enabled = true;
         }
         //boton cancelar remito
         private void button4_Click(object sender, EventArgs e)
@@ -142,10 +127,7 @@ namespace E_Shop
         // guardarRemito
         private void button3_Click(object sender, EventArgs e)
         {
-            if (RemitoCompra.Crear(RemitoX)) {
-                NuevoRemito();
-                comboBox3.Enabled = true;
-            } else { }
+            if (true) { new seleccionaPago(RemitoX).Show(); }
         }
 
         private void CargarRemitoCompra_Load(object sender, EventArgs e)
@@ -156,6 +138,11 @@ namespace E_Shop
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar==13) { textBox2.Focus(); }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

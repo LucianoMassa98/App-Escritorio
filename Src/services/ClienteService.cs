@@ -11,16 +11,17 @@ namespace E_Shop
     class Cliente
     {
         string codigo, nombre, tel, correo, direccion;
-        double saldo;
+        double saldo,tipo;
         List<Producto> listaX;
 
-        public Cliente(){saldo =0; listaX = new List<Producto>(); }
+        public Cliente(){ tipo = 1;  saldo =0; listaX = new List<Producto>(); }
         public string Codigo { get { return codigo; } set { codigo = value; } }
         public string Nombre { get { return nombre; }set { nombre = value; } }
         public string Tel { get { return tel; }set { tel = value; } }
         public string Correo { get { return correo; } set { correo = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public double Saldo{get{return saldo;}set{saldo = value;}}
+        public double Tipo { get { return tipo; } set { tipo = value; } }
         public List<Producto> ListaX { get { return listaX; } set { listaX= value; } }
 
 
@@ -50,8 +51,8 @@ namespace E_Shop
                 newCliente.Tel = dat[2];
                 newCliente.Correo = dat[3];
                 newCliente.Direccion = dat[4];
-                newCliente.Saldo = double.Parse(dat[5]);
-            
+                newCliente.Tipo = double.Parse(dat[5]);
+                newCliente.Saldo = double.Parse(dat[6]);
                 ListaDeClientes.Add(newCliente);
             }
             p.Close(); p.Dispose();
@@ -87,8 +88,9 @@ namespace E_Shop
                     if (x.Tel != "") { ListaCliente[i].Tel = x.Tel; }
                     if (x.Correo != "") { ListaCliente[i].Correo = x.Correo; }
                     if (x.Direccion != "") { ListaCliente[i].Direccion = x.Direccion; }
-                    ListaCliente[i].Saldo = x.Saldo; 
-                return Cliente.Guardar(ListaCliente);
+                    ListaCliente[i].Saldo = x.Saldo;
+                    ListaCliente[i].Tipo = x.Tipo;
+                    return Cliente.Guardar(ListaCliente);
             }
               
              }
@@ -148,6 +150,7 @@ namespace E_Shop
                     x[i].Tel + '|' + 
                     x[i].Correo + '|' +
                     x[i].Direccion + '|' +
+                    x[i].Tipo + '|' +
                     x[i].Saldo
                     );
             }
@@ -164,6 +167,7 @@ namespace E_Shop
                     x[i].Tel,
                     x[i].Correo,
                     x[i].Direccion,
+                    x[i].Tipo,
                     x[i].Saldo
                     );
             }

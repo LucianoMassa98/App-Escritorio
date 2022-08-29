@@ -109,8 +109,10 @@ namespace E_Shop
                 textBox7.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 //direccion
                 textBox8.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                //tipo
+                numericUpDown1.Value = decimal.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString()); ;
                 //saldo
-                textBox9.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                textBox11.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
 
             }
             catch (Exception) { }
@@ -132,7 +134,9 @@ namespace E_Shop
             //saldo
             try
             {
-                upCliente.Saldo = double.Parse(textBox9.Text);
+                upCliente.Tipo = double.Parse(numericUpDown1.Value.ToString());
+                upCliente.Saldo = double.Parse(textBox11.Text);
+               
                 Cliente.Actualizar(textBox10.Text,upCliente);
                 Cliente.MostrarDataGrid(ref dataGridView1);
             }

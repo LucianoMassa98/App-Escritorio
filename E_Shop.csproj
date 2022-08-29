@@ -220,6 +220,12 @@
     <Compile Include="Src\forms\ProductosProveedor.Designer.cs">
       <DependentUpon>ProductosProveedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\seleccionaPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\seleccionaPago.Designer.cs">
+      <DependentUpon>seleccionaPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\Yemas del Sol\IndexYMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ProductosProveedor.resx">
       <DependentUpon>ProductosProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\seleccionaPago.resx">
+      <DependentUpon>seleccionaPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\Yemas del Sol\IndexYMS.resx">
       <DependentUpon>IndexYMS.cs</DependentUpon>
