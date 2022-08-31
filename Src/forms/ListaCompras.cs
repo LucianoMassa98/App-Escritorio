@@ -18,24 +18,36 @@ namespace E_Shop
         {
             InitializeComponent();
             RemitosX = new List<RemitoCompra>();
-            indice = 0; 
+            indice = 0;
+            LoadComboBox();
         }
+        public void LoadComboBox()
+        {
+            List<Proveedor> lista = Proveedor.Buscar();
+            comboBox3.Items.Clear();
+            foreach(Proveedor prv in lista)
+            {
+                comboBox3.Items.Add(prv.Nombre);
+            }
 
+        }
         //Buscar remitos
         private void button1_Click(object sender, EventArgs e)
         {
 
             string fechaA = dateTimePicker1.Value.Date.ToShortDateString();
-
-            RemitosX = RemitoCompra.BuscarPorFecha(fechaA, fechaA);
-            if (RemitosX.Count() > 0)
-            {
-                RemitosX[0].MostrarDataGrid(ref dataGridView1);
-                indice = 0;
-                MostraRemito();
+            Proveedor prv = Proveedor.BuscarPorNombre(comboBox3.Text);
+            if (prv!=null) {
+                RemitosX = RemitoCompra.BuscarPorFecha(fechaA, fechaA,prv);
+                if (RemitosX.Count() > 0)
+                {
+                    RemitosX[0].MostrarDataGrid(ref dataGridView1);
+                    indice = 0;
+                    MostraRemito();
+                }
+                else { dataGridView1.Rows.Add("No Hay Productos"); }
+                dateTimePicker1.Enabled = false;
             }
-            else { dataGridView1.Rows.Add("No Hay Productos"); }
-            dateTimePicker1.Enabled = false;
         }
         // siguiente compra
         private void button2_Click(object sender, EventArgs e)

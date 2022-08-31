@@ -27,7 +27,6 @@ namespace E_Shop
                 MessageBox.Show("Falta Productos");
                 return false; }
             try {
-                x.Pagos[0].Importe = x.TotalCosto();
                 List<RemitoCompra> Lista = RemitoCompra.Buscar();
                 x.Codigo = (Lista.Count() + 1).ToString();
             } catch (Exception) {

@@ -101,13 +101,13 @@ namespace E_Shop
                     this.ListaProdutos[i].Codigo, 
                     this.ListaProdutos[i].Nombre,
                     this.ListaProdutos[i].Descripcion,
+                     this.ListaProdutos[i].Bulto,
                     this.ListaProdutos[i].Cantidad, 
                     this.ListaProdutos[i].Costo,
                     this.ListaProdutos[i].ImporteCosto()
                     );
             }
         }
-
         static public bool Crear(RemitoCompra x){
             
             if(RemitoCompraValidador.CrearRemitoCompra(ref x)){
@@ -118,12 +118,16 @@ namespace E_Shop
 
                     Producto.SumarStock(x.ListaDeProductos);
                     Pago.RestarCuenta(x.Pagos);
-                    if (x.Pagos[0].Codigo == "2.1.1")
-                    {
 
-                        Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, x.TotalCosto());
+                    foreach(Pago p in x.Pagos) {
+                        if (p.Codigo == "2.1.1")
+                        {
 
+                            Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
+
+                        }
                     }
+                   
                     return true;
                 }
                 return false;
@@ -188,7 +192,66 @@ namespace E_Shop
             }
             return y;
         }
+        static public List<RemitoCompra> BuscarPorFecha(string fecheDesde, string fechaHasta, Proveedor prv)
+        {
+            List<RemitoCompra> x = RemitoCompra.Buscar();
+            List<RemitoCompra> y = new List<RemitoCompra>();
+            for (int i = 0; i < x.Count(); i++)
+            {
 
+                if ((DateTime.Parse(x[i].FechaEmision) > DateTime.Parse(fecheDesde))
+                    || (DateTime.Parse(x[i].FechaEmision) == DateTime.Parse(fecheDesde)))
+                {
+
+                    if ((DateTime.Parse(x[i].FechaEmision) < DateTime.Parse(fechaHasta))
+                         || (DateTime.Parse(x[i].FechaEmision) == DateTime.Parse(fechaHasta)))
+                    {
+                        if (prv.Nombre==x[i].Emisor) { y.Add(x[i]); }
+                    }
+
+                }
+            }
+            return y;
+        }
+
+        public void Imprimir()
+        {
+
+            Direcciones dir = new Direcciones();
+            CrearTicket ticket = new CrearTicket(32);
+            ticket.AbreCajon();
+            ticket.TextoCentro(dir.Space);
+            ticket.TextoIzquierda("FECHA: " + DateTime.Now.ToShortDateString());
+            ticket.TextoIzquierda("HORA: " + DateTime.Now.ToShortTimeString());
+            ticket.lineasAsteriscos();
+
+            for (int i = 0; i < this.ListaDeProductos.Count(); i++)
+            {
+
+                ticket.TextoCentro(this.ListaDeProductos[i].Nombre);
+                ticket.TextoCentro(
+                    this.ListaDeProductos[i].Cantidad + " - $" +
+                    this.ListaDeProductos[i].Costo + " - $" +
+                    this.ListaDeProductos[i].ImporteCosto()
+                    );
+                ticket.lineasGuio();
+            }
+            ticket.lineasIgual();
+            ticket.AgregarTotales("Total: $", this.TotalCosto());
+            ticket.lineasAsteriscos();
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.TextoIzquierda("");
+            ticket.CortaTicket();
+            ticket.ImprimirTicket(dir.Impresora);//Nombre de la impresora tick
+            MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+        }
         static public RemitoCompra BuscarPorCodigo(string codigo)
         {
             if (RemitoCompraValidador.GetRemitoCompra(codigo))
@@ -274,18 +337,6 @@ namespace E_Shop
             }
             p.Close(); p.Dispose();
             return true;
-        }
-        static public void Ingreso(List<RemitoCompra> x, ref Label cnt, ref Label imp)
-        {
-            double sumcnt = 0, sumimp = 0;
-            for (int i = 0; i < x.Count(); i++)
-            {
-                sumcnt += x[i].TotalProductos();
-                sumimp += x[i].TotalCosto();
-            }
-            cnt.Text = sumcnt.ToString();
-            imp.Text = "$" + sumimp;
-
         }
         static public List<Pago> Ingreso(List<RemitoCompra> x)
         {

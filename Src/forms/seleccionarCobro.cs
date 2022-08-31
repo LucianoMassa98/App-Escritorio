@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace E_Shop
 {
-    public partial class seleccionaPago : Form
+    public partial class seleccionarCobro : Form
     {
-        RemitoCompra RemitoX;
-        List<Pago> listaPagos;
-        CargarRemitoCompra anterior;
-        public seleccionaPago(object x,ref Form y)
+        RemitoVenta RemitoX;
+        List<Pago> listaCobros;
+        CargarRemitoVenta anterior;
+        public seleccionarCobro(object x, ref Form y)
         {
             InitializeComponent();
-            anterior = (CargarRemitoCompra)y;
+            anterior = (CargarRemitoVenta)y;
             anterior.Enabled = false;
-            RemitoX = (RemitoCompra)x;
-            listaPagos = new List<Pago>();
+            RemitoX = (RemitoVenta)x;
+            listaCobros = new List<Pago>();
             LoadComboBox();
             LoadLabel();
         }
@@ -29,79 +29,89 @@ namespace E_Shop
         public void LoadComboBox()
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
-            comboBox4.Items.Add(Pago.BuscarPorCodigo("2.1.1").Nombre);
+            comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()
         {
-            Proveedor x = Proveedor.BuscarPorNombre(RemitoX.Emisor);
-            if (x!=null) {
+            Cliente x = Cliente.BuscarPorNombre(RemitoX.Receptor);
+            if (x != null)
+            {
                 label4.Text = "Saldo: $" + x.Saldo.ToString();
                 label1.Text = "Total Remito: $" + RemitoX.TotalCosto().ToString();
-                label3.Text = "Proveedor: " + x.Nombre;
+                label3.Text = "Cliente: " + x.Nombre;
             }
             else
             {
                 MessageBox.Show("Proveedor inexistente");
             }
-            
+
         }
-        public void mostrarGrid() {
+        public void mostrarGrid()
+        {
             dataGridView1.Rows.Clear();
-            
-        foreach(Pago pago in listaPagos)
+
+            foreach (Pago pago in listaCobros)
             {
                 dataGridView1.Rows.Add(pago.Nombre, pago.Importe);
             }
-            label5.Text = "SubTotal: $"+Pago.SumarImportes(listaPagos);
+            label5.Text = "SubTotal: $" + Pago.SumarImportes(listaCobros);
 
         }
+        public void completeTextBox()
+        {
 
-        public void completeTextBox() {
-
-            double imp = RemitoX.TotalCosto()- Pago.SumarImportes(listaPagos) ;
-           if(imp < 1) { MessageBox.Show("El total de pagos ya esta cargado"); } else
+            double imp = RemitoX.TotalVenta() - Pago.SumarImportes(listaCobros);
+            if (imp < 1) { MessageBox.Show("El total de cobros ya esta cargado"); }
+            else
             {
                 textBox1.Text = imp.ToString();
             }
 
 
         }
-
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox4.Text=="aaa") {
+            if (comboBox4.Text == "aaa")
+            {
                 button3.Focus();
-            } else
+            }
+            else
             {
                 completeTextBox();
                 textBox1.Focus();
             }
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Pago newpago = Pago.BuscarPorNombre(comboBox4.Text);
-            if (newpago!=null) {
-                try {
+            if (newpago != null)
+            {
+                try
+                {
                     double importe = double.Parse(textBox1.Text);
 
-                    if ((importe + Pago.SumarImportes(listaPagos)) <= RemitoX.TotalCosto()) {
+                    if ((importe + Pago.SumarImportes(listaCobros)) <= RemitoX.TotalVenta())
+                    {
 
                         newpago.Importe = importe;
-                      bool band =  Pago.AgregarPago(ref listaPagos, newpago);
+                        bool band = Pago.AgregarPago(ref listaCobros, newpago);
 
-                        if (band) {
+                        if (band)
+                        {
                             mostrarGrid();
                             comboBox4.Text = textBox1.Text = "";
                             comboBox4.Focus();
                         }
-                        else { MessageBox.Show("El pago ya se encuentra en la lista");
+                        else
+                        {
+                            MessageBox.Show("El pago ya se encuentra en la lista");
                             comboBox4.Text = textBox1.Text = "";
                             comboBox4.Focus();
                         }
-                    } else
+                    }
+                    else
                     {
                         textBox1.Text = "";
                         textBox1.Focus();
@@ -109,14 +119,17 @@ namespace E_Shop
                     }
                 }
                 catch (Exception) { }
-                
-            } else { MessageBox.Show("El tipo de pago no existe"); }
-            
+
+            }
+            else { MessageBox.Show("El tipo de pago no existe"); }
+
+
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar==13) { button1.Focus(); }
+            if (e.KeyChar == 13) { button1.Focus(); }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -128,10 +141,12 @@ namespace E_Shop
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount>0) {
+
+            if (dataGridView1.RowCount > 0)
+            {
                 int i = dataGridView1.CurrentRow.Index;
 
-             bool band =   Pago.RestarPago(ref listaPagos, dataGridView1.Rows[i].Cells[0].Value.ToString());
+                bool band = Pago.RestarPago(ref listaCobros, dataGridView1.Rows[i].Cells[0].Value.ToString());
 
                 if (band) { mostrarGrid(); }
             }
@@ -139,10 +154,11 @@ namespace E_Shop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RemitoX.Pagos = listaPagos;
+            RemitoX.Pagos = listaCobros;
 
-         
-            if (RemitoCompra.Crear(RemitoX)) { 
+
+            if (RemitoVenta.Crear(RemitoX))
+            {
                 try
                 {
                     if (Imprimir.Checked == true)
@@ -154,7 +170,7 @@ namespace E_Shop
                 anterior.Enabled = true;
                 anterior.NuevoRemito();
                 Form k = this;
-                k.Close();  
+                k.Close();
             }
         }
     }

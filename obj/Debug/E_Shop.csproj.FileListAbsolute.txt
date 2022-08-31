@@ -55,3 +55,4 @@ C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.Src.forms.Yemas_del_Sol.IndexYMS.resour
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosCliente.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosProveedor.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionaPago.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarCobro.resources

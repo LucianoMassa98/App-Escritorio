@@ -19,21 +19,40 @@ namespace E_Shop
             InitializeComponent();
             RemitosX = new List<RemitoVenta>();
             indice = 0;
+            LoadComboBox();
+        }
+
+        public void LoadComboBox()
+        {
+            comboBox3.Items.Clear();
+            List<Cliente> lista = Cliente.Buscar();
+            foreach (Cliente cliente in lista)
+            {
+                comboBox3.Items.Add(cliente.Nombre);
+            }
         }
         //cargar ventas
         private void button1_Click(object sender, EventArgs e)
         {
             string fechaA = dateTimePicker1.Value.Date.ToShortDateString();
+            Cliente cli = Cliente.BuscarPorNombre(comboBox3.Text);
 
-            RemitosX = RemitoVenta.BuscarPorFecha(fechaA, fechaA);
-            if (RemitosX.Count() > 0)
-            {
-                RemitosX[0].MostrarDataGrid(ref dataGridView1);
-                indice = 0;
-                MostraRemito();
+            if (cli!=null) {
+                RemitosX = RemitoVenta.BuscarPorFecha(fechaA, fechaA,cli);
+                if (RemitosX.Count() > 0)
+                {
+                    RemitosX[0].MostrarDataGrid(ref dataGridView1);
+                    indice = 0;
+                    MostraRemito();
+                }
+                else { dataGridView1.Rows.Add("No Hay Productos"); }
+                dateTimePicker1.Enabled = false;
             }
-            else { dataGridView1.Rows.Add("No Hay Productos"); }
-            dateTimePicker1.Enabled = false;
+            else
+            {
+                MessageBox.Show("El cliente no existe!!");
+            }
+            
 
         }
         //anterior venta

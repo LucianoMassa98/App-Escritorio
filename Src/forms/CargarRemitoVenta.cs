@@ -38,18 +38,18 @@ namespace E_Shop
             comboBox4.Items.Add("bbb");
 
             //cargar formas de pago
-            Pago.CargarComboBox(ref comboBox2,"1.1.1");
-            comboBox2.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
-            
+            /*Pago.CargarComboBox(ref comboBox2,"1.1.1");
+            comboBox2.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);*/
+
 
 
             //selecciona cliente x
-          //  if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
+            //  if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
             // seleccion Descuento nr1
-           
+
             // selecciona tipo de pago 1
-           // if (comboBox2.Items.Count>0) { comboBox2.SelectedIndex = 0;  }
-            
+            // if (comboBox2.Items.Count>0) { comboBox2.SelectedIndex = 0;  }
+
         }
 
         // agregar Producto
@@ -105,7 +105,6 @@ namespace E_Shop
             label1.Text = "Total: $0000";
             comboBox4.Text =
             textBox2.Text = "";
-            comboBox2.Enabled = true;
             
         }
 
@@ -131,13 +130,13 @@ namespace E_Shop
         {
             RemitoX.Receptor = comboBox3.Text;
             comboBox3.Enabled = false;
-            comboBox2.Focus();
         }
         // crear remito
         private void button3_Click(object sender, EventArgs e)
         {
-            CrearRemitoVenta();
-            comboBox3.Enabled = true;
+            Form k = this;
+            if ((comboBox3.Enabled == false) && (dataGridView1.RowCount > 0)) { new seleccionarCobro(RemitoX, ref k).Show(); }
+
         }
         //eliminar remito
         private void button4_Click(object sender, EventArgs e)
@@ -184,17 +183,7 @@ namespace E_Shop
                 default: { textBox1.Focus(); break; }
             }    
         }
-        //seleccionar tipo de pago
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Pago x = new Pago();
-            x.Codigo = Pago.BuscarPorNombre(comboBox2.Text).Codigo;
-            x.Nombre = comboBox2.Text;
-            RemitoX.Pagos.Clear();
-            RemitoX.Pagos.Add(x);
-            comboBox4.Focus();
-            
-        }
+        
         // selecciona descuento
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {

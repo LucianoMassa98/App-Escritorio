@@ -30,7 +30,12 @@ namespace E_Shop
         public double ImportePrecio() { return cantidad * precio; }
         public double ImportePrecio2() { return cantidad * precio2; }
         public double ImportePrecio3() { return cantidad * precio3; }
-        public double ImporteCosto() { return cantidad * costo; }
+        public double ImporteCosto() {
+            if ((this.costo ==0)|| (this.costo == null)) {
+                this.costo = Producto.BuscarPorCodigo(this.codigo).Costo;
+            }
+            
+            return cantidad * costo; }
         public void SumarCantidad(double cnt) { cantidad += cnt; }
         public void SumarBulto(double blt) { this.bulto  += blt; }
         public void SumarPrecio(double precio) { this.precio += precio; }
@@ -201,7 +206,10 @@ namespace E_Shop
         }
         static public double SumaCostos(List<Producto> x) {
             double sum = 0;
-            for (int i = 0; i < x.Count(); i++) { sum = sum + x[i].ImporteCosto(); }
+            for (int i = 0; i < x.Count(); i++) { 
+                sum = sum + x[i].ImporteCosto();
+                
+            }
             return sum;
         }
         static public double SumaVentas(List<Producto> x) {
@@ -262,12 +270,12 @@ namespace E_Shop
         {
 
             int ind = Producto.BuscarIndexPorCodigo(y.Codigo, x);
-            y.precio = y.ImporteCosto();
+            y.Costo = y.ImporteCosto();
             if (ind < x.Count())
             {
                 x[ind].SumarBulto(y.Bulto);
                 x[ind].SumarCantidad(y.Cantidad);
-                x[ind].SumarCosto(y.precio);
+                x[ind].SumarCosto(y.Costo);
             }
             else { x.Add(y); }
 
@@ -366,8 +374,6 @@ namespace E_Shop
             Producto.Guardar(y);
 
         }
-
-
         static public List<Producto> Consolidar(ref DataGridView rs, List<RemitoVenta> x, List<RemitoRegistradora> y) {
 
             List<Producto> resultado = new List<Producto>();

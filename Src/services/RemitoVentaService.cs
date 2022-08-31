@@ -29,7 +29,8 @@ namespace E_Shop
         public List<Pago> Pagos{ get { return ListaDePagos; } set { ListaDePagos = value; } }
         public List<Producto> ListaProdutos{ get { return ListaDeProductos; } set { ListaDeProductos = value; } }
         public double TotalVenta() { return Producto.SumaVentas(this.ListaDeProductos); }
-        public double TotalCosto() { return Producto.SumaCostos(this.ListaDeProductos); }
+        public double TotalCosto() {
+            return Producto.SumaCostos(this.ListaDeProductos); }
         public string ListadoProductos()
         {
 
@@ -196,11 +197,16 @@ namespace E_Shop
                 {
                     Producto.RestarStock(x.ListaDeProductos);
                     Pago.SumarCuenta(x.Pagos);
-                    if (x.Pagos[0].Codigo=="1.1.3")
+                    foreach(Pago p in x.Pagos)
                     {
-                        Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, x.TotalVenta());
+                        if (p.Codigo == "1.1.3")
+                        {
+                            Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
 
+                        }
                     }
+
+
                     return true;
                 }
                 return false;
@@ -362,6 +368,30 @@ namespace E_Shop
             }
             return y;
         }
+
+        static public List<RemitoVenta> BuscarPorFecha(string fecheDesde, string fechaHasta,Cliente cli)
+        {
+            List<RemitoVenta> x = RemitoVenta.Buscar();
+            List<RemitoVenta> y = new List<RemitoVenta>();
+            for (int i = 0; i < x.Count(); i++)
+            {
+
+                if ((DateTime.Parse(x[i].FechaEmision) > DateTime.Parse(fecheDesde))
+                    || (DateTime.Parse(x[i].FechaEmision) == DateTime.Parse(fecheDesde)))
+                {
+
+                    if ((DateTime.Parse(x[i].FechaEmision) < DateTime.Parse(fechaHasta))
+                         || (DateTime.Parse(x[i].FechaEmision) == DateTime.Parse(fechaHasta)))
+                    {
+                        if (x[i].Receptor == cli.Nombre) { y.Add(x[i]); }
+                    }
+
+                }
+            }
+            return y;
+        }
+
+
         static public void ConsolidarMostrar(List<RemitoVenta> x, ref DataGridView y,ref ListBox z) {
 
             List<Producto> Lista = new List<Producto>();
@@ -450,6 +480,24 @@ namespace E_Shop
 
             }
             return lista;
+        }
+
+        static public double CostoTotal(List<RemitoVenta> x) {
+            double sum = 0;
+            foreach (RemitoVenta rv in x) {
+                sum += rv.TotalCosto();
+                
+            }
+            return sum;
+        }
+        static public double VentaTotal(List<RemitoVenta> x)
+        {
+            double sum = 0;
+            foreach (RemitoVenta rv in x)
+            {
+                sum += rv.TotalVenta();
+            }
+            return sum;
         }
 
     }

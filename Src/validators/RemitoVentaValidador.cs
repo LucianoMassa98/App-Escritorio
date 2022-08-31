@@ -15,7 +15,6 @@ namespace E_Shop
             if (x.FechaEmision == "") { return false; }
             if (x.Pagos.Count() == 0) { return false; }
             if (x.ListaProdutos.Count() == 0) { return false; }
-            try { x.Pagos[0].Importe = x.TotalVenta(); } catch (Exception) { return false; }
             
             List<RemitoVenta> Lista = RemitoVenta.Buscar();
             x.Codigo = (Lista.Count() + 1).ToString();

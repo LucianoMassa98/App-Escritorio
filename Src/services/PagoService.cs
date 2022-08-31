@@ -292,7 +292,42 @@ namespace E_Shop
 
 
         }
+        static public bool AgregarPago(ref List<Pago> x, Pago y)
+        {
 
+            int ind = Pago.BuscarIndexPorCodigo(y.Codigo, x);
+            if (ind < x.Count())
+            {
+                return false;
+            }
+           
+                x.Add(y);
+                return true;
+
+
+        }
+        static public bool RestarPago(ref List<Pago> x, string nombre)
+        {
+
+            for (int i =0; i<x.Count(); i++) {
+                if (x[i].Nombre==nombre) {
+                    x.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+
+
+        }
+        static public double SumarImportes(List<Pago> x) {
+            double sum = 0;
+            foreach(Pago p in x)
+            {
+                sum += p.Importe;
+            }
+        return sum;
+        }
     }
 
 }

@@ -44,17 +44,19 @@ namespace E_Shop
 
             // estado cliente
             for (int i =0; i<lventas.Count();i++) {
+
                 if (listBox2.Items.Contains(lventas[i].Receptor) == false) { 
                     listBox2.Items.Add(lventas[i].Receptor + "\t $"+ lventas[i].TotalVenta()); }
-               
-                
-                if (lventas[i].Pagos[0].Codigo=="1.1.3") {
 
-                    listBox1.Items.Add(
-                        lventas[i].Receptor+" \t "+
-                        "$"+lventas[i].Pagos[0].Importe);
 
-                    
+                foreach (Pago p in lventas[i].Pagos) {
+                    if (p.Codigo == "1.1.3")
+                    {
+
+                        listBox1.Items.Add(
+                            lventas[i].Receptor + " \t " +
+                            "$" + p.Importe);
+                    }
                 }
             }
 
@@ -65,6 +67,14 @@ namespace E_Shop
             for (int i =0; i<lista.Count();i++) {
                 dataGridView3.Rows.Add(lista[i].Nombre,lista[i].Importe);
             }
+            dataGridView5.Rows.Add("Costo Total:",RemitoVenta.CostoTotal(lventas).ToString());
+
+            dataGridView5.Rows.Add("Venta Total:", RemitoVenta.VentaTotal(lventas).ToString());
+
+            dataGridView5.Rows.Add("Ganancia:", (RemitoVenta.VentaTotal(lventas)-RemitoVenta.CostoTotal(lventas)).ToString());
+
+
+
             //Registradora
             double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
             dataGridView3.Rows.Add("Registradora", impRegistradora);
@@ -83,6 +93,7 @@ namespace E_Shop
 
             //consolidado de ventas y registradora
             // RemitoVenta.ConsolidarMostrar(lventas, ref dataGridView1);
+           
             RemitoCompra.ConsolidarMostrar(lcompras,ref dataGridView2);
             Producto.Consolidar(ref dataGridView1,lventas,lregistradoras);
         }

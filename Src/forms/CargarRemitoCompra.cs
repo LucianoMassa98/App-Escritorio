@@ -34,7 +34,7 @@ namespace E_Shop
             // cargar codigos barra y nombres de productos
 
             Producto.CargarComboBox(ref comboBox4);
-
+            comboBox4.Items.Add("aaa");
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -44,7 +44,12 @@ namespace E_Shop
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox4.Text == "aaa") { button3.Focus(); } else { textBox5.Focus(); }
+            if (comboBox4.Text == "aaa") { button3.Focus(); } else {
+                Producto n = Producto.BuscarPorNombre(comboBox4.Text);
+                if (n==null) { n = Producto.BuscarPorCodigo(comboBox4.Text); }
+
+                textBox1.Text = n.Costo.ToString();
+                textBox5.Focus(); }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -111,8 +116,9 @@ namespace E_Shop
             RemitoX.ListaProdutos.Clear();
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
-         
-            comboBox3.Text =
+            comboBox3.Enabled = true;
+            comboBox3.Focus();
+            comboBox3.Text=
             comboBox4.Text =
             textBox1.Text =
             textBox2.Text = "";
@@ -127,7 +133,8 @@ namespace E_Shop
         // guardarRemito
         private void button3_Click(object sender, EventArgs e)
         {
-            if (true) { new seleccionaPago(RemitoX).Show(); }
+            Form k = this;
+            if ((comboBox3.Enabled == false)&&(dataGridView1.RowCount>0)) { new seleccionaPago(RemitoX, ref k).Show(); }
         }
 
         private void CargarRemitoCompra_Load(object sender, EventArgs e)
