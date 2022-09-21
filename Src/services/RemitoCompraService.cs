@@ -44,14 +44,14 @@ namespace E_Shop
 
                 var = var +(
 
-                    ListaDeProductos[i].Codigo + "/" +
-                     ListaDeProductos[i].Nombre + "/" +
-                     ListaDeProductos[i].Bulto + "/" +
-                      ListaDeProductos[i].Cantidad + "/" +
+                    ListaDeProductos[i].Codigo + "*" +
+                     ListaDeProductos[i].Nombre + "*" +
+                     ListaDeProductos[i].Bulto + "*" +
+                      ListaDeProductos[i].Cantidad + "*" +
                        ListaDeProductos[i].Costo
                        
                        );
-                if (i+1<ListaDeProductos.Count()) { var = var + "/";  }
+                if (i+1<ListaDeProductos.Count()) { var = var + "*";  }
 
             }
 
@@ -65,11 +65,11 @@ namespace E_Shop
 
                 var = var + (
 
-                    this.Pagos[i].Codigo + "/" +
-                     this.Pagos[i].Nombre + "/" +
+                    this.Pagos[i].Codigo + "*" +
+                     this.Pagos[i].Nombre + "*" +
                       this.Pagos[i].Importe 
                        );
-                if (i + 1 < this.Pagos.Count()) { var = var + "/"; }
+                if (i + 1 < this.Pagos.Count()) { var = var + "*"; }
 
             }
 
@@ -109,30 +109,42 @@ namespace E_Shop
             }
         }
         static public bool Crear(RemitoCompra x){
-            
-            if(RemitoCompraValidador.CrearRemitoCompra(ref x)){
 
-               List<RemitoCompra> ListaRemitoCompras = RemitoCompra.Buscar();
-               ListaRemitoCompras.Add(x);
-                if (RemitoCompra.Guardar(ListaRemitoCompras)) {
+            RemitoCompra remitoX = RemitoCompra.BuscarPorCodigo(x.Codigo);
+            if (remitoX==null) {
+                if (RemitoCompraValidador.CrearRemitoCompra(ref x))
+                {
 
-                    Producto.SumarStock(x.ListaDeProductos);
-                    Pago.RestarCuenta(x.Pagos);
+                    List<RemitoCompra> ListaRemitoCompras = RemitoCompra.Buscar();
+                    ListaRemitoCompras.Add(x);
+                    if (RemitoCompra.Guardar(ListaRemitoCompras))
+                    {
 
-                    foreach(Pago p in x.Pagos) {
-                        if (p.Codigo == "2.1.1")
+                        Producto.SumarStock(x.ListaDeProductos);
+                        Pago.RestarCuenta(x.Pagos);
+
+                        foreach (Pago p in x.Pagos)
                         {
+                            if (p.Codigo == "2.1.1")
+                            {
 
-                            Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
+                                Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
 
+                            }
                         }
+                        MessageBox.Show("Remito Creado");
+
+                        return true;
                     }
-                   
-                    return true;
+                    return false;
+
                 }
-                return false;
-                
-            }return false;
+            }
+            else
+            {
+                return RemitoCompra.Actualizar(x.Codigo, x);
+            }
+           return false;
         }
         static public bool Borrar(string codigo)
         {
@@ -143,6 +155,26 @@ namespace E_Shop
                 int i = RemitoCompra.BuscarIndexPorCodigo(codigo, ListaRemitoCompra);
                 if (i < ListaRemitoCompra.Count())
                 {
+                    Producto.RestarStock(ListaRemitoCompra[i].ListaDeProductos);
+                    Pago.SumarCuenta(ListaRemitoCompra[i].Pagos);
+
+                    foreach (Pago x in ListaRemitoCompra[i].Pagos)
+                    {
+
+                        if (x.Codigo == "2.1.1")
+                        {
+                            Proveedor.SumarSaldo(
+                                Proveedor.BuscarPorNombre(ListaRemitoCompra[i].Emisor).Codigo,
+                                x.Importe
+                                );
+
+                        }
+
+                    }
+
+
+
+
                     ListaRemitoCompra.RemoveAt(i);
                     return RemitoCompra.Guardar(ListaRemitoCompra);
                 }
@@ -163,9 +195,44 @@ namespace E_Shop
                     if (x.Emisor != "") { ListaRemitoCompra[i].Emisor = x.Emisor; }
                     if (x.Receptor != "") { ListaRemitoCompra[i].Receptor = x.Receptor; }
                     if (x.FechaEmision != "") { ListaRemitoCompra[i].FechaEmision = x.FechaEmision; }
+
+                    Producto.RestarStock(ListaRemitoCompra[i].ListaProdutos);
+                    Pago.SumarCuenta(ListaRemitoCompra[i].Pagos);
+                    foreach (Pago p in ListaRemitoCompra[i].Pagos)
+                    {
+                        if (p.Codigo == "2.1.1")
+                        {
+
+                            Proveedor.SumarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
+
+                        }
+                    }
                     ListaRemitoCompra[i].Pagos = x.Pagos;
                     ListaRemitoCompra[i].ListaProdutos = x.ListaProdutos;
-                    return RemitoCompra.Guardar(ListaRemitoCompra);
+                    if (RemitoCompra.Guardar(ListaRemitoCompra))
+                    {
+
+                        Producto.SumarStock(x.ListaDeProductos);
+                        Pago.RestarCuenta(x.Pagos);
+
+                        foreach (Pago p in x.Pagos)
+                        {
+                            if (p.Codigo == "2.1.1")
+                            {
+
+                                Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
+
+                            }
+                        }
+                        MessageBox.Show("Remito Actualizado!!");
+
+                        return true;
+                    }
+
+
+
+
+
                 }
 
             }
@@ -293,7 +360,7 @@ namespace E_Shop
                 newRemitoCompra.Receptor = dat[2];
 
                 // leer pago por cada boleta (falta desarrollar)
-                string []ListaPagos = dat[3].Split('/');
+                string []ListaPagos = dat[3].Split('*');
                 for (int i =0; i<ListaPagos.Length;i=i+3) {
                     Pago n = new Pago();
                     n.Codigo = ListaPagos[i];
@@ -302,7 +369,7 @@ namespace E_Shop
                     newRemitoCompra.Pagos.Add(n);
                 }
                 // leer lista de productos por cada boleta (falta desarrollar)
-                string[]ListaProductos = dat[4].Split('/');
+                string[]ListaProductos = dat[4].Split('*');
 
                 for (int i = 0; i<ListaProductos.Count(); i = i +5) {
 

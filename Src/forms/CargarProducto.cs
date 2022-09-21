@@ -21,7 +21,6 @@ namespace E_Shop
             label14.Text = "Stock: $" + Producto.SumaCostos(Producto.Buscar());
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
-
             if (xUsuario.Tipo != 1) { panel1.Visible = false; }
             LoadCombobox();
         }

@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace E_Shop
 {
     static class RemitoVentaValidador
     {
         static public bool CrearRemitoVenta(RemitoVenta x)
         {
-            if (x.Emisor == "") { return false; }
-            if (x.Receptor == "") { return false; }
-            if (x.FechaEmision == "") { return false; }
-            if (x.Pagos.Count() == 0) { return false; }
-            if (x.ListaProdutos.Count() == 0) { return false; }
+            if (x.Emisor == "") {
+                MessageBox.Show("Falta Emisor");
+                return false; }
+            if (x.Receptor == "") {
+                MessageBox.Show("Falta Cliente");
+                return false; }
+            if (x.FechaEmision == "") {
+                MessageBox.Show("Falta fecha");
+                return false; }
+            if (x.Pagos.Count() == 0) {
+                MessageBox.Show("Falta medios de cobro");
+                return false; }
+            if (x.ListaProdutos.Count() == 0) {
+                MessageBox.Show("Falta productos");
+                return false; }
             
             List<RemitoVenta> Lista = RemitoVenta.Buscar();
             x.Codigo = (Lista.Count() + 1).ToString();

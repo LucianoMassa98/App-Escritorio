@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace E_Shop
 {
@@ -28,13 +29,14 @@ namespace E_Shop
         // cargar venta
         private void button1_Click(object sender, EventArgs e)
         {
-            CargarRemitoVenta n = new CargarRemitoVenta(Xusuario,ref y);
+            
+            CargarRemitoVenta n = new CargarRemitoVenta(Xusuario,ref y, new RemitoVenta());
             n.Show();
         }
         //cargar compra
         private void button2_Click(object sender, EventArgs e)
         {
-            CargarRemitoCompra n = new CargarRemitoCompra(Xusuario, ref y);
+            CargarRemitoCompra n = new CargarRemitoCompra(Xusuario, ref y, new RemitoCompra());
             n.Show();
         }
         // cargar cliente
@@ -58,8 +60,9 @@ namespace E_Shop
         //cargarDescuento
         private void button4_Click(object sender, EventArgs e)
         {
-            CargarDescuento n = new CargarDescuento(Xusuario, ref y);
-            n.Show();
+            /* CargarDescuento n = new CargarDescuento(Xusuario, ref y);
+             n.Show();*/
+            new ConvertidorBD().Show();
 
         }
         //cargar usuario
@@ -77,13 +80,13 @@ namespace E_Shop
         //lista de Ventas
         private void button9_Click(object sender, EventArgs e)
         {
-            ListaVentas n = new ListaVentas();
+            ListaVentas n = new ListaVentas(Xusuario);
            n.Show();
         }
         // lista compras
         private void button10_Click(object sender, EventArgs e)
         {
-            ListaCompras n = new ListaCompras();
+            ListaCompras n = new ListaCompras(Xusuario);
             n.Show();
         }
 
@@ -199,6 +202,52 @@ namespace E_Shop
         {
             CargarRemitoRegistradora n = new CargarRemitoRegistradora(Xusuario, ref y);
             n.Show();
+        }
+
+        //generar tra
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+             string s=   AfipServices.generarTra();
+             MessageBox.Show(s);
+        }
+
+        // enviar TraFirmado en base 64
+        private void button5_Click_2(object sender, EventArgs e)
+        {
+            /*
+
+        ServiceReferenceWSAA.LoginCMSChannel();
+        ServiceReferenceWSAA.LoginCMSClient();
+        ServiceReferenceWSAA.loginCmsRequest();
+        ServiceReferenceWSAA.loginCmsResponse();
+        ServiceReferenceWSAA.LoginFault();
+        */
+            try
+            {
+                StreamReader p = new StreamReader(new Direcciones().TraCms);
+                ServiceReferenceWSAA.LoginCMSClient oCliente = new ServiceReferenceWSAA.LoginCMSClient();
+                string res = oCliente.loginCms(p.ReadToEnd());
+                p.Close(); p.Dispose();
+                MessageBox.Show(res);
+
+
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.ToString());
+            }
+        }
+
+        private void button17_Click_1(object sender, EventArgs e)
+        {
+            new CargarGatos(Xusuario).Show();
+            
+        }
+
+        private void button18_Click_1(object sender, EventArgs e)
+        {
+            new Capitales().Show();
         }
     }
 }

@@ -93,5 +93,10 @@ namespace E_Shop
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

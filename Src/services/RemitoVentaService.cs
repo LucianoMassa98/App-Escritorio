@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 
 namespace E_Shop
 {
@@ -28,7 +29,15 @@ namespace E_Shop
         public string Emisor { get { return emisor;  }set { emisor = value; } }
         public List<Pago> Pagos{ get { return ListaDePagos; } set { ListaDePagos = value; } }
         public List<Producto> ListaProdutos{ get { return ListaDeProductos; } set { ListaDeProductos = value; } }
-        public double TotalVenta() { return Producto.SumaVentas(this.ListaDeProductos); }
+      
+        public bool EnviarFacturaAfip() {
+
+        
+            
+            return true;
+        }
+        public double TotalVenta() { 
+            return Producto.SumaVentas(this.ListaDeProductos); }
         public double TotalCosto() {
             return Producto.SumaCostos(this.ListaDeProductos); }
         public string ListadoProductos()
@@ -40,14 +49,14 @@ namespace E_Shop
 
                 var = var + (
 
-                    ListaDeProductos[i].Codigo + "/" +
-                     ListaDeProductos[i].Nombre + "/" +
-                      ListaDeProductos[i].Bulto + "/" +
-                      ListaDeProductos[i].Cantidad + "/" +
+                    ListaDeProductos[i].Codigo + "*" +
+                     ListaDeProductos[i].Nombre + "*" +
+                      ListaDeProductos[i].Bulto + "*" +
+                      ListaDeProductos[i].Cantidad + "*" +
                        ListaDeProductos[i].Precio
 
                        );
-                if (i + 1 < ListaDeProductos.Count()) { var = var + "/"; }
+                if (i + 1 < ListaDeProductos.Count()) { var = var + "*"; }
 
             }
 
@@ -62,11 +71,11 @@ namespace E_Shop
 
                 var = var + (
 
-                    this.Pagos[i].Codigo + "/" +
-                     this.Pagos[i].Nombre + "/" +
+                    this.Pagos[i].Codigo + "*" +
+                     this.Pagos[i].Nombre + "*" +
                       this.Pagos[i].Importe
                        );
-                if (i + 1 < this.Pagos.Count()) { var = var + "/"; }
+                if (i + 1 < this.Pagos.Count()) { var = var + "*"; }
 
             }
 
@@ -164,7 +173,6 @@ namespace E_Shop
 
 
         }
-
         public double CantidadHuevos() {
             double sum = 0;
 
@@ -189,28 +197,42 @@ namespace E_Shop
         }
         static public bool Crear(RemitoVenta x)
         {
-            if (RemitoVentaValidador.CrearRemitoVenta(x))
-            {
-                List<RemitoVenta> ListaRemitoVenta  = RemitoVenta.Buscar();
-                ListaRemitoVenta.Add(x);
-                if (RemitoVenta.Guardar(ListaRemitoVenta)) 
+           
+            RemitoVenta remitoX = RemitoVenta.BuscarPorCodigo(x.Codigo);
+            if (remitoX==null) {
+                if (RemitoVentaValidador.CrearRemitoVenta(x))
                 {
-                    Producto.RestarStock(x.ListaDeProductos);
-                    Pago.SumarCuenta(x.Pagos);
-                    foreach(Pago p in x.Pagos)
-                    {
-                        if (p.Codigo == "1.1.3")
-                        {
-                            Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
 
+                    List<RemitoVenta> ListaRemitoVenta = RemitoVenta.Buscar();
+                    ListaRemitoVenta.Add(x);
+                    if (RemitoVenta.Guardar(ListaRemitoVenta))
+                    {
+                        Producto.RestarStock(x.ListaDeProductos);
+                        Pago.SumarCuenta(x.Pagos);
+                        foreach (Pago p in x.Pagos)
+                        {
+                            if ((p.Codigo == "1.1.3") ||(p.Codigo == "1.1.4"))
+                            {
+                                Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
+
+                            }
                         }
+
+                        MessageBox.Show("Remito Creado");
+                        
+                        return true;
                     }
 
-
-                    return true;
+                    return false;
                 }
-                return false;
             }
+            else
+            {
+              
+             return    RemitoVenta.Actualizar(x.Codigo,x);
+            }
+
+            
             return false;
         }
         static public bool Borrar(string codigo)
@@ -224,14 +246,20 @@ namespace E_Shop
                              
                         Producto.SumarStock(ListaRemitoVenta[i].ListaDeProductos);
                         Pago.RestarCuenta(ListaRemitoVenta[i].Pagos);
-                        if (ListaRemitoVenta[i].Pagos[0].Codigo == "1.1.3")
+
+                    foreach (Pago x in ListaRemitoVenta[i].Pagos) {
+
+                        if ((x.Codigo == "1.1.3") || (x.Codigo == "1.1.4"))
                         {
                             Cliente.RestarSaldo(
                                 Cliente.BuscarPorNombre(ListaRemitoVenta[i].Receptor).Codigo,
-                                ListaRemitoVenta[i].TotalVenta()
+                                x.Importe
                                 );
 
                         }
+
+                    }
+                       
                     ListaRemitoVenta.RemoveAt(i);
                     return RemitoVenta.Guardar(ListaRemitoVenta);
                 }
@@ -248,13 +276,42 @@ namespace E_Shop
                 int i = RemitoVenta.BuscarIndexPorCodigo(codigo, ListaRemitoVenta);
                 if (i < ListaRemitoVenta.Count())
                 {
+                    
                     if (x.Emisor != "") { ListaRemitoVenta[i].Emisor = x.Emisor; }
                     if (x.Receptor != "") { ListaRemitoVenta[i].Receptor = x.Receptor; }
                     if (x.FechaEmision != "") { ListaRemitoVenta[i].FechaEmision = x.FechaEmision; }
+
+                    Producto.SumarStock(ListaRemitoVenta[i].ListaProdutos);
+                    Pago.RestarCuenta(ListaRemitoVenta[i].Pagos);
+                    foreach (Pago p in ListaRemitoVenta[i].Pagos)
+                    {
+                        if ((p.Codigo == "1.1.3") || (p.Codigo == "1.1.4"))
+                        {
+                            Cliente.RestarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
+
+                        }
+                    }
                     ListaRemitoVenta[i].Pagos = x.Pagos;
                     ListaRemitoVenta[i].ListaProdutos = x.ListaProdutos;
 
-                    return RemitoVenta.Guardar(ListaRemitoVenta);
+                   
+                    if (RemitoVenta.Guardar(ListaRemitoVenta))
+                    {
+                        Producto.RestarStock(x.ListaDeProductos);
+                        Pago.SumarCuenta(x.Pagos);
+                        foreach (Pago p in x.Pagos)
+                        {
+                            if (p.Codigo == "1.1.3")
+                            {
+                                Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
+
+                            }
+                        }
+
+
+                        MessageBox.Show("Remito Actualizado!!");
+                        return true;
+                    }
                 }
 
             }
@@ -301,7 +358,7 @@ namespace E_Shop
                 newRemitoVenta.Receptor = dat[2];
 
                 // leer pago por cada boleta 
-                string[] ListaPagos = dat[3].Split('/');
+                string[] ListaPagos = dat[3].Split('*');
                 for (int i = 0; i < ListaPagos.Length; i = i + 3)
                 {
                     Pago n = new Pago();
@@ -311,7 +368,7 @@ namespace E_Shop
                     newRemitoVenta.Pagos.Add(n);
                 }
                 // leer lista de productos por cada boleta 
-                string[] ListaProductos = dat[4].Split('/');
+                string[] ListaProductos = dat[4].Split('*');
 
                 for (int i = 0; i < ListaProductos.Count(); i = i + 5)
                 {
@@ -368,7 +425,19 @@ namespace E_Shop
             }
             return y;
         }
+        static public List<RemitoVenta> BuscarPorCliente(Cliente cli)
+        {
+            List<RemitoVenta> x = RemitoVenta.Buscar();
+            List<RemitoVenta> y = new List<RemitoVenta>();
+            for (int i = 0; i < x.Count(); i++)
+            {
 
+                if (x[i].Receptor==cli.Nombre) {
+                    y.Add(x[i]);
+                }
+            }
+            return y;
+        }
         static public List<RemitoVenta> BuscarPorFecha(string fecheDesde, string fechaHasta,Cliente cli)
         {
             List<RemitoVenta> x = RemitoVenta.Buscar();
@@ -390,8 +459,6 @@ namespace E_Shop
             }
             return y;
         }
-
-
         static public void ConsolidarMostrar(List<RemitoVenta> x, ref DataGridView y,ref ListBox z) {
 
             List<Producto> Lista = new List<Producto>();
@@ -481,7 +548,6 @@ namespace E_Shop
             }
             return lista;
         }
-
         static public double CostoTotal(List<RemitoVenta> x) {
             double sum = 0;
             foreach (RemitoVenta rv in x) {

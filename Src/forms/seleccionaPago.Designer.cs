@@ -44,13 +44,14 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
             this.Imprimir = new System.Windows.Forms.CheckBox();
+            this.pdfImprirmir = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -227,6 +228,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(365, 167);
             this.dataGridView1.TabIndex = 154;
             // 
+            // Cuenta
+            // 
+            this.Cuenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cuenta.HeaderText = "Cuenta";
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.ReadOnly = true;
+            this.Cuenta.Width = 101;
+            // 
+            // Monto
+            // 
+            this.Monto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            this.Monto.Width = 94;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -258,22 +275,6 @@
             this.label5.TabIndex = 167;
             this.label5.Text = "SubTotal: $0000";
             // 
-            // Cuenta
-            // 
-            this.Cuenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cuenta.HeaderText = "Cuenta";
-            this.Cuenta.Name = "Cuenta";
-            this.Cuenta.ReadOnly = true;
-            this.Cuenta.Width = 101;
-            // 
-            // Monto
-            // 
-            this.Monto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Monto.HeaderText = "Monto";
-            this.Monto.Name = "Monto";
-            this.Monto.ReadOnly = true;
-            this.Monto.Width = 94;
-            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.RosyBrown;
@@ -293,16 +294,28 @@
             this.Imprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imprimir.Location = new System.Drawing.Point(273, 137);
             this.Imprimir.Name = "Imprimir";
-            this.Imprimir.Size = new System.Drawing.Size(92, 24);
+            this.Imprimir.Size = new System.Drawing.Size(76, 24);
             this.Imprimir.TabIndex = 169;
-            this.Imprimir.Text = "Imprimir";
+            this.Imprimir.Text = "Ticket";
             this.Imprimir.UseVisualStyleBackColor = true;
+            // 
+            // pdfImprirmir
+            // 
+            this.pdfImprirmir.AutoSize = true;
+            this.pdfImprirmir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pdfImprirmir.Location = new System.Drawing.Point(273, 160);
+            this.pdfImprirmir.Name = "pdfImprirmir";
+            this.pdfImprirmir.Size = new System.Drawing.Size(55, 24);
+            this.pdfImprirmir.TabIndex = 170;
+            this.pdfImprirmir.Text = "Pdf";
+            this.pdfImprirmir.UseVisualStyleBackColor = true;
             // 
             // seleccionaPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 524);
+            this.Controls.Add(this.pdfImprirmir);
             this.Controls.Add(this.Imprimir);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox Imprimir;
+        private System.Windows.Forms.CheckBox pdfImprirmir;
     }
 }

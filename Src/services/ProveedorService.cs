@@ -20,7 +20,6 @@ namespace E_Shop
         public string Correo { get { return correo; } set { correo = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public double Saldo{get{return saldo;}set{saldo = value;}}
-
         static public bool Crear(Proveedor x){
             if(ProveedorValidador.CrearProveedor(ref x))
             { 
@@ -136,8 +135,6 @@ namespace E_Shop
             }
             return ind;
         }
-
-
         static public bool Guardar(List<Proveedor> x){
               Direcciones dir = new Direcciones();
             StreamWriter p = new StreamWriter(dir.Proveedores);
@@ -171,8 +168,6 @@ namespace E_Shop
             }
 
         }
-
-
         static public void CargarComboBox(ref ComboBox y)
         {
 

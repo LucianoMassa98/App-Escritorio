@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace E_Shop
 {
     public partial class seleccionarCobro : Form
@@ -30,6 +32,7 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
+            comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()
@@ -38,7 +41,7 @@ namespace E_Shop
             if (x != null)
             {
                 label4.Text = "Saldo: $" + x.Saldo.ToString();
-                label1.Text = "Total Remito: $" + RemitoX.TotalCosto().ToString();
+                label1.Text = "Total Remito: $" + RemitoX.TotalVenta().ToString();
                 label3.Text = "Cliente: " + x.Nombre;
             }
             else
@@ -165,12 +168,28 @@ namespace E_Shop
                     {
                         RemitoX.Imprimir();
                     }
+                    if (PdfImprimir.Checked==true) {
+                        Form este = this;
+                        este.Enabled = false;
+                        CrearPdf n = new CrearPdf();
+                        n.GenerarPdfRemitoVenta(RemitoX);
+                        Process abrirpdf= new Process();
+                        string file = new Direcciones().ArchivoPdf +RemitoX.Receptor + ".pdf";
+                        abrirpdf.StartInfo.FileName = file;
+                        abrirpdf.Start();
+                    }
                 }
                 catch (Exception) { }
                 anterior.Enabled = true;
                 anterior.NuevoRemito();
+                anterior.FinCarga();
+                
                 Form k = this;
                 k.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se puedo generar Remito");
             }
         }
     }

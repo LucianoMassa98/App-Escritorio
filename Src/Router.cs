@@ -35,10 +35,17 @@ namespace E_Shop
         public string RemitoRegistradoras { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\rgts.txt"; } }
         public string CobroClientes { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\"+ space +"\\cbocl.txt"; } }
         public string PagoProveedores { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\pgpv.txt"; } }
+        public string Gastos { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\gts.txt"; } }
+
         public string ArchivoPdf { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\Pdfs\\Pdf-"; } }
+       
         public string Logo { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\Images\\logo.jpg"; } }
         //"TP806L   |     POS-58"
         public string Impresora { get { return "POS-58"; } }
+        public string Certificado { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\MiCertificado.pem"; } }
+        public string Tra { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\ArchivoTra.xml"; } }
+
+        public string TraCms { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\MiLoginTicketRequest.xml.cms"; } }
 
     }
 }

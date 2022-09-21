@@ -43,9 +43,11 @@ namespace E_Shop
                 || (double.Parse(textBox9.Text) == double.Parse(textBox1.Text)))
             {
 
+
+               
                 RemitoX.Pagos[0].Importe = double.Parse(textBox1.Text);
 
-                if (RemitoCobroCliente.Crear(RemitoX))
+                if (RemitoCobroCliente.Crear(RemitoX,"1.1.3"))
                 {
                     NuevoCobro();
                 }
@@ -65,6 +67,7 @@ namespace E_Shop
             Cliente c = Cliente.BuscarPorCodigo(comboBox1.Text);
            RemitoX.Receptor =  comboBox2.Text = c.Nombre;
             textBox9.Text = c.Saldo.ToString();
+            label5.Text = "Ultimo saldo: " + Cliente.ultimaSaldo(c);
             comboBox1.Enabled = comboBox2.Enabled = textBox9.Enabled = false;
             comboBox3.Focus();
 
@@ -74,6 +77,9 @@ namespace E_Shop
         {
             Cliente c = Cliente.BuscarPorNombre(comboBox2.Text);
             RemitoX.Receptor = comboBox2.Text;
+
+            label5.Text = "Ultimo saldo: "+Cliente.ultimaSaldo(c);
+            
             comboBox1.Text = c.Codigo;
             textBox9.Text = c.Saldo.ToString();
             comboBox1.Enabled = comboBox2.Enabled = textBox9.Enabled = false;

@@ -16,17 +16,18 @@ namespace E_Shop
         Form FormularioAnterior;
         RemitoVenta RemitoX;
         int inicio;
-        public CargarRemitoVenta(object x, ref Form y)
+        public CargarRemitoVenta(object x, ref Form y,  object z)
         {
             InitializeComponent();
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
-            RemitoX = new RemitoVenta();
+            RemitoX = (RemitoVenta)z;
             textBox4.Text = RemitoX.Emisor = xUsuario.Nombre;
             textBox3.Text = RemitoX.FechaEmision = DateTime.Now.Date.ToShortDateString();
             inicio = 0;
             LoadCombox();
         }
+        
         public void LoadCombox()
         {
             
@@ -35,23 +36,22 @@ namespace E_Shop
             // cargr codigos barra y nombres de productos
             Producto.CargarComboBox( ref comboBox4);
             comboBox4.Items.Add("aaa");
-            comboBox4.Items.Add("bbb");
-
-            //cargar formas de pago
-            /*Pago.CargarComboBox(ref comboBox2,"1.1.1");
-            comboBox2.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);*/
-
-
-
-            //selecciona cliente x
-            //  if (comboBox3.Items.Count > 0) { comboBox3.SelectedIndex = 0; }
-            // seleccion Descuento nr1
-
-            // selecciona tipo de pago 1
-            // if (comboBox2.Items.Count>0) { comboBox2.SelectedIndex = 0;  }
-
+            comboBox3.Focus();
+      
         }
 
+        public void LoadRemitoX()
+        {
+            textBox3.Text = RemitoX.FechaEmision;
+            textBox4.Text = RemitoX.Emisor;
+            comboBox3.Text = RemitoX.Receptor;
+            comboBox3.Enabled = false;
+            button4.Visible = false;
+            button5.Visible = true;
+            RemitoX.MostrarDataGrid(ref dataGridView1);
+            label1.Text = "Total: $" + RemitoX.TotalVenta();
+
+        }
         // agregar Producto
         public void AgregarProducto() {
             Producto p = Producto.BuscarPorCodigo(comboBox4.Text);
@@ -68,11 +68,14 @@ namespace E_Shop
                     try
                     {
 
-                    switch (Cliente.BuscarPorNombre(RemitoX.Receptor).Tipo.ToString()) {
-                        case "1":{ break; }
-                        case "2": { p.Precio = p.Precio2; break; }
-                        case "3": { p.Precio = p.Precio3; break; }
-                    }    
+                        
+
+                        p.Precio = double.Parse(textBox5.Text);
+
+                       if (p.Costo>=p.Precio) {
+
+                        MessageBox.Show("Cuidado, el precio esta por de bajo o igual al costo.");
+                    }
 
                         p.Bulto = double.Parse(textBox1.Text);
                         p.Cantidad = double.Parse(textBox2.Text);
@@ -83,7 +86,8 @@ namespace E_Shop
 
                             RemitoX.MostrarDataGrid(ref dataGridView1);
                             label1.Text = "Total: $" + RemitoX.TotalVenta();
-                             comboBox4.Text = textBox2.Text = textBox1.Text="";
+                            textBox5.Text=  comboBox4.Text = textBox2.Text = textBox1.Text="";
+                        checkBox1.Checked = false;
                             comboBox4.Focus();
                         }
 
@@ -98,16 +102,29 @@ namespace E_Shop
         // iniciar nuevo remito
         public void NuevoRemito()
         {
-           
+            RemitoX.Codigo = "";
             RemitoX.ListaProdutos.Clear();
-            RemitoX.Receptor = "x";
+            comboBox3.Enabled = true;
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";
+            checkBox1.Checked = false;
+            comboBox3.Text=
             comboBox4.Text =
             textBox2.Text = "";
+            comboBox3.Focus();
             
         }
 
+        //fin cargar
+        public void FinCarga() {
+            if (button5.Visible==true) {
+
+                Form k = this;
+                k.Close();
+            }
+        
+        }
+        
         //crear remito de venta
         public void CrearRemitoVenta() {
             //buscarpagoycolocarimporte
@@ -130,6 +147,7 @@ namespace E_Shop
         {
             RemitoX.Receptor = comboBox3.Text;
             comboBox3.Enabled = false;
+            comboBox4.Focus();
         }
         // crear remito
         private void button3_Click(object sender, EventArgs e)
@@ -147,6 +165,7 @@ namespace E_Shop
         private void CargarRemitoVenta_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            checkBox1.Checked = false;
         }
         // eliminar producto
         private void button2_Click(object sender, EventArgs e)
@@ -176,13 +195,61 @@ namespace E_Shop
         // buscar producto por nombre
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox4.Text)
+            if (comboBox3.Enabled == true)
             {
-                case "aaa": { break; }
-                case "bbb": { break; }
-                default: { textBox1.Focus(); break; }
-            }    
-        }
+                MessageBox.Show("Es necesario colocar cliente para empezar a cargar productos");
+            }
+            else
+            {
+                switch (comboBox4.Text)
+                {
+                    case "aaa": { button3.Focus(); break; }
+                    case "bbb": { break; }
+                    default:
+                        {
+
+                            Cliente c = Cliente.BuscarPorNombre(comboBox3.Text);
+                            if (c != null)
+                            {
+
+                                switch (c.Tipo.ToString())
+                                {
+                                    case "1":
+                                        {
+                                            Producto p = Producto.BuscarPorNombre(comboBox4.Text);
+                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+
+                                            textBox5.Text = p.Precio.ToString();
+                                            break;
+                                        }
+                                    case "2":
+                                        {
+                                            Producto p = Producto.BuscarPorNombre(comboBox4.Text);
+                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+
+                                            textBox5.Text = p.Precio2.ToString();
+                                            break;
+                                        }
+                                    case "3":
+                                        {
+                                            Producto p = Producto.BuscarPorNombre(comboBox4.Text);
+                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+
+                                            textBox5.Text = p.Precio3.ToString();
+                                            break;
+                                        }
+                                }
+
+                            }
+
+
+
+
+                            textBox1.Focus(); break;
+                        }
+                }
+            }
+            }
         
         // selecciona descuento
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -193,13 +260,41 @@ namespace E_Shop
         // seleciona cantidad
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { button1.Focus(); }
+            if (e.KeyChar == 13) {
+
+                if (checkBox1.Checked==true) {
+                    textBox5.Focus();
+                }
+                else
+                {
+                    button1.Focus();
+                }
+            }
 
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13) { textBox2.Focus(); }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form k = this;
+            k.Close();
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                button1.Focus();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox5.Enabled = checkBox1.Checked;
         }
     }
 }

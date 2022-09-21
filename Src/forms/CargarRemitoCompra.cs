@@ -15,17 +15,39 @@ namespace E_Shop
         Usuario xUsuario;
         Form FormularioAnterior;
         RemitoCompra RemitoX;
-        public CargarRemitoCompra(object x, ref Form y)
+        public CargarRemitoCompra(object x, ref Form y, object remito)
         {
             InitializeComponent();
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
-            RemitoX = new RemitoCompra();
+            RemitoX = (RemitoCompra)remito;
             textBox4.Text =   RemitoX.Receptor = xUsuario.Nombre;
             textBox3.Text = RemitoX.FechaEmision = DateTime.Now.Date.ToShortDateString();
             LoadCombox();
         }
+        public void FinCarga()
+        {
+            if (button5.Visible == true)
+            {
 
+                Form k = this;
+                k.Close();
+            }
+
+        }
+
+        public void LoadRemitoX()
+        {
+            textBox3.Text = RemitoX.FechaEmision;
+            textBox4.Text = RemitoX.Emisor;
+            comboBox3.Text = RemitoX.Receptor;
+            comboBox3.Enabled = false;
+            button4.Visible = false;
+            button5.Visible = true;
+            RemitoX.MostrarDataGrid(ref dataGridView1);
+            label1.Text = "Total: $" + RemitoX.TotalCosto();
+
+        }
         // cargar base de  datos en los comboBoxs
         public void LoadCombox() {
 
@@ -113,6 +135,7 @@ namespace E_Shop
         // iniciar nuevo remito
 
         public void NuevoRemito() {
+            RemitoX.Codigo = "";
             RemitoX.ListaProdutos.Clear();
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $0000";

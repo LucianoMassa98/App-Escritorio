@@ -37,12 +37,12 @@ namespace E_Shop
         //guardar pago
         private void button3_Click(object sender, EventArgs e)
         {
-            try { 
-            if (((double.Parse(textBox9.Text)*-1) > double.Parse(textBox1.Text))
-                || (-1*(double.Parse(textBox9.Text)) == double.Parse(textBox1.Text)))
-            {
-
-                RemitoX.Pagos[0].Importe = double.Parse(textBox1.Text);
+            try {
+                double imp = double.Parse(textBox1.Text);
+                if (imp>0)
+                 {
+              
+                RemitoX.Pagos[0].Importe = imp;
 
                 if (RemitoPagoProveedor.Crear(RemitoX))
                 {
@@ -53,11 +53,11 @@ namespace E_Shop
                     new Alert("No se pudo 'crear' nuevo pago").Show();
 
                 }
-            }
-            else
-            {
-                new Alert("el importe a pagar debe ser menor o igual \n al saldo del proveedor").Show();
-            }
+                }
+                else
+                {
+                    new Alert("El importe debe ser mayor a cero").Show();
+                }
             }
             catch (Exception) { new Alert("Hay Campos Vacios").Show(); }
         }

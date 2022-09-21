@@ -24,7 +24,13 @@ namespace E_Shop
         public double Haber { get { return haber; }set { haber = value; } }
         public double Saldo() { return debe - haber; }
 
+        public string tipo() {
 
+            string[] dat = codigo.Split('.');
+            if (dat.Length>0) { return dat[0]; }
+            return "";            
+        
+        }
         public void SumarImporte(double valor) { this.importe += valor; }
         public void RestarImporte(double valor) { this.importe -= valor; }
 
@@ -108,6 +114,7 @@ namespace E_Shop
                 newPago.Codigo = dat[0];
                 string[] cod2 = dat[0].Split('.');
                 if ((cod.Length < cod2.Length) ||(cod.Length == cod2.Length)) {
+
                     int j = 0;
                     while ((j<cod.Length)&&(cod[j]==cod2[j])) { j++; }
                     if (j == cod.Length) {
@@ -117,7 +124,6 @@ namespace E_Shop
                         ListaDePagos.Add(newPago);
 
                     } 
-                
                 }
            
             }
@@ -188,11 +194,20 @@ namespace E_Shop
             List<Pago> x = Pago.Buscar();
             for (int i = 0; i < x.Count(); i++)
             {
-                y.Rows.Add(
-                    x[i].Codigo,
-                    x[i].Nombre,
-                    x[i].Importe
-                    );
+                if (x[i].Codigo=="1.1.6.1") {
+                    y.Rows.Add(
+                            x[i].Codigo,
+                            x[i].Nombre,
+                             Producto.SumaCostos(Producto.Buscar())
+                            );
+                } else {
+                    y.Rows.Add(
+                        x[i].Codigo,
+                        x[i].Nombre,
+                        x[i].Importe
+                        );
+                }
+                
             }
 
         }
@@ -218,7 +233,17 @@ namespace E_Shop
             }
 
         }
+        static public void CargarComboBox2(ref ComboBox y, string codigo)
+        {
 
+          
+            List<Pago> x = Pago.Buscar(codigo);
+            for (int i = 0; i < x.Count(); i++)
+            {
+                y.Items.Add(x[i].Nombre);
+            }
+
+        }
         static public void RestarCuenta(List<Pago> x) {
 
             List<Pago> y = Pago.Buscar();
@@ -252,6 +277,40 @@ namespace E_Shop
 
 
             }
+            Pago.Guardar(y);
+
+
+
+        }
+        static public void RestarCuenta(Pago x)
+        {
+
+            List<Pago> y = Pago.Buscar();
+
+          
+                int ind = Pago.BuscarIndexPorCodigo(x.Codigo, y);
+                if (ind < y.Count())
+                {
+                    y[ind].Importe -= x.Importe;
+                }
+
+
+            Pago.Guardar(y);
+
+
+
+        }
+        static public void SumarCuenta(Pago x)
+        {
+
+            List<Pago> y = Pago.Buscar();
+
+            
+                int ind = Pago.BuscarIndexPorCodigo(x.Codigo, y);
+                if (ind < y.Count())
+                {
+                    y[ind].Importe += x.Importe;
+                }
             Pago.Guardar(y);
 
 
@@ -324,10 +383,36 @@ namespace E_Shop
             double sum = 0;
             foreach(Pago p in x)
             {
-                sum += p.Importe;
+
+                if (p.Codigo!="1.1.6.1") {
+                    sum += p.Importe;
+                }
+                else
+                {
+                    sum += Producto.SumaCostos(Producto.Buscar());
+                }
+                
             }
         return sum;
         }
+        static public void recap(double pn, string cod,bool sum)
+        {
+            List<Pago> lista =  Pago.Buscar("5");
+            for (int i =0; i<lista.Count();i++) {
+                if (lista[i].Codigo!=cod) {
+                    if (sum) {
+                        lista[i].Importe = pn;
+                        Pago.SumarCuenta(lista[i]);
+                    }
+                    else
+                    {
+                        lista[i].Importe = pn;
+                        Pago.RestarCuenta(lista[i]);
+                    }
+                }
+            }
+        }
+    
     }
 
 }

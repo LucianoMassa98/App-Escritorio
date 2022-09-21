@@ -184,6 +184,25 @@ namespace E_Shop
 
         }
 
+        static public string ultimaSaldo(Cliente x) {
+
+            List<RemitoVenta> lista = RemitoVenta.BuscarPorCliente(x);
+
+            string l = "";
+            for (int i= lista.Count() - 1; i>=0;i--) {
+
+                for (int j = 0; j<lista[i].Pagos.Count();j++) {
+
+                    if ((lista[i].Pagos[j].Codigo == "1.1.3") || (lista[i].Pagos[j].Codigo == "1.1.4")) {
+
+                        l = lista[i].Pagos[j].Codigo + "|" + lista[i].Pagos[j].Importe;
+                        return l;
+                    }
+                }
+            }
+
+            return l;
+        }
         static public void CargarComboBox(ref ComboBox y, ref ComboBox z)
         {
 

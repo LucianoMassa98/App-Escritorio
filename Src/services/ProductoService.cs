@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 
 namespace E_Shop
@@ -235,6 +236,9 @@ namespace E_Shop
                     x[i].Precio2,
                     x[i].Precio3
                     );
+                if (x[i].Cantidad<=x[i].CantidadEstandar) {
+                    y.Rows[i].DefaultCellStyle.BackColor = Color.Turquoise;
+                }
             }
 
         }

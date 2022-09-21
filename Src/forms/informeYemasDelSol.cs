@@ -22,6 +22,7 @@ namespace E_Shop
         List<RemitoCompra> lcompras;
         List<RemitoProduccion> lproducciones;
         List<RemitoRegistradora> lregistradoras;
+        List<RemitoGasto> lgastos;
         public informeYemasDelSol()
         {
             InitializeComponent();
@@ -204,7 +205,12 @@ namespace E_Shop
                            }
                        }
                    }
-                   ticket.TextoIzquierda("");
+
+
+              
+
+
+                ticket.TextoIzquierda("");
                    ticket.TextoIzquierda("");
                    ticket.TextoIzquierda("");
                    ticket.TextoIzquierda("");
@@ -236,17 +242,29 @@ namespace E_Shop
 
 
            
-            for (int i = 0; i < dataGridView4.RowCount; i++)
+            for (int i = 0; i < dataGridView3.RowCount; i++)
             {
-                doc.Add(new Phrase(dataGridView4.Rows[i].Cells[0].Value.ToString()+": "+
-                    dataGridView4.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                doc.Add(new Phrase(dataGridView3.Rows[i].Cells[0].Value.ToString()+": "+
+                    dataGridView3.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                doc.Add(Chunk.NEWLINE);
             }
-            PdfPTable tableVentas = new PdfPTable(3);
+            doc.Add(new Phrase("Detalle Ganancia",StandarFont));
+            doc.Add(Chunk.NEWLINE);
+            for (int i =0; i<dataGridView5.RowCount; i++) {
+                doc.Add(new Phrase(dataGridView5.Rows[i].Cells[0].Value.ToString() + ": " +
+                       dataGridView5.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                doc.Add(Chunk.NEWLINE);
+            }
+            PdfPTable tableVentas = new PdfPTable(4);
             tableVentas.WidthPercentage = 80;
 
             PdfPCell art = new PdfPCell(new Phrase("Articulo", StandarFont));
             art.BorderWidth = 0;
             art.BorderWidthBottom = 0.75f;
+
+            PdfPCell bulto = new PdfPCell(new Phrase("Bulto", StandarFont));
+            bulto.BorderWidth = 0;
+            bulto.BorderWidthBottom = 0.75f;
 
             PdfPCell cnt = new PdfPCell(new Phrase("Cantidad", StandarFont));
             cnt.BorderWidth = 0;
@@ -257,19 +275,24 @@ namespace E_Shop
             imp.BorderWidthBottom = 0.75f;
 
             tableVentas.AddCell(art);
+            tableVentas.AddCell(bulto);
             tableVentas.AddCell(cnt);
             tableVentas.AddCell(imp);
 
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-
-                art = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                art = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[0].Value.ToString(), StandarFont));
                 art.BorderWidth = 0;
+
+                bulto = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[2].Value.ToString(), StandarFont));
+                bulto.BorderWidth = 0;
+
                 cnt = new PdfPCell(new Phrase(dataGridView1.Rows[i].Cells[3].Value.ToString(), StandarFont));
                 cnt.BorderWidth = 0;
                 imp = new PdfPCell(new Phrase("$" + dataGridView1.Rows[i].Cells[4].Value.ToString(), StandarFont));
                 imp.BorderWidth = 0;
                 tableVentas.AddCell(art);
+                tableVentas.AddCell(bulto);
                 tableVentas.AddCell(cnt);
                 tableVentas.AddCell(imp);
 
@@ -282,18 +305,22 @@ namespace E_Shop
 
             doc.Add(new Paragraph("COMPRAS"));
 
-            for (int i = 0; i < dataGridView3.RowCount; i++)
+            for (int i = 0; i < dataGridView4.RowCount; i++)
             {
-                doc.Add(new Phrase(dataGridView3.Rows[i].Cells[0].Value.ToString() + ": " +
-                    dataGridView3.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                doc.Add(new Phrase(dataGridView4.Rows[i].Cells[0].Value.ToString() + ": " +
+                    dataGridView4.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                doc.Add(Chunk.NEWLINE);
             }
 
-            PdfPTable tableCompras= new PdfPTable(3);
+            PdfPTable tableCompras= new PdfPTable(4);
             tableCompras.WidthPercentage = 80;
 
             PdfPCell articulo = new PdfPCell(new Phrase("Articulo", StandarFont));
             articulo.BorderWidth = 0;
             articulo.BorderWidthBottom = 0.75f;
+            PdfPCell bulto = new PdfPCell(new Phrase("Bulto", StandarFont));
+            bulto.BorderWidth = 0;
+            bulto.BorderWidthBottom = 0.75f;
 
             PdfPCell cantidad = new PdfPCell(new Phrase("Cantidad", StandarFont));
             cantidad.BorderWidth = 0;
@@ -302,8 +329,8 @@ namespace E_Shop
             PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
             importe.BorderWidth = 0;
             importe.BorderWidthBottom = 0.75f;
-
             tableCompras.AddCell(articulo);
+            tableCompras.AddCell(bulto);
             tableCompras.AddCell(cantidad);
             tableCompras.AddCell(importe);
 
@@ -312,13 +339,18 @@ namespace E_Shop
             for (int i = 0; i < dataGridView2.RowCount; i++)
             {
 
-                articulo = new PdfPCell(new Phrase(dataGridView2.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                articulo = new PdfPCell(new Phrase(dataGridView2.Rows[i].Cells[0].Value.ToString(), StandarFont));
                 articulo.BorderWidth = 0;
+                bulto = new PdfPCell(new Phrase(dataGridView2.Rows[i].Cells[2].Value.ToString(), StandarFont));
+                bulto.BorderWidth = 0;
                 cantidad = new PdfPCell(new Phrase(dataGridView2.Rows[i].Cells[3].Value.ToString(), StandarFont));
                 cantidad.BorderWidth = 0;
                 importe = new PdfPCell(new Phrase("$" + dataGridView2.Rows[i].Cells[4].Value.ToString(), StandarFont));
                 importe.BorderWidth = 0;
+
+
                 tableCompras.AddCell(articulo);
+                tableCompras.AddCell(bulto);
                 tableCompras.AddCell(cantidad);
                 tableCompras.AddCell(importe);
 
@@ -419,9 +451,12 @@ namespace E_Shop
 
             doc.Add(new Paragraph("INFORME PAGOS"));
 
-            PdfPTable tableProveedor = new PdfPTable(3);
+            PdfPTable tableProveedor = new PdfPTable(4);
             tableProveedor.WidthPercentage = 70;
 
+            PdfPCell encargado = new PdfPCell(new Phrase("Encargado", StandarFont));
+            encargado.BorderWidth = 0;
+            encargado.BorderWidthBottom = 0.75f;
             PdfPCell proveedor = new PdfPCell(new Phrase("Proveedor", StandarFont));
             proveedor.BorderWidth = 0;
             proveedor.BorderWidthBottom = 0.75f;
@@ -432,7 +467,7 @@ namespace E_Shop
             PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
             importe.BorderWidth = 0;
             importe.BorderWidthBottom = 0.75f;
-
+            tableProveedor.AddCell(encargado);
             tableProveedor.AddCell(proveedor);
             tableProveedor.AddCell(medio);
             tableProveedor.AddCell(importe);
@@ -440,15 +475,16 @@ namespace E_Shop
             for (int i = 0; i < lpagos.Count(); i++)
             {
 
-                
-                    proveedor = new PdfPCell(new Phrase(lpagos[i].Emisor, StandarFont));
+                encargado = new PdfPCell(new Phrase(lpagos[i].Emisor, StandarFont));
+                encargado.BorderWidth = 0;
+                proveedor = new PdfPCell(new Phrase(lpagos[i].Receptor, StandarFont));
                     proveedor.BorderWidth = 0;
                     medio = new PdfPCell(new Phrase(lpagos[i].Pagos[0].Nombre, StandarFont));
                     medio.BorderWidth = 0;
                 importe = new PdfPCell(new Phrase("$" + lpagos[i].Pagos[0].Importe, StandarFont));
                     importe.BorderWidth = 0;
-
-                    tableProveedor.AddCell(proveedor);
+                tableProveedor.AddCell(encargado);
+                tableProveedor.AddCell(proveedor);
                 tableProveedor.AddCell(medio);
                 tableProveedor.AddCell(importe);
                 
@@ -467,8 +503,13 @@ namespace E_Shop
 
             doc.Add(new Paragraph("INFORME COBROS"));
 
-            PdfPTable tableCliente= new PdfPTable(3);
+            PdfPTable tableCliente= new PdfPTable(4);
             tableCliente.WidthPercentage = 70;
+
+
+            PdfPCell emisor = new PdfPCell(new Phrase("Encargado", StandarFont));
+            emisor.BorderWidth = 0;
+            emisor.BorderWidthBottom = 0.75f;
 
             PdfPCell cliente = new PdfPCell(new Phrase("Cliente", StandarFont));
             cliente.BorderWidth = 0;
@@ -481,26 +522,87 @@ namespace E_Shop
             importe.BorderWidth = 0;
             importe.BorderWidthBottom = 0.75f;
 
+
+            tableCliente.AddCell(emisor);
             tableCliente.AddCell(cliente);
             tableCliente.AddCell(medio);
             tableCliente.AddCell(importe);
 
             for (int i = 0; i < lcobros.Count(); i++)
             {
+                 emisor = new PdfPCell(new Phrase(lcobros[i].Emisor, StandarFont));
+                emisor.BorderWidth = 0;
 
-                
-                    cliente = new PdfPCell(new Phrase(lcobros[i].Emisor, StandarFont));
+                cliente = new PdfPCell(new Phrase(lcobros[i].Receptor, StandarFont));
                     cliente.BorderWidth = 0;
                 medio = new PdfPCell(new Phrase(lcobros[i].Pagos[0].Nombre, StandarFont));
                 medio.BorderWidth = 0;
 
                 importe = new PdfPCell(new Phrase("$" + lcobros[i].Pagos[0].Importe, StandarFont));
                     importe.BorderWidth = 0;
-
-                    tableCliente.AddCell(cliente);
+                tableCliente.AddCell(emisor);
+                tableCliente.AddCell(cliente);
                 tableCliente.AddCell(medio);
                 tableCliente.AddCell(importe);
                 
+
+            }
+
+            doc.Add(tableCliente);
+
+
+        }
+        public void pdfGastos(ref Document doc, iTextSharp.text.Font StandarFont)
+        {
+            lgastos = RemitoGasto.BuscarPorFecha(
+                 dateTimePicker1.Value.Date.ToShortDateString(),
+                dateTimePicker2.Value.Date.ToShortDateString());
+
+            doc.Add(new Paragraph("INFORME GASTOS"));
+
+            PdfPTable tableCliente = new PdfPTable(4);
+            tableCliente.WidthPercentage = 70;
+
+            PdfPCell encargado = new PdfPCell(new Phrase("Encargado", StandarFont));
+            encargado.BorderWidth = 0;
+            encargado.BorderWidthBottom = 0.75f;
+            PdfPCell fuente = new PdfPCell(new Phrase("Fuente", StandarFont));
+            fuente.BorderWidth = 0;
+            fuente.BorderWidthBottom = 0.75f;
+            PdfPCell razon = new PdfPCell(new Phrase("Razon", StandarFont));
+            razon.BorderWidth = 0;
+            razon.BorderWidthBottom = 0.75f;
+
+            PdfPCell importe = new PdfPCell(new Phrase("importe", StandarFont));
+            importe.BorderWidth = 0;
+            importe.BorderWidthBottom = 0.75f;
+            tableCliente.AddCell(encargado);
+            tableCliente.AddCell(fuente);
+            tableCliente.AddCell(razon);
+            tableCliente.AddCell(importe);
+
+            for (int i = 0; i < lgastos.Count(); i++)
+            {
+
+
+                encargado = new PdfPCell(new Phrase(Usuario.BuscarPorCodigo(lgastos[i].Emisor).Nombre, StandarFont));
+                encargado.BorderWidth = 0;
+                
+                fuente = new PdfPCell(new Phrase(lgastos[i].Fuente.Nombre, StandarFont));
+                fuente.BorderWidth = 0;
+
+                razon = new PdfPCell(new Phrase(lgastos[i].Razon.Nombre, StandarFont));
+                razon.BorderWidth = 0;
+
+                importe = new PdfPCell(new Phrase("$" + lgastos[i].Fuente.Importe, StandarFont));
+                importe.BorderWidth = 0;
+
+                tableCliente.AddCell(encargado);
+                tableCliente.AddCell(fuente);
+                tableCliente.AddCell(razon);
+                tableCliente.AddCell(importe);
+
+
 
             }
 
@@ -547,6 +649,8 @@ namespace E_Shop
             pdfProveedores(ref doc, StandarFont);
             doc.Add(Chunk.NEWLINE);
             pdfPagos(ref doc, StandarFont);
+            doc.Add(Chunk.NEWLINE);
+            pdfGastos(ref doc, StandarFont);
             doc.Close();
             pw.Close();
 

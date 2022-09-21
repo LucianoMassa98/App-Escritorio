@@ -56,3 +56,7 @@ C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosCliente.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ProductosProveedor.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionaPago.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarCobro.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ConvertidorBD.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarGatos.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.Capitales.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.modCapital.resources

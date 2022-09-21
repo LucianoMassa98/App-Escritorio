@@ -12,14 +12,42 @@ namespace E_Shop
 {
     public partial class ListaCompras : Form
     {
+        Usuario User;
         List<RemitoCompra> RemitosX;
         int indice;
-        public ListaCompras()
+        public ListaCompras(object user)
         {
             InitializeComponent();
+            User = (Usuario)user;
             RemitosX = new List<RemitoCompra>();
             indice = 0;
             LoadComboBox();
+        }
+        public void BorraRemito()
+        {
+            if (RemitosX.Count() > 0)
+            {
+                if (RemitoCompra.Borrar(RemitosX[indice].Codigo))
+                {
+                    MessageBox.Show(
+                        "Remito Borrado",
+                        "Exito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                        );
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "No se pudo realizar la operación",
+                        "Falló",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                        );
+                }
+                this.Close();
+
+            }
         }
         public void LoadComboBox()
         {
@@ -47,6 +75,7 @@ namespace E_Shop
                 }
                 else { dataGridView1.Rows.Add("No Hay Productos"); }
                 dateTimePicker1.Enabled = false;
+                comboBox3.Enabled = false;
             }
         }
         // siguiente compra
@@ -81,7 +110,12 @@ namespace E_Shop
                 textBox2.Text = (indice+1).ToString();
                 textBox10.Text = RemitosX[indice].Codigo;
                 textBox5.Text = RemitosX[indice].Emisor;
-                textBox6.Text = RemitosX[indice].Pagos[0].Nombre;
+                listBox1.Items.Clear();
+                foreach (Pago p in RemitosX[indice].Pagos) {
+                    listBox1.Items.Add(p.Nombre);
+                    listBox1.Items.Add(p.Importe);
+                    listBox1.Items.Add("--------");
+                }
                 textBox7.Text = RemitosX[indice].TotalCosto().ToString();
             }
 
@@ -91,6 +125,48 @@ namespace E_Shop
         private void ListaCompras_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+        // click borrar
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            BorraRemito();
+        }
+        // imprimir remito
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+                RemitosX[indice].Imprimir();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+                CrearPdf n = new CrearPdf();
+                //n.GenerarPdfRemitoVenta(RemitosX[indice]);
+
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+
+                Form k = this;
+                CargarRemitoCompra y = new CargarRemitoCompra(User, ref k, RemitosX[indice]);
+                y.Show();
+                y.LoadRemitoX();
+                k.Visible = false;
+
+            }
         }
     }
 }

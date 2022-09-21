@@ -51,6 +51,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.PdfImprimir = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +62,9 @@
             this.Imprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Imprimir.Location = new System.Drawing.Point(273, 143);
             this.Imprimir.Name = "Imprimir";
-            this.Imprimir.Size = new System.Drawing.Size(92, 24);
+            this.Imprimir.Size = new System.Drawing.Size(76, 24);
             this.Imprimir.TabIndex = 183;
-            this.Imprimir.Text = "Imprimir";
+            this.Imprimir.Text = "Ticket";
             this.Imprimir.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -183,7 +184,7 @@
             this.comboBox4.Location = new System.Drawing.Point(35, 246);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(227, 40);
-            this.comboBox4.TabIndex = 173;
+            this.comboBox4.TabIndex = 0;
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // dataGridView1
@@ -298,11 +299,23 @@
             this.label9.TabIndex = 79;
             this.label9.Text = "Seleccionar Cobros";
             // 
+            // PdfImprimir
+            // 
+            this.PdfImprimir.AutoSize = true;
+            this.PdfImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PdfImprimir.Location = new System.Drawing.Point(273, 164);
+            this.PdfImprimir.Name = "PdfImprimir";
+            this.PdfImprimir.Size = new System.Drawing.Size(55, 24);
+            this.PdfImprimir.TabIndex = 184;
+            this.PdfImprimir.Text = "Pdf";
+            this.PdfImprimir.UseVisualStyleBackColor = true;
+            // 
             // seleccionarCobro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 524);
+            this.Controls.Add(this.PdfImprimir);
             this.Controls.Add(this.Imprimir);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox PdfImprimir;
     }
 }

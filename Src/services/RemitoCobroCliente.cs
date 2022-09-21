@@ -95,7 +95,7 @@ namespace E_Shop
             catch (Exception) { }
 
         }
-        static public bool Crear(RemitoCobroCliente x)
+        static public bool Crear(RemitoCobroCliente x,string codPago)
         {
 
             if (RemitoCobroClienteValidador.CrearRemitoCobroCliente(ref x))
@@ -108,9 +108,10 @@ namespace E_Shop
                     //RestarSaldoCliente
                     Cliente.RestarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo,x.Pagos[0].Importe);
 
+                    Cliente c = new Cliente();
                     //RestarSaldoaCreditoxVenta
                     Pago newP = new Pago();
-                    newP.Codigo = "1.1.3";
+                    newP.Codigo = codPago;
                     newP.Importe = x.Pagos[0].Importe;
                      List<Pago> xy = new List<Pago>();
                     xy.Add(newP);

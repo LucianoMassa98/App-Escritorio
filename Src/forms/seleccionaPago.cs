@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace E_Shop
 {
@@ -149,10 +150,22 @@ namespace E_Shop
                     {
                         RemitoX.Imprimir();
                     }
+                    if (pdfImprirmir.Checked==true) {
+
+                        Form este = this;
+                        este.Enabled = false;
+                        CrearPdf n = new CrearPdf();
+                        n.GenerarPdfRemitoCompra(RemitoX);
+                        Process abrirpdf = new Process();
+                        string file = new Direcciones().ArchivoPdf + RemitoX.Emisor + ".pdf";
+                        abrirpdf.StartInfo.FileName = file;
+                        abrirpdf.Start();
+                    }
                 }
                 catch (Exception) { }
                 anterior.Enabled = true;
                 anterior.NuevoRemito();
+                anterior.FinCarga();
                 Form k = this;
                 k.Close();  
             }

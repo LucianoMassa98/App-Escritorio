@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BarcodeStandard, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -63,6 +66,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -86,6 +91,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServiceReferenceWSAA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +110,12 @@
     <Compile Include="Src\forms\Alert.Designer.cs">
       <DependentUpon>Alert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\Capitales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\Capitales.Designer.cs">
+      <DependentUpon>Capitales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\CargarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +127,12 @@
     </Compile>
     <Compile Include="Src\forms\CargarDescuento.Designer.cs">
       <DependentUpon>CargarDescuento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\CargarGatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\CargarGatos.Designer.cs">
+      <DependentUpon>CargarGatos.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\forms\CargarPago.cs">
       <SubType>Form</SubType>
@@ -166,6 +188,12 @@
     <Compile Include="Src\forms\CobroCliente.Designer.cs">
       <DependentUpon>CobroCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\ConvertidorBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ConvertidorBD.Designer.cs">
+      <DependentUpon>ConvertidorBD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\ImpirmirCodigoBarra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +229,12 @@
     </Compile>
     <Compile Include="Src\forms\ListaVentas.Designer.cs">
       <DependentUpon>ListaVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\modCapital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\modCapital.Designer.cs">
+      <DependentUpon>modCapital.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\forms\PagoProveedor.cs">
       <SubType>Form</SubType>
@@ -245,6 +279,7 @@
     <Compile Include="Src\modules\CrearTicket.cs" />
     <Compile Include="Src\modules\CrearCodBarra.cs" />
     <Compile Include="Src\Router.cs" />
+    <Compile Include="Src\services\AfipServices.cs" />
     <Compile Include="Src\services\ProductoProveedorService.cs" />
     <Compile Include="Src\services\ProductoClienteService.cs" />
     <Compile Include="Src\services\ClienteService.cs" />
@@ -253,6 +288,7 @@
     <Compile Include="Src\services\PagoService.cs" />
     <Compile Include="Src\services\ProductoService.cs" />
     <Compile Include="Src\services\ProveedorService.cs" />
+    <Compile Include="Src\services\RemitoGasto.cs" />
     <Compile Include="Src\services\RemitoCobroCliente.cs" />
     <Compile Include="Src\services\RemitoCompraService.cs" />
     <Compile Include="Src\services\RemitoPagoProveedor.cs" />
@@ -265,6 +301,7 @@
     <Compile Include="Src\validators\PagoValidator.cs" />
     <Compile Include="Src\validators\ProductoValidador.cs" />
     <Compile Include="Src\validators\ProveedorValidator.cs" />
+    <Compile Include="Src\validators\RemitoGastoValidador.cs" />
     <Compile Include="Src\validators\RemitoCobroClienteValidador.cs" />
     <Compile Include="Src\validators\RemitoCompraValidador.cs" />
     <Compile Include="Src\validators\RemitoPagoProveedorValidador.cs" />
@@ -283,15 +320,22 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Src\forms\Alert.resx">
       <DependentUpon>Alert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\Capitales.resx">
+      <DependentUpon>Capitales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarCliente.resx">
       <DependentUpon>CargarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarDescuento.resx">
       <DependentUpon>CargarDescuento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\CargarGatos.resx">
+      <DependentUpon>CargarGatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarPago.resx">
       <DependentUpon>CargarPago.cs</DependentUpon>
@@ -320,6 +364,9 @@
     <EmbeddedResource Include="Src\forms\CobroCliente.resx">
       <DependentUpon>CobroCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ConvertidorBD.resx">
+      <DependentUpon>ConvertidorBD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ImpirmirCodigoBarra.resx">
       <DependentUpon>ImpirmirCodigoBarra.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ListaVentas.resx">
       <DependentUpon>ListaVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\modCapital.resx">
+      <DependentUpon>modCapital.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\PagoProveedor.resx">
       <DependentUpon>PagoProveedor.cs</DependentUpon>
@@ -353,6 +403,10 @@
     <EmbeddedResource Include="Src\forms\Yemas del Sol\IndexYMS.resx">
       <DependentUpon>IndexYMS.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Connected Services\ServiceReferenceWSAA\E_Shop.ServiceReferenceWSAA.loginCmsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReferenceWSAA\LoginCms.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -366,6 +420,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReferenceWSAA\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceWSAA\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceWSAA\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReferenceWSAA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
