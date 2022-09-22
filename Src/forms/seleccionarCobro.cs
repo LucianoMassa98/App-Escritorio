@@ -179,7 +179,7 @@ namespace E_Shop
                         abrirpdf.Start();
                     }
                 }
-                catch (Exception) { }
+                catch (Exception err) { MessageBox.Show(err.Message); }
                 anterior.Enabled = true;
                 anterior.NuevoRemito();
                 anterior.FinCarga();

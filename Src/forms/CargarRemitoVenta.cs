@@ -100,18 +100,21 @@ namespace E_Shop
         }
        
         // iniciar nuevo remito
-        public void NuevoRemito()
-        {
-            RemitoX.Codigo = "";
-            RemitoX.ListaProdutos.Clear();
-            comboBox3.Enabled = true;
-            RemitoX.MostrarDataGrid(ref dataGridView1);
-            label1.Text = "Total: $0000";
-            checkBox1.Checked = false;
-            comboBox3.Text=
-            comboBox4.Text =
-            textBox2.Text = "";
-            comboBox3.Focus();
+        public void NuevoRemito(){      
+            try
+            {
+               // MessageBox.Show("aqui");
+                RemitoX.Codigo = "";
+                RemitoX.ListaProdutos.Clear();
+                comboBox3.Enabled = true;
+                RemitoX.MostrarDataGrid(ref dataGridView1);
+                label1.Text = "Total: $0000";
+                checkBox1.Checked = false;
+                comboBox3.Text =
+                comboBox4.Text =
+                textBox2.Text = "";
+                comboBox3.Focus();
+            } catch (Exception err) { MessageBox.Show(err.Message); }
             
         }
 
