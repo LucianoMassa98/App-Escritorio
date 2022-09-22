@@ -32,7 +32,7 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
-            comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
+           // comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()
