@@ -19,7 +19,7 @@ namespace E_Shop
             Capitales k = this;
             double sumActivo = Pago.SumarImportes(cuentaActivos);
             double sumPasivo = Pago.SumarImportes(cuentaPasivos);
-            double pn = sumActivo - sumPasivo;
+            double pn = sumActivo + sumPasivo;
             new modCapital(ref k, pn).Show();
         }
 
@@ -38,7 +38,7 @@ namespace E_Shop
             double sumPasivo = Pago.SumarImportes(cuentaPasivos);
 
 
-            label1.Text = "Patrimonio Neto: $" + (sumActivo - sumPasivo);
+            label1.Text = "Patrimonio Neto: $" + (sumActivo + sumPasivo);
             label2.Text = "Activos: $" + sumActivo;
             label3.Text = "Pasivos: $" + sumPasivo;
 
