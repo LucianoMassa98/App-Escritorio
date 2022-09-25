@@ -187,16 +187,16 @@ namespace E_Shop
         static public string ultimaSaldo(Cliente x) {
 
             List<RemitoVenta> lista = RemitoVenta.BuscarPorCliente(x);
-
+            double pagado=0;
             string l = "";
             for (int i= lista.Count() - 1; i>=0;i--) {
 
                 for (int j = 0; j<lista[i].Pagos.Count();j++) {
 
-                    if ((lista[i].Pagos[j].Codigo == "1.1.3") || (lista[i].Pagos[j].Codigo == "1.1.4")) {
+                    if ((lista[i].Pagos[j].Codigo == "1.1.3") &&(pagado<=x.Saldo)) {
 
-                        l = lista[i].Pagos[j].Codigo + "|" + lista[i].Pagos[j].Importe;
-                        return l;
+                        l += lista[i].Codigo+" - ";
+                        pagado+=lista[i].Pagos[j].Importe;
                     }
                 }
             }

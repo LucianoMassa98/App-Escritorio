@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace E_Shop
@@ -39,26 +33,43 @@ namespace E_Shop
         //guardar cobro
         private void button3_Click(object sender, EventArgs e)
         {
-            if ((double.Parse(textBox9.Text) > double.Parse(textBox1.Text))
-                || (double.Parse(textBox9.Text) == double.Parse(textBox1.Text)))
-            {
+            double saldo = 0; double importe=0;
+            bool band = true;
+            try {
+                saldo = double.Parse(textBox9.Text);
+                importe = double.Parse(textBox1.Text);
+
+            } catch (Exception ) { band = false; }
 
 
-               
-                RemitoX.Pagos[0].Importe = double.Parse(textBox1.Text);
-
-                if (RemitoCobroCliente.Crear(RemitoX,"1.1.3"))
+            if (band) {
+                if (saldo >= importe)
                 {
-                    NuevoCobro();
-                }
-                else {
-                    new Alert("No se pudo 'crear' nuevo pago").Show();
+                    if (RemitoX.Pagos.Count>0) {
+                        RemitoX.Pagos[0].Importe = importe;
 
+                        if (RemitoCobroCliente.Crear(RemitoX, "1.1.3"))
+                        {
+                            NuevoCobro();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo 'crear' nuevo pago");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seleccionar medio de cobro");
+
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("El importe debe ser menor o igual al saldo");    
                 }
             }
-            else {
-                new Alert("Importes mal cargados").Show();
-            }
+            else { MessageBox.Show("Los datos ingresados deben ser numéricos"); }
             
         }
         //selecionar cliente por codigo
@@ -67,7 +78,7 @@ namespace E_Shop
             Cliente c = Cliente.BuscarPorCodigo(comboBox1.Text);
            RemitoX.Receptor =  comboBox2.Text = c.Nombre;
             textBox9.Text = c.Saldo.ToString();
-            label5.Text = "Ultimo saldo: " + Cliente.ultimaSaldo(c);
+            label5.Text = "IDs remitos: " + Cliente.ultimaSaldo(c);
             comboBox1.Enabled = comboBox2.Enabled = textBox9.Enabled = false;
             comboBox3.Focus();
 
@@ -104,16 +115,6 @@ namespace E_Shop
         {
             RemitoX.Pagos.Add(Pago.BuscarPorNombre(comboBox3.Text));
             textBox1.Focus();
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)

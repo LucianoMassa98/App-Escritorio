@@ -21,7 +21,7 @@ namespace E_Shop
         {
             InitializeComponent();
             anterior = (CargarRemitoVenta)y;
-            anterior.Enabled = false;
+            anterior.Visible = false;
             RemitoX = (RemitoVenta)x;
             listaCobros = new List<Pago>();
             LoadComboBox();
@@ -137,9 +137,7 @@ namespace E_Shop
 
         private void button4_Click(object sender, EventArgs e)
         {
-            anterior.Enabled = true;
-            Form k = this;
-            k.Close();
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -180,8 +178,8 @@ namespace E_Shop
                     }
                 }
                 catch (Exception err) { MessageBox.Show(err.Message); }
-                anterior.Enabled = true;
-                anterior.NuevoRemito();
+                anterior.Visible = true;
+                anterior.nuevoRemito();
                 anterior.FinCarga();
                 
                 Form k = this;
@@ -191,6 +189,13 @@ namespace E_Shop
             {
                 MessageBox.Show("No se puedo generar Remito");
             }
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            anterior.Visible = true;
+            Form k = this;
+            k.Close();
         }
     }
 }

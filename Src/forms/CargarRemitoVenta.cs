@@ -100,10 +100,8 @@ namespace E_Shop
         }
        
         // iniciar nuevo remito
-        public void NuevoRemito(){      
-            try
-            {
-               // MessageBox.Show("aqui");
+        public void nuevoRemito(){      
+            try {
                 RemitoX.Codigo = "";
                 RemitoX.ListaProdutos.Clear();
                 comboBox3.Enabled = true;
@@ -114,7 +112,7 @@ namespace E_Shop
                 comboBox4.Text =
                 textBox2.Text = "";
                 comboBox3.Focus();
-            } catch (Exception err) { MessageBox.Show(err.Message); }
+            }catch (Exception err) { MessageBox.Show(err.Message); }
             
         }
 
@@ -138,7 +136,7 @@ namespace E_Shop
                    // RemitoX.Imprimir();
                 }
                 catch (Exception) { new Alert("Error al imprimir ticket!!").Show(); }
-                NuevoRemito();
+                nuevoRemito();
 
             }
             else { new Alert("Error, no se pudo guardar tu venta!!").Show(); }
@@ -150,6 +148,7 @@ namespace E_Shop
         {
             RemitoX.Receptor = comboBox3.Text;
             comboBox3.Enabled = false;
+            comboBox4.Enabled = true;
             comboBox4.Focus();
         }
         // crear remito
@@ -162,8 +161,9 @@ namespace E_Shop
         //eliminar remito
         private void button4_Click(object sender, EventArgs e)
         {
-            NuevoRemito();
+            nuevoRemito();
             comboBox3.Enabled = true;
+            comboBox4.Enabled = false;
         }
         private void CargarRemitoVenta_Load(object sender, EventArgs e)
         {

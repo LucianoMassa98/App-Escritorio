@@ -20,7 +20,7 @@ namespace E_Shop
         {
             InitializeComponent();
             anterior = (CargarRemitoCompra)y;
-            anterior.Enabled = false;
+            anterior.Visible = false;
             RemitoX = (RemitoCompra)x;
             listaPagos = new List<Pago>();
             LoadComboBox();
@@ -122,7 +122,7 @@ namespace E_Shop
 
         private void button4_Click(object sender, EventArgs e)
         {
-            anterior.Enabled = true;
+            anterior.Visible = true;
             Form k = this;
             k.Close();
         }
@@ -163,7 +163,7 @@ namespace E_Shop
                     }
                 }
                 catch (Exception) { }
-                anterior.Enabled = true;
+                anterior.Visible = true;
                 anterior.NuevoRemito();
                 anterior.FinCarga();
                 Form k = this;

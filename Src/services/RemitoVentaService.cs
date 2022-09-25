@@ -348,9 +348,10 @@ namespace E_Shop
             string l = "";
             string[] dat;
             List<RemitoVenta> ListaDeRemitoVenta  = new List<RemitoVenta>();
-
+            int lErr = 0;
             while ((l = p.ReadLine()) != null)
             {
+                lErr++;
                 dat = l.Split('|');
                 RemitoVenta newRemitoVenta  = new RemitoVenta();
                 newRemitoVenta.Codigo = dat[0];
@@ -361,11 +362,16 @@ namespace E_Shop
                 string[] ListaPagos = dat[3].Split('*');
                 for (int i = 0; i < ListaPagos.Length; i = i + 3)
                 {
-                    Pago n = new Pago();
-                    n.Codigo = ListaPagos[i];
-                    n.Nombre = ListaPagos[i + 1];
-                    n.Importe = double.Parse(ListaPagos[i + 2]);
-                    newRemitoVenta.Pagos.Add(n);
+                    try {
+                        Pago n = new Pago();
+                        n.Codigo = ListaPagos[i];
+                        n.Nombre = ListaPagos[i + 1];
+                        n.Importe = double.Parse(ListaPagos[i + 2]);
+                        newRemitoVenta.Pagos.Add(n);
+                    } catch (Exception) {
+
+                        MessageBox.Show("Error en la linea "+lErr+". Consultar Servicio");
+                    }
                 }
                 // leer lista de productos por cada boleta 
                 string[] ListaProductos = dat[4].Split('*');
