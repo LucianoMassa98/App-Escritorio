@@ -26,6 +26,10 @@ namespace E_Shop
             if (x.ListaProdutos.Count()==0) {
                 MessageBox.Show("Falta Productos");
                 return false; }
+            if (x.TotalCosto() != x.TotalPago()){ 
+                MessageBox.Show("Falta cargar pago");
+                return false;
+            }
             try {
                 List<RemitoCompra> Lista = RemitoCompra.Buscar();
                 x.Codigo = (Lista.Count() + 1).ToString();
@@ -71,6 +75,36 @@ namespace E_Shop
         }
         static public bool ActualizarRemitoCompra(string codigo, RemitoCompra x)
         {
+            if (x.Emisor == "")
+            {
+                MessageBox.Show("Falta Emisor");
+                return false;
+            }
+            if (x.Receptor == "")
+            {
+                MessageBox.Show("Falta Receotir");
+                return false;
+            }
+            if (x.FechaEmision == "")
+            {
+                MessageBox.Show("Falta Fecha Emision");
+                return false;
+            }
+            if (x.Pagos.Count() == 0)
+            {
+                MessageBox.Show("Falta Pagos");
+                return false;
+            }
+            if (x.ListaProdutos.Count() == 0)
+            {
+                MessageBox.Show("Falta Productos");
+                return false;
+            }
+            if (x.TotalCosto() != x.TotalPago())
+            {
+                MessageBox.Show("Falta cargar pago");
+                return false;
+            }
 
             return RemitoCompraValidador.GetRemitoCompra(codigo);
 

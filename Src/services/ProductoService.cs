@@ -32,11 +32,17 @@ namespace E_Shop
         public double ImportePrecio2() { return cantidad * precio2; }
         public double ImportePrecio3() { return cantidad * precio3; }
         public double ImporteCosto() {
-            if ((this.costo ==0)|| (this.costo == null)) {
+           
+            return cantidad * costo; }
+        public double ImporteCosto2()
+        {
+            if ((this.costo == 0) || (this.costo == null))
+            {
                 this.costo = Producto.BuscarPorCodigo(this.codigo).Costo;
             }
-            
-            return cantidad * costo; }
+
+            return cantidad * costo;
+        }
         public void SumarCantidad(double cnt) { cantidad += cnt; }
         public void SumarBulto(double blt) { this.bulto  += blt; }
         public void SumarPrecio(double precio) { this.precio += precio; }
@@ -210,6 +216,16 @@ namespace E_Shop
             for (int i = 0; i < x.Count(); i++) { 
                 sum = sum + x[i].ImporteCosto();
                 
+            }
+            return sum;
+        }
+        static public double SumaCostos2(List<Producto> x)
+        {
+            double sum = 0;
+            for (int i = 0; i < x.Count(); i++)
+            {
+                sum = sum + x[i].ImporteCosto2();
+
             }
             return sum;
         }

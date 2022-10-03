@@ -661,5 +661,10 @@ namespace E_Shop
             n.Start();
             
         }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

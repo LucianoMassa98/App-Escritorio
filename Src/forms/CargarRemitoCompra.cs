@@ -95,10 +95,12 @@ namespace E_Shop
                     p.Bulto = double.Parse(textBox5.Text);
                     p.Cantidad = double.Parse(textBox2.Text);
                     p.Costo = double.Parse(textBox1.Text);
-
+               
                     if (RemitoX.AgregarProducto(p))
                     {
-
+                        foreach(Producto xpr in RemitoX.ListaProdutos) {
+                            MessageBox.Show(xpr.Nombre+" "+xpr.Costo);
+                        }
                         RemitoX.MostrarDataGrid(ref dataGridView1);
                         label1.Text = "Total: $" + RemitoX.TotalCosto();
                         comboBox4.Text = textBox2.Text = textBox1.Text = textBox5.Text="";

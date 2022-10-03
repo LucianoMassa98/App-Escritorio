@@ -26,6 +26,8 @@ namespace E_Shop
             listaCobros = new List<Pago>();
             LoadComboBox();
             LoadLabel();
+            
+
         }
 
         public void LoadComboBox()
@@ -95,7 +97,7 @@ namespace E_Shop
                 {
                     double importe = double.Parse(textBox1.Text);
 
-                    if ((importe + Pago.SumarImportes(listaCobros)) <= RemitoX.TotalVenta())
+                    if (Math.Round(importe + Pago.SumarImportes(listaCobros)) <= Math.Round(RemitoX.TotalVenta()))
                     {
 
                         newpago.Importe = importe;
@@ -134,12 +136,7 @@ namespace E_Shop
             if (e.KeyChar == 13) { button1.Focus(); }
 
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-           
-        }
-
+      
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -155,39 +152,43 @@ namespace E_Shop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RemitoX.Pagos = listaCobros;
-
-
-            if (RemitoVenta.Crear(RemitoX))
+            if (dataGridView1.RowCount>0)
             {
-                try
+                RemitoX.Pagos = listaCobros;
+
+
+                if (RemitoVenta.Crear(RemitoX))
                 {
-                    if (Imprimir.Checked == true)
+                    try
                     {
-                        RemitoX.Imprimir();
+                        if (Imprimir.Checked == true)
+                        {
+                            RemitoX.Imprimir();
+                        }
+                        if (PdfImprimir.Checked == true)
+                        {
+                            Form este = this;
+                            este.Enabled = false;
+                            CrearPdf n = new CrearPdf();
+                            n.GenerarPdfRemitoVenta(RemitoX);
+                            Process abrirpdf = new Process();
+                            string file = new Direcciones().ArchivoPdf + RemitoX.Receptor + ".pdf";
+                            abrirpdf.StartInfo.FileName = file;
+                            abrirpdf.Start();
+                        }
                     }
-                    if (PdfImprimir.Checked==true) {
-                        Form este = this;
-                        este.Enabled = false;
-                        CrearPdf n = new CrearPdf();
-                        n.GenerarPdfRemitoVenta(RemitoX);
-                        Process abrirpdf= new Process();
-                        string file = new Direcciones().ArchivoPdf +RemitoX.Receptor + ".pdf";
-                        abrirpdf.StartInfo.FileName = file;
-                        abrirpdf.Start();
-                    }
+                    catch (Exception err) { MessageBox.Show(err.Message); }
+                    anterior.Visible = true;
+                    anterior.nuevoRemito();
+                    anterior.FinCarga();
+
+                    Form k = this;
+                    k.Close();
                 }
-                catch (Exception err) { MessageBox.Show(err.Message); }
-                anterior.Visible = true;
-                anterior.nuevoRemito();
-                anterior.FinCarga();
-                
-                Form k = this;
-                k.Close();
-            }
-            else
-            {
-                MessageBox.Show("No se puedo generar Remito");
+                else
+                {
+                    MessageBox.Show("No se puedo generar Remito");
+                }
             }
         }
 
@@ -195,7 +196,10 @@ namespace E_Shop
         {
             anterior.Visible = true;
             Form k = this;
+            RemitoX.Pagos.Clear();
+            listaCobros.Clear();
             k.Close();
+            
         }
     }
 }

@@ -87,8 +87,8 @@ namespace E_Shop
             if (newpago!=null) {
                 try {
                     double importe = double.Parse(textBox1.Text);
-
-                    if ((importe + Pago.SumarImportes(listaPagos)) <= RemitoX.TotalCosto()) {
+                    //((importe + Pago.SumarImportes(listaPagos)) <= RemitoX.TotalCosto()) 
+                    if (Math.Round(importe + Pago.SumarImportes(listaPagos)) <= Math.Round(RemitoX.TotalCosto())) {
 
                         newpago.Importe = importe;
                       bool band =  Pago.AgregarPago(ref listaPagos, newpago);
@@ -140,35 +140,42 @@ namespace E_Shop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RemitoX.Pagos = listaPagos;
-
-         
-            if (RemitoCompra.Crear(RemitoX)) { 
-                try
+            if (dataGridView1.RowCount>0) {
+                RemitoX.Pagos = listaPagos;
+                if (RemitoCompra.Crear(RemitoX))
                 {
-                    if (Imprimir.Checked == true)
+                    try
                     {
-                        RemitoX.Imprimir();
-                    }
-                    if (pdfImprirmir.Checked==true) {
+                        if (Imprimir.Checked == true)
+                        {
+                            RemitoX.Imprimir();
+                        }
+                        if (pdfImprirmir.Checked == true)
+                        {
 
-                        Form este = this;
-                        este.Enabled = false;
-                        CrearPdf n = new CrearPdf();
-                        n.GenerarPdfRemitoCompra(RemitoX);
-                        Process abrirpdf = new Process();
-                        string file = new Direcciones().ArchivoPdf + RemitoX.Emisor + ".pdf";
-                        abrirpdf.StartInfo.FileName = file;
-                        abrirpdf.Start();
+                            Form este = this;
+                            este.Enabled = false;
+                            CrearPdf n = new CrearPdf();
+                            n.GenerarPdfRemitoCompra(RemitoX);
+                            Process abrirpdf = new Process();
+                            string file = new Direcciones().ArchivoPdf + RemitoX.Emisor + ".pdf";
+                            abrirpdf.StartInfo.FileName = file;
+                            abrirpdf.Start();
+                        }
                     }
+                    catch (Exception) { }
+                    anterior.Visible = true;
+                    anterior.NuevoRemito();
+                    anterior.FinCarga();
+                    Form k = this;
+                    k.Close();
                 }
-                catch (Exception) { }
-                anterior.Visible = true;
-                anterior.NuevoRemito();
-                anterior.FinCarga();
-                Form k = this;
-                k.Close();  
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

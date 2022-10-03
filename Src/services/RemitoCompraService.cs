@@ -30,6 +30,13 @@ namespace E_Shop
         public List<Pago> Pagos{ get { return ListaDePagos; } set { ListaDePagos = value; } }
         public double TotalVenta() { return Producto.SumaVentas(this.ListaDeProductos); }
         public double TotalCosto() { return Producto.SumaCostos(this.ListaDeProductos); }
+        public double TotalPago() {
+            double sum = 0;
+            foreach (Pago x in Pagos) {
+                sum += x.Importe;
+            }
+            return sum;
+        }
         public double TotalProductos() {
             double sum = 0;
             for (int i =0; i<ListaDeProductos.Count();i++) {
@@ -76,6 +83,7 @@ namespace E_Shop
             return var;
         }
         public bool AgregarProducto(Producto x){
+           
             if (RemitoCompraValidador.AgregarProducto(ref x))
             {
                 ListaDeProductos.Add(x);
@@ -104,7 +112,8 @@ namespace E_Shop
                      this.ListaProdutos[i].Bulto,
                     this.ListaProdutos[i].Cantidad, 
                     this.ListaProdutos[i].Costo,
-                    this.ListaProdutos[i].ImporteCosto()
+                    (this.ListaProdutos[i].Cantidad*
+                    this.ListaProdutos[i].Costo)
                     );
             }
         }
@@ -349,10 +358,12 @@ namespace E_Shop
             StreamReader p = new StreamReader(dir.RemitoCompras);
             string l = "";
             string[] dat;
+            int lErr = 0;
             List<RemitoCompra> ListaDeRemitoCompras = new List<RemitoCompra>();
 
             while ((l = p.ReadLine()) != null)
             {
+                lErr++;
                 dat = l.Split('|');
                 RemitoCompra newRemitoCompra = new RemitoCompra();
                 newRemitoCompra.Codigo = dat[0];
@@ -362,11 +373,13 @@ namespace E_Shop
                 // leer pago por cada boleta (falta desarrollar)
                 string []ListaPagos = dat[3].Split('*');
                 for (int i =0; i<ListaPagos.Length;i=i+3) {
-                    Pago n = new Pago();
-                    n.Codigo = ListaPagos[i];
-                    n.Nombre = ListaPagos[i+1];
-                    n.Importe = double.Parse(ListaPagos[i+2]);
-                    newRemitoCompra.Pagos.Add(n);
+                    try {
+                        Pago n = new Pago();
+                        n.Codigo = ListaPagos[i];
+                        n.Nombre = ListaPagos[i + 1];
+                        n.Importe = double.Parse(ListaPagos[i + 2]);
+                        newRemitoCompra.Pagos.Add(n);
+                    } catch (Exception err) { MessageBox.Show("Error en la linea " + lErr + ". Consultar Servicio"); }
                 }
                 // leer lista de productos por cada boleta (falta desarrollar)
                 string[]ListaProductos = dat[4].Split('*');

@@ -51,12 +51,13 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button18 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -159,6 +160,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.panel1.Controls.Add(this.button19);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button10);
             this.panel1.Controls.Add(this.button1);
@@ -326,6 +328,16 @@
             this.panel5.TabIndex = 83;
             this.panel5.Visible = false;
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(31, 107);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(223, 35);
+            this.button18.TabIndex = 87;
+            this.button18.Text = "Capital";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            // 
             // button17
             // 
             this.button17.Location = new System.Drawing.Point(31, 53);
@@ -368,15 +380,18 @@
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click_2);
             // 
-            // button18
+            // button19
             // 
-            this.button18.Location = new System.Drawing.Point(31, 107);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(223, 35);
-            this.button18.TabIndex = 87;
-            this.button18.Text = "Capital";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            this.button19.Location = new System.Drawing.Point(29, 269);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(223, 35);
+            this.button19.TabIndex = 7;
+            this.button19.Text = "Devolución";
+            this.toolTip1.SetToolTip(this.button19, "Lista Compras\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas " +
+        "de mercadería\r\n                - Imprimir boleta de compra\r\n                - An" +
+        "ular boleta de compra \r\n");
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // Index
             // 
@@ -432,6 +447,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
     }
 }
 

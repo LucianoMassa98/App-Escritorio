@@ -249,5 +249,10 @@ namespace E_Shop
         {
             new Capitales().Show();
         }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("proximamente disponible");
+        }
     }
 }

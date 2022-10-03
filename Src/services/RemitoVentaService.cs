@@ -38,8 +38,17 @@ namespace E_Shop
         }
         public double TotalVenta() { 
             return Producto.SumaVentas(this.ListaDeProductos); }
+        public double TotalPago()
+        {
+            double sum = 0;
+            foreach(Pago x in Pagos)
+            {
+                sum += x.Importe;
+            }
+            return sum;
+        }
         public double TotalCosto() {
-            return Producto.SumaCostos(this.ListaDeProductos); }
+            return Producto.SumaCostos2(this.ListaDeProductos); }
         public string ListadoProductos()
         {
 
