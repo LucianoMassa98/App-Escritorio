@@ -152,7 +152,7 @@
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(548, 178);
+            this.panel3.Location = new System.Drawing.Point(497, 178);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(269, 209);
             this.panel3.TabIndex = 81;
@@ -223,7 +223,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(435, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(384, 209);
             this.dataGridView1.TabIndex = 134;
             // 
             // Prd
@@ -413,7 +413,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(435, 209);
+            this.dataGridView2.Size = new System.Drawing.Size(384, 209);
             this.dataGridView2.TabIndex = 143;
             // 
             // dataGridViewTextBoxColumn2
@@ -473,7 +473,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(187, 209);
+            this.dataGridView3.Size = new System.Drawing.Size(136, 209);
             this.dataGridView3.TabIndex = 145;
             // 
             // dataGridViewTextBoxColumn6
@@ -509,7 +509,7 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(221, 209);
+            this.dataGridView4.Size = new System.Drawing.Size(170, 209);
             this.dataGridView4.TabIndex = 146;
             // 
             // dataGridViewTextBoxColumn7
@@ -533,7 +533,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(512, 726);
+            this.label6.Location = new System.Drawing.Point(461, 726);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 18);
             this.label6.TabIndex = 148;
@@ -551,7 +551,7 @@
             this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn9});
-            this.dataGridView5.Location = new System.Drawing.Point(512, 747);
+            this.dataGridView5.Location = new System.Drawing.Point(461, 747);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersVisible = false;
             this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

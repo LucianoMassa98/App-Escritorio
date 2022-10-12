@@ -17,11 +17,11 @@ namespace E_Shop
         string fechaEmision;
         List<Producto> ListaDeProductos;
         List<Pago> ListaDePagos;
-
+        bool directo;
         public RemitoVenta() {
             ListaDeProductos = new List<Producto>();
             ListaDePagos = new List<Pago>();
-
+            directo = true;
         }
         public string FechaEmision { get { return fechaEmision; } set { fechaEmision= value; } }
         public string Receptor { get { return receptor; }set { receptor = value; } }
@@ -29,7 +29,7 @@ namespace E_Shop
         public string Emisor { get { return emisor;  }set { emisor = value; } }
         public List<Pago> Pagos{ get { return ListaDePagos; } set { ListaDePagos = value; } }
         public List<Producto> ListaProdutos{ get { return ListaDeProductos; } set { ListaDeProductos = value; } }
-      
+        public bool Directo { get{ return directo; }set { directo = value; }}
         public bool EnviarFacturaAfip() {
 
         
@@ -398,6 +398,7 @@ namespace E_Shop
                     
                 }
                 newRemitoVenta.FechaEmision = dat[5];
+                try { newRemitoVenta.Directo = bool.Parse(dat[6]); } catch (Exception) { }
                 ListaDeRemitoVenta.Add(newRemitoVenta);
             }
             p.Close(); p.Dispose();
@@ -416,7 +417,8 @@ namespace E_Shop
                     x[i].Receptor + "|" +
                     x[i].ListadoPagos() + "|" +
                     x[i].ListadoProductos() + "|" +
-                    x[i].FechaEmision
+                    x[i].FechaEmision + "|" +
+                    x[i].Directo.ToString()
                     );
             }
             p.Close(); p.Dispose();
@@ -559,6 +561,21 @@ namespace E_Shop
                 for (int j =0; j<x[i].Pagos.Count();j++) {
                     Pago.AgregarCuenta(ref lista, x[i].Pagos[j]);
                 } 
+
+            }
+            return lista;
+        }
+        static public List<Pago> Egreso(List<RemitoVenta> x,bool directo)
+        {
+            List<Pago> lista = new List<Pago>();
+            double[] res = new double[8];
+            for (int i = 0; i < x.Count(); i++)
+            {
+                for (int j = 0; j < x[i].Pagos.Count(); j++)
+                {
+                    if (directo==x[i].Directo) { Pago.AgregarCuenta(ref lista, x[i].Pagos[j]); }
+                    
+                }
 
             }
             return lista;

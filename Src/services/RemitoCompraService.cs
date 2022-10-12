@@ -157,7 +157,6 @@ namespace E_Shop
         }
         static public bool Borrar(string codigo)
         {
-
             if (RemitoCompraValidador.GetRemitoCompra(codigo))
             {
                 List<RemitoCompra> ListaRemitoCompra = RemitoCompra.Buscar();
@@ -169,21 +168,14 @@ namespace E_Shop
 
                     foreach (Pago x in ListaRemitoCompra[i].Pagos)
                     {
-
                         if (x.Codigo == "2.1.1")
                         {
                             Proveedor.SumarSaldo(
                                 Proveedor.BuscarPorNombre(ListaRemitoCompra[i].Emisor).Codigo,
                                 x.Importe
                                 );
-
                         }
-
                     }
-
-
-
-
                     ListaRemitoCompra.RemoveAt(i);
                     return RemitoCompra.Guardar(ListaRemitoCompra);
                 }

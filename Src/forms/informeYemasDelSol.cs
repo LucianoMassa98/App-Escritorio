@@ -63,11 +63,22 @@ namespace E_Shop
 
 
             //VENTAS
-            List<Pago> lista  = RemitoVenta.Egreso(lventas);
+            List<Pago> lista  = RemitoVenta.Egreso(lventas,true);
             dataGridView3.Rows.Clear();
+            dataGridView3.Rows.Add("Galpón");
+            dataGridView3.Rows[dataGridView3.RowCount - 1].DefaultCellStyle.BackColor = Color.DeepSkyBlue;
             for (int i =0; i<lista.Count();i++) {
                 dataGridView3.Rows.Add(lista[i].Nombre,lista[i].Importe);
             }
+            dataGridView3.Rows.Add("Reparto");
+            dataGridView3.Rows[dataGridView3.RowCount - 1].DefaultCellStyle.BackColor = Color.PaleVioletRed;
+            lista = RemitoVenta.Egreso(lventas, false);
+            for (int i = 0; i < lista.Count(); i++)
+            {
+                dataGridView3.Rows.Add(lista[i].Nombre, lista[i].Importe);
+            }
+
+
             dataGridView5.Rows.Add("Costo Total:",RemitoVenta.CostoTotal(lventas).ToString());
 
             dataGridView5.Rows.Add("Venta Total:", RemitoVenta.VentaTotal(lventas).ToString());
@@ -77,8 +88,8 @@ namespace E_Shop
 
 
             //Registradora
-            double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
-            dataGridView3.Rows.Add("Registradora", impRegistradora);
+            /* double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
+             dataGridView3.Rows.Add("Registradora", impRegistradora);*/
 
 
 

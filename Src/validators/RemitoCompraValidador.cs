@@ -26,7 +26,7 @@ namespace E_Shop
             if (x.ListaProdutos.Count()==0) {
                 MessageBox.Show("Falta Productos");
                 return false; }
-            if (x.TotalCosto() != x.TotalPago()){ 
+            if (Math.Round(x.TotalCosto()) != Math.Round(x.TotalPago())){ 
                 MessageBox.Show("Falta cargar pago");
                 return false;
             }
@@ -100,7 +100,7 @@ namespace E_Shop
                 MessageBox.Show("Falta Productos");
                 return false;
             }
-            if (x.TotalCosto() != x.TotalPago())
+            if (Math.Round(x.TotalCosto()) != Math.Round(x.TotalPago()))
             {
                 MessageBox.Show("Falta cargar pago");
                 return false;

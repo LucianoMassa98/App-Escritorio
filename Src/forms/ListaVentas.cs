@@ -51,7 +51,7 @@ namespace E_Shop
                     MessageBox.Show(
                         "No se pudo realizar la operación",
                         "Falló",
-                        MessageBoxButtons.OK,
+                        MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Warning
                         );
                 }

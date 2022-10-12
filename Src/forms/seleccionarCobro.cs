@@ -155,7 +155,7 @@ namespace E_Shop
             if (dataGridView1.RowCount>0)
             {
                 RemitoX.Pagos = listaCobros;
-
+                RemitoX.Directo = checkBox1.Checked;
 
                 if (RemitoVenta.Crear(RemitoX))
                 {

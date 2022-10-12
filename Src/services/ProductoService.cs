@@ -372,7 +372,8 @@ namespace E_Shop
                 if (ind<y.Count()) {
                     y[ind].Cantidad += x[i].Cantidad;
                     y[ind].Bulto += x[i].Bulto;
-                    y[ind].Costo = x[i].Costo;
+                    if (x[i].Costo!=0) { y[ind].Costo = x[i].Costo; }
+                    
                 }
 
             }
