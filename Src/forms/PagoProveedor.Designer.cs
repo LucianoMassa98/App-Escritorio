@@ -46,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +87,8 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(242)))), ((int)(((byte)(227)))));
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.label2);
@@ -99,7 +103,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(329, 229);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(295, 338);
+            this.panel1.Size = new System.Drawing.Size(295, 378);
             this.panel1.TabIndex = 105;
             // 
             // button3
@@ -108,7 +112,7 @@
             this.button3.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.button3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(180, 290);
+            this.button3.Location = new System.Drawing.Point(180, 330);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 33);
             this.button3.TabIndex = 144;
@@ -249,11 +253,30 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(115, 304);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(163, 20);
+            this.dateTimePicker1.TabIndex = 149;
+            // 
+            // label7
+            // 
+            this.label7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(0, 304);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 18);
+            this.label7.TabIndex = 148;
+            this.label7.Text = "Fecha";
+            // 
             // PagoProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 586);
+            this.ClientSize = new System.Drawing.Size(942, 619);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -288,5 +311,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label7;
     }
 }

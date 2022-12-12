@@ -60,3 +60,11 @@ C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ConvertidorBD.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarGatos.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.Capitales.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.modCapital.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ListaDevolucion.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.Form1.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarRemitoEgreso.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ListaEgresos.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarCobroEgreso.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarRemitoIngreso.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ListaIngresos.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarPagoIngreso.resources

@@ -35,6 +35,8 @@ namespace E_Shop
             Cliente.CargarComboBox(ref comboBox3);
             // cargr codigos barra y nombres de productos
             Producto.CargarComboBox( ref comboBox4);
+
+            Proveedor.CargarComboBox(ref comboBox3);
             comboBox4.Items.Add("aaa");
             comboBox3.Focus();
       
@@ -243,6 +245,13 @@ namespace E_Shop
                                         }
                                 }
 
+                            }
+                            else
+                            {
+                                Producto p = Producto.BuscarPorNombre(comboBox4.Text);
+                                if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+
+                                textBox5.Text = p.Precio.ToString();
                             }
 
 

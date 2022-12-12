@@ -7,6 +7,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace E_Shop
 {
@@ -196,6 +197,156 @@ namespace E_Shop
 
         }
 
+
+        public void GenerarPdfProductos(DataGridView x)
+        {
+            FileStream p = new FileStream(new Direcciones().ArchivoPdf +"ListaProductos"+ ".pdf", FileMode.Create);
+            Document doc = new Document(PageSize.LETTER, 5, 5, 7, 7);
+            PdfWriter pw = PdfWriter.GetInstance(doc, p);
+            doc.Open();
+            //titulo y autor
+            doc.AddTitle("Productos");
+            doc.AddAuthor("Setigex.sj@hotmail.com");
+            // define tipo de fuente (tipo,tamaño,forma,color)
+
+            iTextSharp.text.Font StandarFont = new iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                8,
+                iTextSharp.text.Font.NORMAL,
+                BaseColor.BLACK
+                );
+
+            //escribir encabezado
+
+
+            doc.Add(new Phrase("Fecha: " + DateTime.Now.ToString("dd/MM/yy"), StandarFont)); ;
+            doc.Add(Chunk.NEWLINE);
+
+
+            //encabezado columnas
+
+            PdfPTable tableEjemplo = new PdfPTable(9);
+            tableEjemplo.WidthPercentage = 100;
+
+            //configurando el titulo de las comunas
+            PdfPCell codigo = new PdfPCell(new Phrase("Código", StandarFont));
+            codigo.BorderWidth = 0;
+            codigo.BorderWidthBottom = 0.75f;
+
+            //configurando el titulo de las comunas
+            PdfPCell producto = new PdfPCell(new Phrase("Producto", StandarFont));
+            producto.BorderWidth = 0;
+            producto.BorderWidthBottom = 0.75f;
+
+            //configurando el titulo de las comunas
+            PdfPCell descri = new PdfPCell(new Phrase("Costo", StandarFont));
+            descri.BorderWidth = 0;
+            descri.BorderWidthBottom = 0.75f;
+
+
+            //configurando el titulo de las comunas
+            PdfPCell bulto = new PdfPCell(new Phrase("Bulto", StandarFont));
+            bulto.BorderWidth = 0;
+            bulto.BorderWidthBottom = 0.75f;
+
+            //configurando el titulo de las comunas
+            PdfPCell cnt = new PdfPCell(new Phrase("Cantidad", StandarFont));
+            cnt.BorderWidth = 0;
+            cnt.BorderWidthBottom = 0.75f;
+
+
+
+            //configurando el titulo de las comunas
+            PdfPCell precio1 = new PdfPCell(new Phrase("Precio 1", StandarFont));
+            precio1.BorderWidth = 0;
+            precio1.BorderWidthBottom = 0.75f;
+
+            PdfPCell precio2 = new PdfPCell(new Phrase("Precio 2", StandarFont));
+            precio2.BorderWidth = 0;
+            precio2.BorderWidthBottom = 0.75f;
+
+            PdfPCell precio3  = new PdfPCell(new Phrase("Precio 3", StandarFont));
+            precio3.BorderWidth = 0;
+            precio3.BorderWidthBottom = 0.75f;
+
+
+            PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
+            importe.BorderWidth = 0;
+            importe.BorderWidthBottom = 0.75f;
+
+
+
+            //añadir las columnas a la tabla
+
+            tableEjemplo.AddCell(codigo);
+            tableEjemplo.AddCell(producto);
+            tableEjemplo.AddCell(descri);
+            tableEjemplo.AddCell(bulto);
+            tableEjemplo.AddCell(cnt);
+            tableEjemplo.AddCell(precio1);
+            tableEjemplo.AddCell(precio2);
+            tableEjemplo.AddCell(precio3);
+            tableEjemplo.AddCell(importe);
+            //agregando datos
+
+            for (int i = 0; i < x.RowCount; i++)
+            {
+                codigo = new PdfPCell(new Phrase("", StandarFont));
+                codigo.BorderWidth = 0;
+                codigo.BorderWidthBottom = 0.75f;
+                producto = new PdfPCell(new Phrase(x.Rows[i].Cells[1].Value.ToString(), StandarFont));
+                producto.BorderWidth = 0;
+                producto.BorderWidthBottom = 0.75f;
+
+                descri = new PdfPCell(new Phrase(x.Rows[i].Cells[6].Value.ToString(), StandarFont));
+                descri.BorderWidth = 0;
+                descri.BorderWidthBottom = 0.75f;
+
+                bulto = new PdfPCell(new Phrase(x.Rows[i].Cells[3].Value.ToString(), StandarFont));
+                bulto.BorderWidth = 0;
+                bulto.BorderWidthBottom = 0.75f;
+
+                cnt = new PdfPCell(new Phrase(x.Rows[i].Cells[4].Value.ToString(), StandarFont));
+                cnt.BorderWidth = 0;
+                cnt.BorderWidthBottom = 0.75f;
+
+                precio1 = new PdfPCell(new Phrase(x.Rows[i].Cells[7].Value.ToString(), StandarFont));
+                precio1.BorderWidth = 0;
+                precio1.BorderWidthBottom = 0.75f;
+                precio2 = new PdfPCell(new Phrase(x.Rows[i].Cells[8].Value.ToString(), StandarFont));
+                precio2.BorderWidth = 0;
+                precio2.BorderWidthBottom = 0.75f;
+                precio3 = new PdfPCell(new Phrase(x.Rows[i].Cells[9].Value.ToString(), StandarFont));
+                precio3.BorderWidth = 0;
+                precio3.BorderWidthBottom = 0.75f;
+
+                importe = new PdfPCell(new Phrase(x.Rows[i].Cells[10].Value.ToString(), StandarFont));
+                importe.BorderWidth = 0;
+                importe.BorderWidthBottom = 0.75f;
+
+                tableEjemplo.AddCell(codigo);
+                tableEjemplo.AddCell(producto);
+                tableEjemplo.AddCell(descri);
+                tableEjemplo.AddCell(bulto);
+                tableEjemplo.AddCell(cnt);
+                tableEjemplo.AddCell(precio1);
+                tableEjemplo.AddCell(precio2);
+                tableEjemplo.AddCell(precio3);
+                tableEjemplo.AddCell(importe);
+            }
+            doc.Add(Chunk.NEWLINE);
+            doc.Add(tableEjemplo);
+            doc.Close();
+            pw.Close();
+
+            MessageBox.Show("Documento generado existosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            Process n = new Process();
+            string file = new Direcciones().ArchivoPdf + "ListaProductos.pdf";
+            n.StartInfo.FileName = file;
+            n.Start();
+
+        }
 
     }
 

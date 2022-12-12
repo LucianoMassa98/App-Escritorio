@@ -17,11 +17,19 @@ namespace E_Shop
         public CargarProducto(object x, ref Form y)
         {
             InitializeComponent();
-            Producto.MostrarDataGrid(ref dataGridView1);
+          
             label14.Text = "Stock: $" + Producto.SumaCostos(Producto.Buscar());
             xUsuario = (Usuario)x;
             FormularioAnterior = y;
-            if (xUsuario.Tipo != 1) { panel1.Visible = false; }
+            if (xUsuario.Tipo != 1) { 
+                label14.Visible =
+                panel1.Visible = false;
+                Producto.MostrarDataGrid2(ref dataGridView1);
+            }
+            else
+            {
+                Producto.MostrarDataGrid(ref dataGridView1);
+            }
             LoadCombobox();
         }
         public void LoadCombobox() {
@@ -48,7 +56,14 @@ namespace E_Shop
             {
                 // se creo correctamente y agregar al datagrid
 
-                Producto.MostrarDataGrid(ref dataGridView1);
+                if (xUsuario.Tipo != 1)
+                {
+                    Producto.MostrarDataGrid2(ref dataGridView1);
+                }
+                else
+                {
+                    Producto.MostrarDataGrid(ref dataGridView1);
+                }
 
                 textBox1.Text = textBox2.Text = textBox3.Text  = "";
                 textBox3.Focus();
@@ -133,7 +148,14 @@ namespace E_Shop
                 upProducto.Precio3 = double.Parse(textBox13.Text);
 
                 Producto.Actualizar(textBox10.Text, upProducto);
-                Producto.MostrarDataGrid(ref dataGridView1);
+                if (xUsuario.Tipo != 1)
+                {
+                    Producto.MostrarDataGrid2(ref dataGridView1);
+                }
+                else
+                {
+                    Producto.MostrarDataGrid(ref dataGridView1);
+                }
                 label14.Text = "Stock: $"+Producto.SumaCostos(Producto.Buscar());
             }
             catch (Exception)
@@ -178,6 +200,12 @@ namespace E_Shop
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CrearPdf n = new CrearPdf();
+            n.GenerarPdfProductos(dataGridView1);
         }
     }
 }

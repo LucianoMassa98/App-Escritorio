@@ -43,7 +43,7 @@ namespace E_Shop
                  {
               
                 RemitoX.Pagos[0].Importe = imp;
-
+                    RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
                 if (RemitoPagoProveedor.Crear(RemitoX))
                 {
                     NuevoPago();

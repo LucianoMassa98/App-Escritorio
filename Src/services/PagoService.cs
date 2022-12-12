@@ -252,7 +252,7 @@ namespace E_Shop
             {
                 int ind = Pago.BuscarIndexPorCodigo(x[i].Codigo, y);
                 if (ind<y.Count()) {
-                    y[ind].Importe -= x[i].Importe;
+                    if (x[i].Codigo!="aaaa") { y[ind].Importe -= x[i].Importe; }
                 }
                
 
@@ -264,23 +264,16 @@ namespace E_Shop
         }
         static public void SumarCuenta(List<Pago> x)
         {
-
             List<Pago> y = Pago.Buscar();
-
             for (int i = 0; i < x.Count(); i++)
             {
                 int ind = Pago.BuscarIndexPorCodigo(x[i].Codigo, y);
                 if (ind < y.Count())
                 {
-                    y[ind].Importe += x[i].Importe;
+                    if (x[i].Codigo!="aaaa") { y[ind].Importe += x[i].Importe; }
                 }
-
-
             }
             Pago.Guardar(y);
-
-
-
         }
         static public void RestarCuenta(Pago x)
         {
@@ -412,7 +405,47 @@ namespace E_Shop
                 }
             }
         }
-    
+
+        static public void CerearCuentas(string codigo) {
+            string[] cod = codigo.Split('.');
+            List<Pago> y = Pago.Buscar();
+            for (int i=0; i<y.Count();i++) {
+
+                string[] cod2 = y[i].Codigo.Split('.');
+                if (cod.Length <= cod2.Length)
+                {   int j = 0;
+                    bool band = true;
+                    while((band)&&(j<cod.Length))
+                    {
+                        if (cod[j] != cod2[j]) { band = false; }
+                        j++;
+                    }
+                    if (band)
+                    {
+                        y[i].importe = 0;
+                    }
+                }
+            }
+            Pago.Guardar(y);
+        }
+
+        static public bool LeerBorrado() {
+
+            StreamReader p = new StreamReader(new Direcciones().BandBorrado);
+            string l = p.ReadLine();
+            p.Close(); p.Dispose();
+            return bool.Parse(l);
+            
+        }
+        static public void EscribirBorrado(bool band)
+        {
+
+            StreamWriter p = new StreamWriter(new Direcciones().BandBorrado);
+            p.WriteLine(band.ToString());
+            p.Close(); p.Dispose();
+           
+
+        }
     }
 
 }

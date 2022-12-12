@@ -34,7 +34,8 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
-           // comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
+            comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
+            // comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()
@@ -48,7 +49,14 @@ namespace E_Shop
             }
             else
             {
-                MessageBox.Show("Proveedor inexistente");
+                Proveedor y = Proveedor.BuscarPorNombre(RemitoX.Receptor);
+                if (y!=null) {
+                    label4.Text = "Saldo: $" + y.Saldo.ToString();
+                    label1.Text = "Total Remito: $" + RemitoX.TotalVenta().ToString();
+                    label3.Text = "Cliente: " + y.Nombre;
+                }
+                else { MessageBox.Show("Error 402"); }
+                
             }
 
         }
@@ -156,7 +164,6 @@ namespace E_Shop
             {
                 RemitoX.Pagos = listaCobros;
                 RemitoX.Directo = checkBox1.Checked;
-
                 if (RemitoVenta.Crear(RemitoX))
                 {
                     try

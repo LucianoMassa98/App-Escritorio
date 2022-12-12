@@ -171,7 +171,7 @@ namespace E_Shop
         static public void CargarComboBox(ref ComboBox y)
         {
 
-            y.Items.Clear();
+         //   y.Items.Clear();
             List<Proveedor> x = Proveedor.Buscar();
             for (int i = 0; i < x.Count(); i++)
             {

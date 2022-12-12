@@ -47,7 +47,7 @@ namespace E_Shop
                 {
                     if (RemitoX.Pagos.Count>0) {
                         RemitoX.Pagos[0].Importe = importe;
-
+                        RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
                         if (RemitoCobroCliente.Crear(RemitoX, "1.1.3"))
                         {
                             NuevoCobro();
@@ -125,6 +125,16 @@ namespace E_Shop
         private void CobroCliente_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

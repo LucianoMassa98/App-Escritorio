@@ -64,9 +64,11 @@ namespace E_Shop
         {
 
             string fechaA = dateTimePicker1.Value.Date.ToShortDateString();
+            string fechaB = dateTimePicker2.Value.Date.ToShortDateString();
+
             Proveedor prv = Proveedor.BuscarPorNombre(comboBox3.Text);
             if (prv!=null) {
-                RemitosX = RemitoCompra.BuscarPorFecha(fechaA, fechaA,prv);
+                RemitosX = RemitoCompra.BuscarPorFecha(fechaA, fechaB,prv);
                 if (RemitosX.Count() > 0)
                 {
                     RemitosX[0].MostrarDataGrid(ref dataGridView1);
@@ -74,7 +76,7 @@ namespace E_Shop
                     MostraRemito();
                 }
                 else { dataGridView1.Rows.Add("No Hay Productos"); }
-                dateTimePicker1.Enabled = false;
+                dateTimePicker2.Enabled = dateTimePicker1.Enabled = false;
                 comboBox3.Enabled = false;
             }
         }
@@ -167,6 +169,11 @@ namespace E_Shop
                 k.Visible = false;
 
             }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

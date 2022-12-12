@@ -31,6 +31,7 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("2.1.1").Nombre);
+            comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()

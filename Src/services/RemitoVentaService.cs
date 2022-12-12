@@ -31,9 +31,6 @@ namespace E_Shop
         public List<Producto> ListaProdutos{ get { return ListaDeProductos; } set { ListaDeProductos = value; } }
         public bool Directo { get{ return directo; }set { directo = value; }}
         public bool EnviarFacturaAfip() {
-
-        
-            
             return true;
         }
         public double TotalVenta() { 
@@ -160,6 +157,7 @@ namespace E_Shop
                
                 ticket.TextoCentro(this.ListaDeProductos[i].Nombre);
                  ticket.TextoCentro(
+                     this.ListaDeProductos[i].Bulto + " - " +
                      this.ListaDeProductos[i].Cantidad + " - $" +
                      this.ListaDeProductos[i].Precio + " - $" +
                      this.ListaDeProductos[i].ImportePrecio()
@@ -220,9 +218,38 @@ namespace E_Shop
                         Pago.SumarCuenta(x.Pagos);
                         foreach (Pago p in x.Pagos)
                         {
-                            if ((p.Codigo == "1.1.3") ||(p.Codigo == "1.1.4"))
+                            if (p.Codigo == "1.1.3")
                             {
-                                Cliente.SumarSaldo(Cliente.BuscarPorNombre(x.Receptor).Codigo, p.Importe);
+                                Cliente cs = Cliente.BuscarPorNombre(x.Receptor);
+
+                                
+                                if (cs!=null) {
+                                    Cliente.SumarSaldo(cs.Codigo, p.Importe); } 
+                                else
+                                {
+                                    Proveedor ps = Proveedor.BuscarPorNombre(x.Receptor);
+                                    if (ps != null)
+                                    {
+                                        Proveedor.RestarSaldo(ps.Codigo, p.Importe);
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                 if (p.Codigo == "aaaa")
+                                 {
+
+                                     Proveedor ps = Proveedor.BuscarPorNombre(x.Receptor);
+                                     if (ps != null)
+                                     {
+                                         Proveedor.SumarSaldo(ps.Codigo, p.Importe);
+                                         Pago nP = Pago.BuscarPorCodigo("2.1.1");
+                                         nP.Importe = p.Importe;
+                                         Pago.SumarCuenta(nP);
+
+                                     }
+                                 }
 
                             }
                         }

@@ -68,12 +68,88 @@ namespace E_Shop
         {
             if (comboBox4.Text == "aaa") { button3.Focus(); } else {
                 Producto n = Producto.BuscarPorNombre(comboBox4.Text);
-                if (n==null) { n = Producto.BuscarPorCodigo(comboBox4.Text); }
+                if (n==null) {
+
+                    // bustos y beltran, general pico
+                    string codigo = comboBox4.Text;
+                    n = Producto.BuscarPorCodigo(codigo);
+
+                    
+                
+                }
 
                 textBox1.Text = n.Costo.ToString();
                 textBox5.Focus(); }
         }
 
+
+        public void LeerCodigo(string codigo) {
+
+
+            try
+            { // epc y menudencias
+
+                string cod3 = codigo.Substring(0, 3);
+                Producto n = Producto.BuscarPorCodigo(cod3);
+
+                if (n == null)
+                {
+                    // madeka
+                    string cod4 = codigo.Substring(3, 4);
+                    n = Producto.BuscarPorCodigo(cod4);
+
+                    if (n == null)
+                    {
+                        string cod5 = codigo.Substring(8, 4);
+                        n = Producto.BuscarPorCodigo(cod5);
+
+                        if (n == null)
+                        {
+                            MessageBox.Show("formato de codigo invalido");
+
+                        }
+                        else
+                        {
+                            textBox5.Text = "1";
+                            textBox2.Focus();
+                            textBox1.Text = n.Costo.ToString();
+                            comboBox4.Text = n.Codigo;
+                        }
+
+                    }
+                    else
+                    {
+                        textBox5.Text = "1";
+                        textBox2.Focus();
+                        textBox1.Text = n.Costo.ToString();
+                        comboBox4.Text = n.Codigo;
+                    }
+                }
+                else
+                {
+                    string pesoneto;
+                    if (codigo.Length<15) {
+                        // llenar con el neto menudencias
+                         pesoneto = codigo.Substring(3, 4);
+                    }
+                    else
+                    { // llenar neto epc
+                        pesoneto = codigo.Substring(15, 4);
+                    }
+                    textBox5.Text = "1";
+                    textBox2.Text = pesoneto.Substring(0,2)+","+pesoneto.Substring(2,2);
+                    textBox1.Text = n.Costo.ToString();
+                    agregarproducto(n);
+                }
+
+               
+
+            }
+            catch (Exception) {
+                //MessageBox.Show("formato de codigo invalido");
+            }
+
+        }
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar==13) { textBox1.Focus(); }
@@ -87,31 +163,59 @@ namespace E_Shop
         //agregar producto al remito
         private void button1_Click(object sender, EventArgs e)
         {
+
+            agregarproducto();
+            
+        }
+
+        public void agregarproducto()
+        {
             Producto p = Producto.BuscarPorCodigo(comboBox4.Text);
-            if (p==null) { p = Producto.BuscarPorNombre(comboBox4.Text); }
-            if (p!=null) {
+            if (p == null) { p = Producto.BuscarPorNombre(comboBox4.Text); }
+            if (p != null)
+            {
                 try
                 {
                     p.Bulto = double.Parse(textBox5.Text);
                     p.Cantidad = double.Parse(textBox2.Text);
                     p.Costo = double.Parse(textBox1.Text);
-               
+
                     if (RemitoX.AgregarProducto(p))
                     {
-                        foreach(Producto xpr in RemitoX.ListaProdutos) {
-                            MessageBox.Show(xpr.Nombre+" "+xpr.Costo);
+                        foreach (Producto xpr in RemitoX.ListaProdutos)
+                        {
+                            // MessageBox.Show(xpr.Nombre+" "+xpr.Costo);
                         }
                         RemitoX.MostrarDataGrid(ref dataGridView1);
                         label1.Text = "Total: $" + RemitoX.TotalCosto();
-                        comboBox4.Text = textBox2.Text = textBox1.Text = textBox5.Text="";
+                        comboBox4.Text = textBox2.Text = textBox1.Text = textBox5.Text = "";
                         comboBox4.Focus();
                     }
 
                 }
                 catch (Exception) { }
             }
+        }
+        public void agregarproducto(object x)
+        {
+            Producto p = (Producto)x;
+                try
+                {
+                    p.Bulto = double.Parse(textBox5.Text);
+                    p.Cantidad = double.Parse(textBox2.Text);
+                    p.Costo = double.Parse(textBox1.Text);
 
-           
+                    if (RemitoX.AgregarProducto(p))
+                    {
+                       
+                        RemitoX.MostrarDataGrid(ref dataGridView1);
+                        label1.Text = "Total: $" + RemitoX.TotalCosto();
+                        comboBox4.Text = textBox2.Text = textBox1.Text = textBox5.Text = "";
+                        comboBox4.Focus();
+                    }
+
+                }
+                catch (Exception) { }
             
         }
         //seleccionar proveedor
@@ -172,9 +276,13 @@ namespace E_Shop
             if (e.KeyChar==13) { textBox2.Focus(); }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+     
 
+        private void comboBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.ToString()=="Return") {
+                LeerCodigo(comboBox4.Text);
+            }
         }
     }
 }

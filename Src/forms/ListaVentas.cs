@@ -21,6 +21,11 @@ namespace E_Shop
             User = (Usuario)user;
             RemitosX = new List<RemitoVenta>();
             indice = 0;
+
+            if (User.Tipo != 1)
+            {
+                button7.Visible =button8.Visible = button6.Visible = false;
+            }
             LoadComboBox();
         }
 
@@ -62,25 +67,33 @@ namespace E_Shop
         //buscar ventas
         public void buscarBoletas(string nom)
         {
-            string fechaA = dateTimePicker1.Value.Date.ToShortDateString();
-            Cliente cli = Cliente.BuscarPorNombre(nom);
-
-            if (cli != null)
+            if (nom!="")
             {
-                RemitosX = RemitoVenta.BuscarPorFecha(fechaA, fechaA, cli);
-                if (RemitosX.Count() > 0)
+                string fechaA = dateTimePicker1.Value.Date.ToShortDateString();
+                string fechaB = dateTimePicker2.Value.Date.ToShortDateString();
+                Cliente cli = Cliente.BuscarPorNombre(nom);
+                if (cli != null)
                 {
-                    RemitosX[0].MostrarDataGrid(ref dataGridView1);
-                    indice = 0;
-                    MostraRemito();
+                    RemitosX = RemitoVenta.BuscarPorFecha(fechaA, fechaB, cli);
+                    if (RemitosX.Count() > 0)
+                    {
+                        RemitosX[0].MostrarDataGrid(ref dataGridView1);
+                        indice = 0;
+                        MostraRemito();
+                    }
+                    else { dataGridView1.Rows.Add("No Hay Productos"); }
+                    dateTimePicker2.Enabled = dateTimePicker1.Enabled = false;
+                    comboBox3.Enabled = false;
                 }
-                else { dataGridView1.Rows.Add("No Hay Productos"); }
-                dateTimePicker1.Enabled = false;
-                comboBox3.Enabled = false;
+                else
+                {
+                    MessageBox.Show("El cliente no existe!!");
+                }
             }
             else
             {
-                MessageBox.Show("El cliente no existe!!");
+                MessageBox.Show("Seleccionar cliente");
+
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -159,19 +172,58 @@ namespace E_Shop
         //borrar Remito De Venta
         private void button6_Click(object sender, EventArgs e)
         {
-            BorraRemito();
+            if (RemitosX.Count() > 0)
+            {
+                if (textBox3.Text == User.Nombre)
+                {
+                    BorraRemito();
+                }
+                else
+                {
+                    if (User.Tipo != 1)
+                    {
+                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
+                    }
+                    else
+                    {
+                        BorraRemito();
+                    }
+
+                }
+
+
+
+            }
         }
         //eliminar producto x del remito y
         private void button7_Click(object sender, EventArgs e)
         {
             if (RemitosX.Count() > 0)
             {
+                if (textBox3.Text == User.Nombre) {
+                    Form k = this;
+                    CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
+                    y.Show();
+                    y.LoadRemitoX();
+                    k.Visible = false;
 
-                Form k = this;
-             CargarRemitoVenta y  =  new CargarRemitoVenta(User, ref k, RemitosX[indice]);
-                y.Show();
-                y.LoadRemitoX();
-                k.Visible = false;
+                } else
+                {
+                    if (User.Tipo!=1) {
+                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
+                    }
+                    else
+                    {
+                        Form k = this;
+                        CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
+                        y.Show();
+                        y.LoadRemitoX();
+                        k.Visible = false;
+                    }
+                    
+                }
+
+               
 
             }
         }
@@ -198,7 +250,7 @@ namespace E_Shop
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            buscarBoletas(comboBox3.Text);
+           // buscarBoletas(comboBox3.Text);
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -209,6 +261,51 @@ namespace E_Shop
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        // devolver
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+
+                RemitoDevolucion newRemito = new RemitoDevolucion();
+                newRemito.FechaEmision = DateTime.Now.ToString("dd/MM/yyyy");
+                newRemito.Receptor = RemitosX[indice].Receptor;
+                newRemito.Emisor = RemitosX[indice].Emisor;
+                newRemito.Receptor = RemitosX[indice].Receptor;
+                newRemito.Pagos = RemitosX[indice].Pagos;
+                newRemito.ListaProdutos = RemitosX[indice].ListaProdutos;
+                newRemito.Directo = RemitosX[indice].Directo;
+                if (textBox3.Text == User.Nombre)
+                {
+                    if (RemitoDevolucion.Crear(newRemito)) {
+                        BorraRemito();
+                    }
+                    else { MessageBox.Show("No se pudo crear devolucion"); }
+                    
+                }
+                else
+                {
+                    if (User.Tipo == 1)
+                    {
+                        if (RemitoDevolucion.Crear(newRemito))
+                        {
+                            BorraRemito();
+                        }
+                        else { MessageBox.Show("No se pudo crear devolucion"); }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
+
+                    }
+
+                }
+
+
+
+            }
         }
     }
 }

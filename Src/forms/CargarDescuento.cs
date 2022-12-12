@@ -28,6 +28,7 @@ namespace E_Shop
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar==13) { textBox2.Focus(); }
+          
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)

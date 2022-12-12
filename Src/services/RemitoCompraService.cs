@@ -136,10 +136,28 @@ namespace E_Shop
                         {
                             if (p.Codigo == "2.1.1")
                             {
+                                Proveedor pr = Proveedor.BuscarPorNombre(x.Emisor);
 
-                                Proveedor.RestarSaldo(Proveedor.BuscarPorNombre(x.Emisor).Codigo, p.Importe);
+                                
+                                Proveedor.RestarSaldo(pr.Codigo, p.Importe);
 
                             }
+                            else
+                            {
+                                if (p.Codigo=="aaaa") {
+                                    Proveedor ps = Proveedor.BuscarPorNombre(x.Emisor);
+                                    if (ps != null)
+                                    {
+                                        Proveedor.RestarSaldo(ps.Codigo, p.Importe);
+                                        Pago nP = Pago.BuscarPorCodigo("2.1.1");
+                                        nP.Importe = p.Importe;
+                                        Pago.RestarCuenta(nP);
+
+                                    }
+                                }
+
+                            }
+
                         }
                         MessageBox.Show("Remito Creado");
 

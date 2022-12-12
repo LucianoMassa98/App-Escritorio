@@ -38,6 +38,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -57,7 +60,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -160,6 +162,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.panel1.Controls.Add(this.button20);
+            this.panel1.Controls.Add(this.button21);
             this.panel1.Controls.Add(this.button19);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button10);
@@ -168,14 +172,53 @@
             this.panel1.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(14, 192);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(282, 320);
+            this.panel1.Size = new System.Drawing.Size(282, 437);
             this.panel1.TabIndex = 81;
             this.panel1.Visible = false;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(34, 371);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(223, 35);
+            this.button20.TabIndex = 9;
+            this.button20.Text = "Lista Egresos";
+            this.toolTip1.SetToolTip(this.button20, "Lista Egresos\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas " +
+        "de mercadería\r\n                - Imprimir remito\r\n                - Anular remit" +
+        "o\r\n");
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(34, 318);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(223, 35);
+            this.button21.TabIndex = 8;
+            this.button21.Text = "Lista Ingresos";
+            this.toolTip1.SetToolTip(this.button21, "Lista Ingresos\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas" +
+        " de mercadería\r\n                - Imprimir remito\r\n                - Anular remi" +
+        "to\r\n\r\n");
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(34, 265);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(223, 35);
+            this.button19.TabIndex = 7;
+            this.button19.Text = "Lista Devoluciones";
+            this.toolTip1.SetToolTip(this.button19, "Lista Compras\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas " +
+        "de mercadería\r\n                - Imprimir boleta de compra\r\n                - An" +
+        "ular boleta de compra \r\n");
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(29, 109);
+            this.button2.Location = new System.Drawing.Point(34, 106);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(223, 35);
             this.button2.TabIndex = 1;
@@ -187,7 +230,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(29, 217);
+            this.button10.Location = new System.Drawing.Point(34, 212);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(223, 35);
             this.button10.TabIndex = 6;
@@ -201,7 +244,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(29, 55);
+            this.button1.Location = new System.Drawing.Point(34, 53);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(223, 35);
             this.button1.TabIndex = 0;
@@ -213,7 +256,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(29, 163);
+            this.button9.Location = new System.Drawing.Point(34, 159);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(223, 35);
             this.button9.TabIndex = 5;
@@ -286,7 +329,7 @@
             this.panel4.Controls.Add(this.button13);
             this.panel4.Controls.Add(this.button6);
             this.panel4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(338, 192);
+            this.panel4.Location = new System.Drawing.Point(330, 192);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(282, 320);
             this.panel4.TabIndex = 82;
@@ -322,7 +365,7 @@
             this.panel5.Controls.Add(this.button8);
             this.panel5.Controls.Add(this.button3);
             this.panel5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel5.Location = new System.Drawing.Point(652, 194);
+            this.panel5.Location = new System.Drawing.Point(648, 192);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(282, 317);
             this.panel5.TabIndex = 83;
@@ -360,7 +403,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(14, 557);
+            this.button4.Location = new System.Drawing.Point(330, 577);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 84;
@@ -371,7 +414,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(96, 557);
+            this.button5.Location = new System.Drawing.Point(412, 577);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 85;
@@ -379,19 +422,6 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click_2);
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(29, 269);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(223, 35);
-            this.button19.TabIndex = 7;
-            this.button19.Text = "Devolución";
-            this.toolTip1.SetToolTip(this.button19, "Lista Compras\r\nEsta sección sirve para:\r\n\t- Mostrar por boleta, todas las cargas " +
-        "de mercadería\r\n                - Imprimir boleta de compra\r\n                - An" +
-        "ular boleta de compra \r\n");
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // Index
             // 
@@ -448,6 +478,8 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
     }
 }
 

@@ -52,8 +52,6 @@ namespace E_Shop
         public void RestarPrecio(double precio) { this.precio -= precio; }
         public void RestarCosto(double costo) { this.costo -= costo; }
 
-
-
         static public bool Crear(Producto x) {
 
             if (ProductoValidador.CrearProducto(x)) {
@@ -250,9 +248,35 @@ namespace E_Shop
                     x[i].Costo,
                     x[i].Precio,
                     x[i].Precio2,
-                    x[i].Precio3
+                    x[i].Precio3,
+                    x[i].Costo* x[i].Cantidad
                     );
                 if (x[i].Cantidad<=x[i].CantidadEstandar) {
+                    y.Rows[i].DefaultCellStyle.BackColor = Color.Turquoise;
+                }
+            }
+
+        }
+        static public void MostrarDataGrid2(ref DataGridView y)
+        {
+            y.Rows.Clear();
+            List<Producto> x = Producto.Buscar();
+            for (int i = 0; i < x.Count(); i++)
+            {
+                y.Rows.Add(
+                    x[i].Codigo,
+                    x[i].Nombre,
+                    x[i].Descripcion,
+                      x[i].Bulto,
+                    x[i].Cantidad,
+                    x[i].CantidadEstandar,
+                    "--",
+                    x[i].Precio,
+                    x[i].Precio2,
+                    x[i].Precio3
+                    );
+                if (x[i].Cantidad <= x[i].CantidadEstandar)
+                {
                     y.Rows[i].DefaultCellStyle.BackColor = Color.Turquoise;
                 }
             }

@@ -24,6 +24,9 @@ namespace E_Shop
         public string Pagos { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\pgs.txt"; } }
         public string RemitoCompras { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\cmprs.txt"; } }
         public string RemitoProducciones { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\prcns.txt"; } }
+        public string RemitoDevoluciones { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\dvlc.txt"; } }
+        public string RemitoEgresos { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\egrs.txt"; } }
+        public string RemitoIngresos{ get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\igrs.txt"; } }
 
         public string RemitoVentas { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\vnts.txt"; } }
         public string Clientes { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\clnts.txt"; } }
@@ -46,6 +49,7 @@ namespace E_Shop
         public string Tra { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\ArchivoTra.xml"; } }
 
         public string TraCms { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\MiLoginTicketRequest.xml.cms"; } }
+        public string BandBorrado { get { return @"C:\\Users\\" + user + "\\OneDrive\\SetData\\" + space + "\\bandborrado.txt"; } }
 
     }
 }

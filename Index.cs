@@ -30,14 +30,27 @@ namespace E_Shop
         private void button1_Click(object sender, EventArgs e)
         {
             
-            CargarRemitoVenta n = new CargarRemitoVenta(Xusuario,ref y, new RemitoVenta());
-            n.Show();
+            
+            switch (Xusuario.Tipo.ToString()) {
+                case "1": { new CargarRemitoVenta(Xusuario, ref y, new RemitoVenta()).Show(); break; }
+                case "2": { break; }
+                case "3": { new CargarRemitoEgreso(Xusuario, ref y, new RemitoEgreso()).Show(); break; }
+            }
+
         }
         //cargar compra
         private void button2_Click(object sender, EventArgs e)
         {
-            CargarRemitoCompra n = new CargarRemitoCompra(Xusuario, ref y, new RemitoCompra());
-            n.Show();
+           
+
+            switch (Xusuario.Tipo.ToString())
+            {
+                case "1": { new CargarRemitoCompra(Xusuario, ref y, new RemitoCompra()).Show(); break; }
+                case "2": { break; }
+                case "3": { 
+                        new CargarRemitoIngreso(Xusuario, ref y, new RemitoIngreso()).Show();
+                        break; }
+            }
         }
         // cargar cliente
         private void button6_Click(object sender, EventArgs e)
@@ -89,13 +102,11 @@ namespace E_Shop
             ListaCompras n = new ListaCompras(Xusuario);
             n.Show();
         }
-
         private void button11_Click(object sender, EventArgs e)
         {
             CargarProducto n = new CargarProducto(Xusuario, ref y);
             n.Show();
         }
-
         private void button12_Click(object sender, EventArgs e)
         {
              Usuario d = Usuario.BuscarPorNombre(textBox1.Text);
@@ -104,19 +115,26 @@ namespace E_Shop
 
                     switch (c.Tipo) {
                         case 1: {
-                                panel1.Visible = panel4.Visible = panel5.Visible = true;
+                            button2.Visible = button10.Visible = button19.Visible =
+                               button3.Visible = button13.Visible = button7.Visible = button14.Visible = true;
+                            panel1.Visible = panel4.Visible = panel5.Visible = true;
                                 button3.Visible = button8.Visible = true;
                                 break;
                             }
                         case 2:
                             {
                                 panel1.Visible = panel4.Visible = panel5.Visible = true;
-                                button3.Visible = button8.Visible = false;
+                            button2.Visible = button10.Visible = button19.Visible =
+                                button3.Visible = button13.Visible = button7.Visible = button14.Visible = false;
+                            button3.Visible = button8.Visible = false;
+
                                 break;
                             }
                         case 3:
-                            {
-                                panel1.Visible = panel4.Visible  = true;
+                        {
+                            button9.Visible = button10.Visible = button19.Visible =
+                                button3.Visible = button13.Visible = button7.Visible = button14.Visible = false;
+                              panel1.Visible = panel4.Visible  = true;
                                 break;
                             }
 
@@ -131,17 +149,14 @@ namespace E_Shop
 
                 }   
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar==13) { textBox2.Focus(); }
         }
-
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13) { button12.Focus(); }
@@ -180,6 +195,25 @@ namespace E_Shop
         private void Index_Load(object sender, EventArgs e)
         {
             panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+
+             if (DateTime.Now.DayOfWeek==DayOfWeek.Monday) {
+
+                // cerear cuentas de gastos
+                if (Pago.LeerBorrado()==false) { 
+                    
+                    Pago.CerearCuentas("3.3.3");
+                    Pago.EscribirBorrado(true);
+                }
+                
+            }
+            else
+            {
+                // bandera de borrado false
+                Pago.EscribirBorrado(false);
+            }
+
+            
+          //  new Form1().Show();
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -252,7 +286,17 @@ namespace E_Shop
 
         private void button19_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("proximamente disponible");
+            new ListaDevolucion(Xusuario).Show();
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            new ListaIngresos(Xusuario).Show();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            new ListaEgresos(Xusuario).Show();
         }
     }
 }

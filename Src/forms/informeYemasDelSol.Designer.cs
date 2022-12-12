@@ -51,6 +51,17 @@
             this.label65 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.des = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preci = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label94 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -77,6 +88,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -152,7 +164,7 @@
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel3.Location = new System.Drawing.Point(497, 178);
+            this.panel3.Location = new System.Drawing.Point(378, 178);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(269, 209);
             this.panel3.TabIndex = 81;
@@ -223,7 +235,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(384, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(265, 209);
             this.dataGridView1.TabIndex = 134;
             // 
             // Prd
@@ -310,6 +322,10 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.label10);
+            this.panel8.Controls.Add(this.label8);
+            this.panel8.Controls.Add(this.label7);
+            this.panel8.Controls.Add(this.dataGridView6);
             this.panel8.Controls.Add(this.label94);
             this.panel8.Controls.Add(this.listBox2);
             this.panel8.Controls.Add(this.label4);
@@ -317,8 +333,113 @@
             this.panel8.Controls.Add(this.listBox1);
             this.panel8.Location = new System.Drawing.Point(12, 374);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(243, 800);
+            this.panel8.Size = new System.Drawing.Size(295, 800);
             this.panel8.TabIndex = 142;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label10.Location = new System.Drawing.Point(7, 590);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 18);
+            this.label10.TabIndex = 151;
+            this.label10.Text = "Total: ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label8.Location = new System.Drawing.Point(7, 572);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(79, 18);
+            this.label8.TabIndex = 150;
+            this.label8.Text = "Cliente: ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label7.Location = new System.Drawing.Point(7, 554);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 18);
+            this.label7.TabIndex = 149;
+            this.label7.Text = "Vendedor";
+            // 
+            // dataGridView6
+            // 
+            this.dataGridView6.AllowUserToAddRows = false;
+            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Articulo,
+            this.des,
+            this.bult,
+            this.cnt,
+            this.preci,
+            this.imp});
+            this.dataGridView6.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView6.Location = new System.Drawing.Point(7, 611);
+            this.dataGridView6.Name = "dataGridView6";
+            this.dataGridView6.RowHeadersVisible = false;
+            this.dataGridView6.Size = new System.Drawing.Size(272, 186);
+            this.dataGridView6.TabIndex = 148;
+            // 
+            // Codigo
+            // 
+            this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 89;
+            // 
+            // Articulo
+            // 
+            this.Articulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Articulo.HeaderText = "Articulo";
+            this.Articulo.Name = "Articulo";
+            this.Articulo.ReadOnly = true;
+            this.Articulo.Width = 95;
+            // 
+            // des
+            // 
+            this.des.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.des.HeaderText = "desc";
+            this.des.Name = "des";
+            this.des.ReadOnly = true;
+            this.des.Visible = false;
+            // 
+            // bult
+            // 
+            this.bult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.bult.HeaderText = "Bulto";
+            this.bult.Name = "bult";
+            this.bult.ReadOnly = true;
+            this.bult.Width = 76;
+            // 
+            // cnt
+            // 
+            this.cnt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.cnt.HeaderText = "Cantidad";
+            this.cnt.Name = "cnt";
+            this.cnt.ReadOnly = true;
+            this.cnt.Width = 106;
+            // 
+            // preci
+            // 
+            this.preci.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.preci.HeaderText = "Precio";
+            this.preci.Name = "preci";
+            this.preci.ReadOnly = true;
+            this.preci.Width = 82;
+            // 
+            // imp
+            // 
+            this.imp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.imp.HeaderText = "Importe";
+            this.imp.Name = "imp";
+            this.imp.ReadOnly = true;
+            this.imp.Width = 98;
             // 
             // label94
             // 
@@ -338,8 +459,9 @@
             this.listBox2.ItemHeight = 18;
             this.listBox2.Location = new System.Drawing.Point(3, 313);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(229, 468);
+            this.listBox2.Size = new System.Drawing.Size(276, 234);
             this.listBox2.TabIndex = 146;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -413,7 +535,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(384, 209);
+            this.dataGridView2.Size = new System.Drawing.Size(265, 209);
             this.dataGridView2.TabIndex = 143;
             // 
             // dataGridViewTextBoxColumn2
@@ -473,7 +595,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(136, 209);
+            this.dataGridView3.Size = new System.Drawing.Size(17, 209);
             this.dataGridView3.TabIndex = 145;
             // 
             // dataGridViewTextBoxColumn6
@@ -509,7 +631,7 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersVisible = false;
             this.dataGridView4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView4.Size = new System.Drawing.Size(170, 209);
+            this.dataGridView4.Size = new System.Drawing.Size(51, 209);
             this.dataGridView4.TabIndex = 146;
             // 
             // dataGridViewTextBoxColumn7
@@ -533,7 +655,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(461, 726);
+            this.label6.Location = new System.Drawing.Point(342, 726);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 18);
             this.label6.TabIndex = 148;
@@ -551,7 +673,7 @@
             this.dataGridView5.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn9});
-            this.dataGridView5.Location = new System.Drawing.Point(461, 747);
+            this.dataGridView5.Location = new System.Drawing.Point(342, 747);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersVisible = false;
             this.dataGridView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -580,13 +702,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(948, 746);
+            this.ClientSize = new System.Drawing.Size(948, 881);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.dataGridView5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.label68);
@@ -601,6 +722,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "informeYemasDelSol";
@@ -612,6 +734,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
@@ -668,5 +791,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Articulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn des;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cnt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preci;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imp;
     }
 }

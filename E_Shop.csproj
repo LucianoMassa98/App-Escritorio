@@ -158,6 +158,12 @@
     <Compile Include="Src\forms\CargarRemitoCompra.Designer.cs">
       <DependentUpon>CargarRemitoCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\CargarRemitoIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\CargarRemitoIngreso.Designer.cs">
+      <DependentUpon>CargarRemitoIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\CargarRemitoProduccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,12 @@
     </Compile>
     <Compile Include="Src\forms\CargarRemitoRegistradora.Designer.cs">
       <DependentUpon>CargarRemitoRegistradora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\CargarRemitoEgreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\CargarRemitoEgreso.Designer.cs">
+      <DependentUpon>CargarRemitoEgreso.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\forms\CargarRemitoVenta.cs">
       <SubType>Form</SubType>
@@ -193,6 +205,12 @@
     </Compile>
     <Compile Include="Src\forms\ConvertidorBD.Designer.cs">
       <DependentUpon>ConvertidorBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\forms\ImpirmirCodigoBarra.cs">
       <SubType>Form</SubType>
@@ -223,6 +241,24 @@
     </Compile>
     <Compile Include="Src\forms\ListaCompras.Designer.cs">
       <DependentUpon>ListaCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\ListaDevoluciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ListaDevoluciones.Designer.cs">
+      <DependentUpon>ListaDevoluciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\ListaIngresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ListaIngresos.Designer.cs">
+      <DependentUpon>ListaIngresos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\ListaEgresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\ListaEgresos.Designer.cs">
+      <DependentUpon>ListaEgresos.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\forms\ListaVentas.cs">
       <SubType>Form</SubType>
@@ -260,6 +296,18 @@
     <Compile Include="Src\forms\seleccionaPago.Designer.cs">
       <DependentUpon>seleccionaPago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\seleccionarPagoIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\seleccionarPagoIngreso.Designer.cs">
+      <DependentUpon>seleccionarPagoIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Src\forms\seleccionarCobroEgreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\seleccionarCobroEgreso.Designer.cs">
+      <DependentUpon>seleccionarCobroEgreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\seleccionarCobro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,12 +336,15 @@
     <Compile Include="Src\services\PagoService.cs" />
     <Compile Include="Src\services\ProductoService.cs" />
     <Compile Include="Src\services\ProveedorService.cs" />
+    <Compile Include="Src\services\RemitoIngreso.cs" />
     <Compile Include="Src\services\RemitoGasto.cs" />
     <Compile Include="Src\services\RemitoCobroCliente.cs" />
     <Compile Include="Src\services\RemitoCompraService.cs" />
     <Compile Include="Src\services\RemitoPagoProveedor.cs" />
     <Compile Include="Src\services\RemitoProduccionService.cs" />
     <Compile Include="Src\services\RemitoRegistradoraService.cs" />
+    <Compile Include="Src\services\RemitoDevolucionService.cs" />
+    <Compile Include="Src\services\RemitoEgreso.cs" />
     <Compile Include="Src\services\RemitoVentaService.cs" />
     <Compile Include="Src\services\UsuarioService.cs" />
     <Compile Include="Src\validators\ClienteValidador.cs" />
@@ -301,12 +352,15 @@
     <Compile Include="Src\validators\PagoValidator.cs" />
     <Compile Include="Src\validators\ProductoValidador.cs" />
     <Compile Include="Src\validators\ProveedorValidator.cs" />
+    <Compile Include="Src\validators\RemitoIngresoValidador.cs" />
     <Compile Include="Src\validators\RemitoGastoValidador.cs" />
     <Compile Include="Src\validators\RemitoCobroClienteValidador.cs" />
     <Compile Include="Src\validators\RemitoCompraValidador.cs" />
     <Compile Include="Src\validators\RemitoPagoProveedorValidador.cs" />
     <Compile Include="Src\validators\RemitoProduccionValidator.cs" />
     <Compile Include="Src\validators\RemitoRegistradoraValidador.cs" />
+    <Compile Include="Src\validators\RemitoDevolucionValidador.cs" />
+    <Compile Include="Src\validators\RemitoEgresoValidador.cs" />
     <Compile Include="Src\validators\RemitoVentaValidador.cs" />
     <Compile Include="Src\validators\UsuarioValidator.cs" />
     <EmbeddedResource Include="Index.resx">
@@ -349,11 +403,17 @@
     <EmbeddedResource Include="Src\forms\CargarRemitoCompra.resx">
       <DependentUpon>CargarRemitoCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\CargarRemitoIngreso.resx">
+      <DependentUpon>CargarRemitoIngreso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarRemitoProduccion.resx">
       <DependentUpon>CargarRemitoProduccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarRemitoRegistradora.resx">
       <DependentUpon>CargarRemitoRegistradora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\CargarRemitoEgreso.resx">
+      <DependentUpon>CargarRemitoEgreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\CargarRemitoVenta.resx">
       <DependentUpon>CargarRemitoVenta.cs</DependentUpon>
@@ -367,6 +427,9 @@
     <EmbeddedResource Include="Src\forms\ConvertidorBD.resx">
       <DependentUpon>ConvertidorBD.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ImpirmirCodigoBarra.resx">
       <DependentUpon>ImpirmirCodigoBarra.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,6 +441,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ListaCompras.resx">
       <DependentUpon>ListaCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ListaDevoluciones.resx">
+      <DependentUpon>ListaDevoluciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ListaIngresos.resx">
+      <DependentUpon>ListaIngresos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\ListaEgresos.resx">
+      <DependentUpon>ListaEgresos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\ListaVentas.resx">
       <DependentUpon>ListaVentas.cs</DependentUpon>
@@ -396,6 +468,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\seleccionaPago.resx">
       <DependentUpon>seleccionaPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\seleccionarPagoIngreso.resx">
+      <DependentUpon>seleccionarPagoIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\seleccionarCobroEgreso.resx">
+      <DependentUpon>seleccionarCobroEgreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\seleccionarCobro.resx">
       <DependentUpon>seleccionarCobro.cs</DependentUpon>

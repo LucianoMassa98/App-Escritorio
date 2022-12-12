@@ -38,13 +38,23 @@ namespace E_Shop
             double sumPasivo = Pago.SumarImportes(cuentaPasivos);
 
 
-            label1.Text = "Patrimonio Neto: $" + (sumActivo + sumPasivo);
+            double total = sumActivo + sumPasivo;
+            label1.Text = "Patrimonio Neto: $" + total;
             label2.Text = "Activos: $" + sumActivo;
             label3.Text = "Pasivos: $" + sumPasivo;
 
-            label5.Text = "Ruly: %"+Pago.BuscarPorCodigo("5.1").Importe;
-            label6.Text = "Marco: %" + Pago.BuscarPorCodigo("5.2").Importe;
-            label7.Text = "Gonzalo: %" + Pago.BuscarPorCodigo("5.3").Importe;
+            double por1 = Pago.BuscarPorCodigo("5.1").Importe;
+            label5.Text = "Ruly: %"+ por1;
+            label10.Text = "$"+((por1*total)/100);
+            double por2 = Pago.BuscarPorCodigo("5.2").Importe;
+            label6.Text = "Marco: %" + por2;
+            label9.Text = "$" + ((por2 * total) / 100);
+            double por3 = Pago.BuscarPorCodigo("5.3").Importe;
+            label7.Text = "Gonzalo: %" + por3;
+            label8.Text = "$" + ((por3 * total) / 100);
+
+
+
         }
 
     }
