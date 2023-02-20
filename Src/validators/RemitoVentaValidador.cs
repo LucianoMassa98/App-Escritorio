@@ -25,9 +25,9 @@ namespace E_Shop
             if (x.ListaProdutos.Count() == 0) {
                 MessageBox.Show("Falta productos");
                 return false; }
-            if(Math.Round(x.TotalVenta()) !=Math.Round(x.TotalPago()))
+            if(x.TotalVenta().ToString() != x.TotalPago().ToString())
             {
-                MessageBox.Show("Falta cargar cobros "+ x.TotalVenta()+" - "+x.TotalPago());
+                MessageBox.Show("Falta cargar cobros *"+ x.TotalVenta()+" - "+x.TotalPago());
                 return false;
             }
 
