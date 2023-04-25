@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace E_Shop
@@ -188,8 +188,8 @@ namespace E_Shop
         //imprimir codigo barras
         private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox10.Text != "")
-                new ImpirmirCodigoBarra(textBox5.Text, CodigoBarra.Generar(textBox10.Text)).Show();
+            //if (textBox10.Text != "")
+          //      new ImpirmirCodigoBarra(textBox5.Text, CodigoBarra.Generar(textBox10.Text)).Show();
         }
 
         private void CargarProducto_Load(object sender, EventArgs e)

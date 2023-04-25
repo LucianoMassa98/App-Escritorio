@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
@@ -471,7 +471,7 @@ namespace E_Shop
             //Usaremos un código que nos proporciona Microsoft. https://support.microsoft.com/es-es/kb/322091
 
             RawPrinterHelper.SendStringToPrinter(impresora, linea.ToString()); //Imprime texto.
-            linea.Clear();//Al cabar de imprimir limpia la linea de todo el texto agregado.
+           // linea.Clear();//Al cabar de imprimir limpia la linea de todo el texto agregado.
         }
     }
 

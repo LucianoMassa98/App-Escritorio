@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -255,7 +254,7 @@ namespace E_Shop
         ServiceReferenceWSAA.loginCmsRequest();
         ServiceReferenceWSAA.loginCmsResponse();
         ServiceReferenceWSAA.LoginFault();
-        */
+    
             try
             {
                 StreamReader p = new StreamReader(new Direcciones().TraCms);
@@ -271,6 +270,7 @@ namespace E_Shop
             {
                 MessageBox.Show(err.ToString());
             }
+                */
         }
 
         private void button17_Click_1(object sender, EventArgs e)
