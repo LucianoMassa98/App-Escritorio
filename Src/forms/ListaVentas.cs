@@ -229,7 +229,7 @@ namespace E_Shop
 
         private void ListaVentas_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

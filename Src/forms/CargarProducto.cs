@@ -104,7 +104,7 @@ namespace E_Shop
                 //Descipcion
                 textBox6.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
                 //bulto
-                textBox11.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+               // textBox11.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 //cantidad
                 textBox7.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
                 //cantida estandar
@@ -116,7 +116,7 @@ namespace E_Shop
                 //Venta2
                 textBox12.Text = dataGridView1.Rows[i].Cells[8].Value.ToString();
                 //Venta3
-                textBox13.Text = dataGridView1.Rows[i].Cells[9].Value.ToString();
+                //textBox13.Text = dataGridView1.Rows[i].Cells[9].Value.ToString();
 
             }
             catch (Exception) { }
@@ -133,7 +133,7 @@ namespace E_Shop
             try
             {
                 //cantidad
-                upProducto.Bulto = double.Parse(textBox11.Text);
+                //upProducto.Bulto = double.Parse(textBox11.Text);
                 //cantidad
                 upProducto.Cantidad = double.Parse(textBox7.Text);
                 //cantidad estandar
@@ -145,7 +145,7 @@ namespace E_Shop
                 //venta
                 upProducto.Precio2 = double.Parse(textBox12.Text);
                 //venta
-                upProducto.Precio3 = double.Parse(textBox13.Text);
+                //upProducto.Precio3 = double.Parse(textBox13.Text);
 
                 Producto.Actualizar(textBox10.Text, upProducto);
                 if (xUsuario.Tipo != 1)
@@ -194,7 +194,7 @@ namespace E_Shop
 
         private void CargarProducto_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)

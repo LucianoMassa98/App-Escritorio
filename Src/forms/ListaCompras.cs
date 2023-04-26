@@ -126,7 +126,7 @@ namespace E_Shop
 
         private void ListaCompras_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void button6_Click(object sender, EventArgs e)

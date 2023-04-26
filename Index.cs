@@ -112,35 +112,9 @@ namespace E_Shop
              Usuario c = Usuario.BuscarPorCodigo(textBox2.Text);
              if ((d!=null)&&(c != null)&&(d.Nombre == c.Nombre)) {
 
-                    switch (c.Tipo) {
-                        case 1: {
-                            button2.Visible = button10.Visible = button19.Visible =
-                               button3.Visible = button13.Visible = button7.Visible = button14.Visible = true;
-                            panel1.Visible = panel4.Visible = panel5.Visible = true;
-                                button3.Visible = button8.Visible = true;
-                                break;
-                            }
-                        case 2:
-                            {
-                                panel1.Visible = panel4.Visible = panel5.Visible = true;
-                            button2.Visible = button10.Visible = button19.Visible =
-                                button3.Visible = button13.Visible = button7.Visible = button14.Visible = false;
-                            button3.Visible = button8.Visible = false;
-
-                                break;
-                            }
-                        case 3:
-                        {
-                            button9.Visible = button10.Visible = button19.Visible =
-                                button3.Visible = button13.Visible = button7.Visible = button14.Visible = false;
-                              panel1.Visible = panel4.Visible  = true;
-                                break;
-                            }
 
 
-                    }
-
-
+                panel1.Visible = true;
                     Xusuario = c;
                     textBox1.Enabled = textBox2.Enabled = false;
                     button12.Visible = false;
@@ -179,7 +153,7 @@ namespace E_Shop
             textBox1.Enabled = textBox2.Enabled = true;
             button12.Visible = true;
             button15.Visible = false;
-            panel1.Visible = panel4.Visible = panel5.Visible = false;
+            panel1.Visible  = false;
             textBox1.Text = textBox2.Text = "";
 
 
@@ -193,7 +167,6 @@ namespace E_Shop
 
         private void Index_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
 
              if (DateTime.Now.DayOfWeek==DayOfWeek.Monday) {
 
@@ -297,6 +270,11 @@ namespace E_Shop
         private void button20_Click(object sender, EventArgs e)
         {
             new ListaEgresos(Xusuario).Show();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
