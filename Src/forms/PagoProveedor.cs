@@ -13,13 +13,11 @@ namespace E_Shop
     public partial class PagoProveedor : Form
     {
         Usuario xUsuario;
-        Form FormularioAnterior;
         RemitoPagoProveedor RemitoX;
-        public PagoProveedor(object x, ref Form y)
+        public PagoProveedor(object x)
         {
             InitializeComponent();
             xUsuario = (Usuario)x;
-            FormularioAnterior = y;
             LoadComboBox();
             RemitoX = new RemitoPagoProveedor();
             RemitoX.Emisor = xUsuario.Nombre;
@@ -37,29 +35,7 @@ namespace E_Shop
         //guardar pago
         private void button3_Click(object sender, EventArgs e)
         {
-            try {
-                double imp = double.Parse(textBox1.Text);
-                if (imp>0)
-                 {
-              
-                RemitoX.Pagos[0].Importe = imp;
-                    RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
-                if (RemitoPagoProveedor.Crear(RemitoX))
-                {
-                    NuevoPago();
-                }
-                else
-                {
-                    new Alert("No se pudo 'crear' nuevo pago").Show();
-
-                }
-                }
-                else
-                {
-                    new Alert("El importe debe ser mayor a cero").Show();
-                }
-            }
-            catch (Exception) { new Alert("Hay Campos Vacios").Show(); }
+           
         }
         //seleccionar tipo de pago
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,7 +68,7 @@ namespace E_Shop
         // cancelar pago a proveedor
         private void button4_Click(object sender, EventArgs e)
         {
-            NuevoPago();
+          
         }
         public void NuevoPago()
         {
@@ -105,13 +81,45 @@ namespace E_Shop
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { button3.Focus(); }
+            if (e.KeyChar == 13) { button6.Focus(); }
         }
 
         private void PagoProveedor_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double imp = double.Parse(textBox1.Text);
+                if (imp > 0)
+                {
+
+                    RemitoX.Pagos[0].Importe = imp;
+                    RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
+                    if (RemitoPagoProveedor.Crear(RemitoX))
+                    {
+                        NuevoPago();
+                    }
+                    else
+                    {
+                        new Alert("No se pudo 'crear' nuevo pago").Show();
+
+                    }
+                }
+                else
+                {
+                    new Alert("El importe debe ser mayor a cero").Show();
+                }
+            }
+            catch (Exception) { new Alert("Hay Campos Vacios").Show(); }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NuevoPago();
         }
     }
 }

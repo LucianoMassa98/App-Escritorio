@@ -30,7 +30,7 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("2.1.1").Nombre);
-            comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
+            //comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
             comboBox4.Items.Add("aaa");
         }
         public void LoadLabel()
@@ -72,7 +72,7 @@ namespace E_Shop
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox4.Text=="aaa") {
-                button3.Focus();
+                button6.Focus();
             } else
             {
                 completeTextBox();
@@ -122,9 +122,7 @@ namespace E_Shop
 
         private void button4_Click(object sender, EventArgs e)
         {
-            anterior.Visible = true;
-            Form k = this;
-            k.Close();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -140,7 +138,25 @@ namespace E_Shop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount>0) {
+            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            anterior.Visible = true;
+            Form k = this;
+            k.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
                 RemitoX.Pagos = listaPagos;
                 if (RemitoCompra.Crear(RemitoX))
                 {
@@ -171,11 +187,6 @@ namespace E_Shop
                     k.Close();
                 }
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

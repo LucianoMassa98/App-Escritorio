@@ -57,7 +57,7 @@ namespace E_Shop
 
                     ListaDeProductos[i].Codigo + "*" +
                      ListaDeProductos[i].Nombre + "*" +
-                      ListaDeProductos[i].Bulto + "*" +
+                   //   ListaDeProductos[i].Bulto + "*" +
                       ListaDeProductos[i].Cantidad + "*" +
                        ListaDeProductos[i].Precio
 
@@ -135,7 +135,7 @@ namespace E_Shop
                     this.ListaProdutos[i].Codigo,
                     this.ListaProdutos[i].Nombre,
                     this.ListaProdutos[i].Descripcion,
-                     this.ListaProdutos[i].Bulto,
+                 //    this.ListaProdutos[i].Bulto,
                     this.ListaProdutos[i].Cantidad,
                     this.ListaProdutos[i].Precio,
                     this.ListaProdutos[i].ImportePrecio()
@@ -157,7 +157,7 @@ namespace E_Shop
                
                 ticket.TextoCentro(this.ListaDeProductos[i].Nombre);
                  ticket.TextoCentro(
-                     this.ListaDeProductos[i].Bulto + " - " +
+                   //  this.ListaDeProductos[i].Bulto + " - " +
                      this.ListaDeProductos[i].Cantidad + " - $" +
                      this.ListaDeProductos[i].Precio + " - $" +
                      this.ListaDeProductos[i].ImportePrecio()
@@ -412,15 +412,15 @@ namespace E_Shop
                 // leer lista de productos por cada boleta 
                 string[] ListaProductos = dat[4].Split('*');
 
-                for (int i = 0; i < ListaProductos.Count(); i = i + 5)
+                for (int i = 0; i < ListaProductos.Count(); i = i + 4)
                 {
 
                     Producto pr = new Producto();
                     pr.Codigo = ListaProductos[i];
                     pr.Nombre = ListaProductos[i + 1];
-                    pr.Bulto= double.Parse(ListaProductos[i + 2]);
-                    pr.Cantidad = double.Parse(ListaProductos[i + 3]);
-                    pr.Precio = double.Parse(ListaProductos[i + 4]);
+                    //pr.Bulto= double.Parse(ListaProductos[i + 2]);
+                    pr.Cantidad = double.Parse(ListaProductos[i + 2]);
+                    pr.Precio = double.Parse(ListaProductos[i + 3]);
                     newRemitoVenta.ListaDeProductos.Add(pr);
                     
                 }
@@ -524,7 +524,7 @@ namespace E_Shop
             List<Producto> Lista = new List<Producto>();
             for (int i = 0; i < x.Count(); i++)
             {
-
+                 
                 for (int j = 0; j < x[i].ListaProdutos.Count(); j++)
                 {
                     Producto.AgregarProductosVenta(ref Lista, x[i].ListaProdutos[j]);

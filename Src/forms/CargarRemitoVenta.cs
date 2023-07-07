@@ -36,7 +36,7 @@ namespace E_Shop
             // cargr codigos barra y nombres de productos
             Producto.CargarComboBox( ref comboBox4);
 
-            Proveedor.CargarComboBox(ref comboBox3);
+            //Proveedor.CargarComboBox(ref comboBox3);
             comboBox4.Items.Add("aaa");
             comboBox3.Focus();
       
@@ -49,7 +49,6 @@ namespace E_Shop
             comboBox3.Text = RemitoX.Receptor;
             comboBox3.Enabled = false;
             button4.Visible = false;
-            button5.Visible = true;
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $" + RemitoX.TotalVenta();
 
@@ -79,7 +78,7 @@ namespace E_Shop
                         MessageBox.Show("Cuidado, el precio esta por de bajo o igual al costo.");
                     }
 
-                        p.Bulto = double.Parse(textBox1.Text);
+                      //  p.Bulto = double.Parse(textBox1.Text);
                         p.Cantidad = double.Parse(textBox2.Text);
                     
 
@@ -88,13 +87,14 @@ namespace E_Shop
 
                             RemitoX.MostrarDataGrid(ref dataGridView1);
                             label1.Text = "Total: $" + RemitoX.TotalVenta();
-                            textBox5.Text=  comboBox4.Text = textBox2.Text = textBox1.Text="";
-                        checkBox1.Checked = false;
+                        textBox5.Text = comboBox4.Text = textBox2.Text = "";
+                            //textBox1.Text="";
+                       // checkBox1.Checked = false;
                             comboBox4.Focus();
                         }
 
                     }
-                    catch (Exception) { }
+                    catch (Exception err) { MessageBox.Show(err.ToString()); }
                 
             }
             
@@ -109,7 +109,7 @@ namespace E_Shop
                 comboBox3.Enabled = true;
                 RemitoX.MostrarDataGrid(ref dataGridView1);
                 label1.Text = "Total: $0000";
-                checkBox1.Checked = false;
+                //checkBox1.Checked = false;
                 comboBox3.Text =
                 comboBox4.Text =
                 textBox2.Text = "";
@@ -120,11 +120,10 @@ namespace E_Shop
 
         //fin cargar
         public void FinCarga() {
-            if (button5.Visible==true) {
-
+            
                 Form k = this;
                 k.Close();
-            }
+            
         
         }
         
@@ -169,8 +168,8 @@ namespace E_Shop
         }
         private void CargarRemitoVenta_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
-            checkBox1.Checked = false;
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //checkBox1.Checked = false;
         }
         // eliminar producto
         private void button2_Click(object sender, EventArgs e)
@@ -183,7 +182,7 @@ namespace E_Shop
 
                 RemitoX.EliminarProducto(dataGridView1.Rows[i].Cells[0].Value.ToString());
                 RemitoX.MostrarDataGrid(ref dataGridView1);
-                label1.Text = "Total: $" + RemitoX.TotalCosto();
+                label1.Text = "Total: $" + RemitoX.TotalVenta();
 
                
                 // selecciona tipo de pago 1
@@ -202,7 +201,7 @@ namespace E_Shop
         {
             if (comboBox3.Enabled == true)
             {
-                MessageBox.Show("Es necesario colocar cliente para empezar a cargar productos");
+                MessageBox.Show("Es necesario colocar cliente");
             }
             else
             {
@@ -222,25 +221,57 @@ namespace E_Shop
                                     case "1":
                                         {
                                             Producto p = Producto.BuscarPorNombre(comboBox4.Text);
-                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+                                            if (p == null) {
 
-                                            textBox5.Text = p.Precio.ToString();
+                                                p = Producto.BuscarPorCodigo(comboBox4.Text);
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(1).ToString();
+                                                AgregarProducto();
+                                            }
+                                            else
+                                            {
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(1).ToString();
+                                                textBox2.Focus();
+                                            }
+
+                                            
+                                            
+                                            
                                             break;
                                         }
                                     case "2":
                                         {
                                             Producto p = Producto.BuscarPorNombre(comboBox4.Text);
-                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text);
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(2).ToString();
+                                                AgregarProducto();
+                                            } else
+                                            {
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(2).ToString();
+                                                textBox2.Focus();
+                                            }
 
-                                            textBox5.Text = p.Precio2.ToString();
                                             break;
                                         }
                                     case "3":
                                         {
                                             Producto p = Producto.BuscarPorNombre(comboBox4.Text);
-                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
+                                            if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text);
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(3).ToString();
+                                                AgregarProducto();
 
-                                            textBox5.Text = p.Precio3.ToString();
+                                            }
+                                            else
+                                            {
+                                                textBox2.Text = "1";
+                                                textBox5.Text = p.CalcularPrecio(3).ToString();
+                                                textBox2.Focus();
+                                            }
+
                                             break;
                                         }
                                 }
@@ -251,13 +282,14 @@ namespace E_Shop
                                 Producto p = Producto.BuscarPorNombre(comboBox4.Text);
                                 if (p == null) { p = Producto.BuscarPorCodigo(comboBox4.Text); }
 
-                                textBox5.Text = p.Precio.ToString();
+                                textBox5.Text = p.CalcularPrecio(1).ToString();
+                                
                             }
 
 
 
 
-                            textBox1.Focus(); break;
+                            break;
                         }
                 }
             }
@@ -274,13 +306,9 @@ namespace E_Shop
         {
             if (e.KeyChar == 13) {
 
-                if (checkBox1.Checked==true) {
-                    textBox5.Focus();
-                }
-                else
-                {
+                
                     button1.Focus();
-                }
+                
             }
 
         }
@@ -292,8 +320,7 @@ namespace E_Shop
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form k = this;
-            k.Close();
+            
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -306,7 +333,12 @@ namespace E_Shop
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            textBox5.Enabled = checkBox1.Checked;
+            
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

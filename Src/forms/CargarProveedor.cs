@@ -27,55 +27,12 @@ namespace E_Shop
         // crear proveedor
         private void button1_Click(object sender, EventArgs e)
         {
-            Proveedor c = new Proveedor();
-            c.Nombre = textBox1.Text;
-            c.Tel = textBox2.Text;
-            c.Correo = textBox3.Text;
-            c.Direccion = textBox4.Text;
-
-            if (Proveedor.Crear(c))
-            {
-                // se creo correctamente y agregar al datagrid
-
-                Proveedor.MostrarDataGrid(ref dataGridView1);
-                textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = "";
-                textBox1.Focus();
-            }
-            else
-            {
-
-                // no se agrego corretamente el cliente
-            }
+          
         }
         //actualizar proveedor
         private void button3_Click(object sender, EventArgs e)
         {
-            Proveedor upProveedor= new Proveedor();
-            // codigo
-            //upCliente.Codigo = textBox10.Text;
-            //nombre
-            upProveedor.Nombre = textBox5.Text;
-            //telefono
-            upProveedor.Tel = textBox6.Text;
-            //correo
-            upProveedor.Correo = textBox7.Text;
-            //direccion
-            upProveedor.Direccion = textBox8.Text;
-            //saldo
-            try
-            {
-                upProveedor.Saldo = double.Parse(textBox9.Text);
-                Proveedor.Actualizar(textBox10.Text, upProveedor);
-                Proveedor.MostrarDataGrid(ref dataGridView1);
-
-
-
-            }
-            catch (Exception)
-            {
-
-                //Error
-            }
+         
 
         }
         // seleccionar proveedor
@@ -119,12 +76,12 @@ namespace E_Shop
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { button1.Focus(); }
+            
         }
 
         private void CargarProveedor_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -135,6 +92,59 @@ namespace E_Shop
         private void button2_Click(object sender, EventArgs e)
         {
             new ProductosProveedor(textBox10.Text).Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Proveedor c = new Proveedor();
+            c.Nombre = textBox1.Text;
+            c.Tel = textBox2.Text;
+            c.Correo = textBox3.Text;
+            c.Direccion = textBox4.Text;
+
+            if (Proveedor.Crear(c))
+            {
+                // se creo correctamente y agregar al datagrid
+
+                Proveedor.MostrarDataGrid(ref dataGridView1);
+                textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = "";
+                textBox1.Focus();
+            }
+            else
+            {
+
+                // no se agrego corretamente el cliente
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Proveedor upProveedor = new Proveedor();
+            // codigo
+            //upCliente.Codigo = textBox10.Text;
+            //nombre
+            upProveedor.Nombre = textBox5.Text;
+            //telefono
+            upProveedor.Tel = textBox6.Text;
+            //correo
+            upProveedor.Correo = textBox7.Text;
+            //direccion
+            upProveedor.Direccion = textBox8.Text;
+            //saldo
+            try
+            {
+                upProveedor.Saldo = double.Parse(textBox9.Text);
+                Proveedor.Actualizar(textBox10.Text, upProveedor);
+                Proveedor.MostrarDataGrid(ref dataGridView1);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                //Error
+            }
         }
     }
 }

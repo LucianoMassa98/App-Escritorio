@@ -40,25 +40,7 @@ namespace E_Shop
         //guardar Gasto
         private void button3_Click(object sender, EventArgs e)
         {
-            if (x.Fuente!=null && x.Razon!=null) {
-                try {
-                    x.Emisor = x.Receptor = user.Codigo;
-                    x.Fuente.Importe = double.Parse(textBox9.Text);
-                    x.Razon.Importe = double.Parse(textBox9.Text);
-                    x.FechaEmision = DateTime.Now.ToShortDateString();
-                    if (RemitoGasto.Crear(x))
-                    {
-                        vaciar();
-                    }
-                    else {
-                        MessageBox.Show("Ocurrio un problema para guardar el gasto");
-                    }
-                } catch (Exception err) { MessageBox.Show(err.ToString()); }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar Fuente y Razon");
-            }
+            
         }
         // seleccionar Fuente
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,12 +55,44 @@ namespace E_Shop
 
         private void button4_Click(object sender, EventArgs e)
         {
-            vaciar();
-           
+          
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            if (x.Fuente != null && x.Razon != null)
+            {
+                try
+                {
+                    x.Emisor = x.Receptor = user.Codigo;
+                    x.Fuente.Importe = double.Parse(textBox9.Text);
+                    x.Razon.Importe = double.Parse(textBox9.Text);
+                    x.FechaEmision = DateTime.Now.ToShortDateString();
+                    if (RemitoGasto.Crear(x))
+                    {
+                        vaciar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un problema para guardar el gasto");
+                    }
+                }
+                catch (Exception err) { MessageBox.Show(err.ToString()); }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar Fuente y Razon");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            vaciar();
 
         }
     }

@@ -7,14 +7,12 @@ namespace E_Shop
     public partial class CobroCliente : Form
     {
         Usuario xUsuario;
-        Form FormularioAnterior;
         RemitoCobroCliente RemitoX;
         
-        public CobroCliente(object x, ref Form y)
+        public CobroCliente(object x)
         {
             InitializeComponent();
             xUsuario = (Usuario)x;
-            FormularioAnterior = y;
             LoadComboBox();
             RemitoX = new RemitoCobroCliente();
             RemitoX.Emisor = xUsuario.Nombre;
@@ -33,43 +31,7 @@ namespace E_Shop
         //guardar cobro
         private void button3_Click(object sender, EventArgs e)
         {
-            double saldo = 0; double importe=0;
-            bool band = true;
-            try {
-                saldo = double.Parse(textBox9.Text);
-                importe = double.Parse(textBox1.Text);
-
-            } catch (Exception ) { band = false; }
-
-
-            if (band) {
-                if (saldo >= importe)
-                {
-                    if (RemitoX.Pagos.Count>0) {
-                        RemitoX.Pagos[0].Importe = importe;
-                        RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
-                        if (RemitoCobroCliente.Crear(RemitoX, "1.1.3"))
-                        {
-                            NuevoCobro();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo 'crear' nuevo pago");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Seleccionar medio de cobro");
-
-                    }
-                    
-                }
-                else
-                {
-                    MessageBox.Show("El importe debe ser menor o igual al saldo");    
-                }
-            }
-            else { MessageBox.Show("Los datos ingresados deben ser numéricos"); }
+           
             
         }
         //selecionar cliente por codigo
@@ -108,7 +70,7 @@ namespace E_Shop
         //cancelar cobro
         private void button4_Click(object sender, EventArgs e)
         {
-            NuevoCobro();
+           
         }
         //seleccionar tipo de pago
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,12 +81,11 @@ namespace E_Shop
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar==13) { button3.Focus(); }
+            if (e.KeyChar==13) { button6.Focus(); }
         }
 
         private void CobroCliente_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -135,6 +96,56 @@ namespace E_Shop
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            double saldo = 0; double importe = 0;
+            bool band = true;
+            try
+            {
+                saldo = double.Parse(textBox9.Text);
+                importe = double.Parse(textBox1.Text);
+
+            }
+            catch (Exception) { band = false; }
+
+
+            if (band)
+            {
+                if (saldo >= importe)
+                {
+                    if (RemitoX.Pagos.Count > 0)
+                    {
+                        RemitoX.Pagos[0].Importe = importe;
+                        RemitoX.FechaEmision = dateTimePicker1.Value.ToString("dd/MM/yyyy");
+                        if (RemitoCobroCliente.Crear(RemitoX, "1.1.3"))
+                        {
+                            NuevoCobro();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo 'crear' nuevo pago");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seleccionar medio de cobro");
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("El importe debe ser menor o igual al saldo");
+                }
+            }
+            else { MessageBox.Show("Los datos ingresados deben ser numéricos"); }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NuevoCobro();
         }
     }
 }

@@ -159,6 +159,16 @@ namespace E_Shop
 
         private void button7_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
             if (RemitosX.Count() > 0)
             {
 
@@ -171,9 +181,9 @@ namespace E_Shop
             }
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e)
         {
-
+            BorraRemito();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace E_Shop
     public partial class Index : Form
     {
         Usuario Xusuario;
-        Form y;
+        Form y,activeForm;
         public Index()
         {
             InitializeComponent();
@@ -25,15 +25,35 @@ namespace E_Shop
 
             
         }
+
+        private void openChildForm(Form childForm)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panel4.Controls.Add(childForm);
+            panel4.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
         // cargar venta
         private void button1_Click(object sender, EventArgs e)
         {
             
             
             switch (Xusuario.Tipo.ToString()) {
-                case "1": { new CargarRemitoVenta(Xusuario, ref y, new RemitoVenta()).Show(); break; }
+                case "1": {
+                        openChildForm(new CargarRemitoVenta(Xusuario, ref y, new RemitoVenta()));
+                        break; }
                 case "2": { break; }
-                case "3": { new CargarRemitoEgreso(Xusuario, ref y, new RemitoEgreso()).Show(); break; }
+                case "3": {
+                        openChildForm(new CargarRemitoEgreso(Xusuario, ref y, new RemitoEgreso())); break; }
             }
 
         }
@@ -44,31 +64,26 @@ namespace E_Shop
 
             switch (Xusuario.Tipo.ToString())
             {
-                case "1": { new CargarRemitoCompra(Xusuario, ref y, new RemitoCompra()).Show(); break; }
+                case "1": {
+                        openChildForm(new CargarRemitoCompra(Xusuario, ref y, new RemitoCompra()));
+                        break; }
                 case "2": { break; }
-                case "3": { 
-                        new CargarRemitoIngreso(Xusuario, ref y, new RemitoIngreso()).Show();
+                case "3": {
+                        openChildForm(new CargarRemitoIngreso(Xusuario, ref y, new RemitoIngreso()));
                         break; }
             }
         }
         // cargar cliente
         private void button6_Click(object sender, EventArgs e)
         {
-            CargarCliente n = new CargarCliente(Xusuario, ref y);
-            n.Show();
+            openChildForm(new CargarCliente(Xusuario, ref y));
         }
         //cargar proveedores
         private void button7_Click(object sender, EventArgs e)
         {
-            CargarProveedor n = new CargarProveedor(Xusuario, ref y);
-            n.Show();
+           
         }
-        //carga pagos
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CargarPago n = new CargarPago(Xusuario, ref y);
-            n.Show();
-        }
+        
         //cargarDescuento
         private void button4_Click(object sender, EventArgs e)
         {
@@ -77,11 +92,10 @@ namespace E_Shop
             new ConvertidorBD().Show();
 
         }
-        //cargar usuario
+        //cargar proveedor
         private void button8_Click(object sender, EventArgs e)
         {
-            CargarUsuario n = new CargarUsuario(Xusuario, ref y);
-            n.Show();
+            openChildForm(new CargarProveedor(Xusuario, ref y));
         }
         //consolidado ventas
         private void button5_Click(object sender, EventArgs e)
@@ -92,19 +106,17 @@ namespace E_Shop
         //lista de Ventas
         private void button9_Click(object sender, EventArgs e)
         {
-            ListaVentas n = new ListaVentas(Xusuario);
-           n.Show();
+            
+            openChildForm(new ListaVentas(Xusuario));
         }
         // lista compras
         private void button10_Click(object sender, EventArgs e)
         {
-            ListaCompras n = new ListaCompras(Xusuario);
-            n.Show();
+            openChildForm(new ListaCompras(Xusuario));
         }
         private void button11_Click(object sender, EventArgs e)
         {
-            CargarProducto n = new CargarProducto(Xusuario, ref y);
-            n.Show();
+            openChildForm(new CargarProducto(Xusuario, ref y));
         }
         private void button12_Click(object sender, EventArgs e)
         {
@@ -116,7 +128,7 @@ namespace E_Shop
 
                 panel1.Visible = true;
                     Xusuario = c;
-                    textBox1.Enabled = textBox2.Enabled = false;
+                   label2.Visible=textBox2.Visible= textBox1.Enabled = textBox2.Enabled = false;
                     button12.Visible = false;
                     button15.Visible = true;
 
@@ -134,34 +146,27 @@ namespace E_Shop
         {
             if (e.KeyChar == 13) { button12.Focus(); }
         }
-        // abrir cobro clientes
-        private void button13_Click(object sender, EventArgs e)
-        {
-            CobroCliente x = new CobroCliente(Xusuario,ref y);
-            x.Show();
-
-        }
-        //abrir pago proveedores
-        private void button14_Click(object sender, EventArgs e)
-        {
-            PagoProveedor x = new PagoProveedor(Xusuario, ref y);
-            x.Show();
-        }
+       
+        
+       
         //cerrar sesion
         private void button15_Click(object sender, EventArgs e)
         {
-            textBox1.Enabled = textBox2.Enabled = true;
+            label2.Visible = textBox2.Visible=textBox1.Enabled = textBox2.Enabled = true;
             button12.Visible = true;
             button15.Visible = false;
             panel1.Visible  = false;
             textBox1.Text = textBox2.Text = "";
+            activeForm.Close();
 
+            this.Close();
 
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
-            new informeYemasDelSol().Show();
+            
+            openChildForm(new informeYemasDelSol());
 
         }
 
@@ -270,6 +275,32 @@ namespace E_Shop
         private void button20_Click(object sender, EventArgs e)
         {
             new ListaEgresos(Xusuario).Show();
+        }
+
+        private void panel3_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button5_Click_3(object sender, EventArgs e)
+        {
+            openChildForm(new CargarPago(Xusuario));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openChildForm(new CobroCliente(Xusuario));
+        }
+
+        private void button4_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new PagoProveedor(Xusuario));
+
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            openChildForm(new CargarGatos(Xusuario));
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

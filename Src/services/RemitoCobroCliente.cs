@@ -248,7 +248,20 @@ namespace E_Shop
             p.Close(); p.Dispose();
             return true;
         }
+        static public List<Pago> Ingreso(List<RemitoCobroCliente> x)
+        {
+            List<Pago> lista = new List<Pago>();
+            double[] res = new double[8];
+            for (int i = 0; i < x.Count(); i++)
+            {
+                for (int j = 0; j < x[i].Pagos.Count(); j++)
+                {
+                    Pago.AgregarCuenta(ref lista, x[i].Pagos[j]);
+                }
 
+            }
+            return lista;
+        }
         static public List<RemitoCobroCliente> BuscarPorFecha(string fecheDesde, string fechaHasta)
         {
             List<RemitoCobroCliente> x = RemitoCobroCliente.Buscar();

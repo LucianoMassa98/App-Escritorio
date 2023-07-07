@@ -47,7 +47,7 @@ namespace E_Shop
 
                     ListaDeProductos[i].Codigo + "*" +
                      ListaDeProductos[i].Nombre + "*" +
-                      ListaDeProductos[i].Bulto + "*" +
+                      //ListaDeProductos[i].Bulto + "*" +
                       ListaDeProductos[i].Cantidad + "*" +
                        ListaDeProductos[i].Costo
 
@@ -98,7 +98,7 @@ namespace E_Shop
                     this.ListaProdutos[i].Codigo,
                     this.ListaProdutos[i].Nombre,
                     this.ListaProdutos[i].Descripcion,
-                     this.ListaProdutos[i].Bulto,
+                     //this.ListaProdutos[i].Bulto,
                     this.ListaProdutos[i].Cantidad,
                     this.ListaProdutos[i].Costo,
                     this.ListaProdutos[i].ImporteCosto()
@@ -120,7 +120,7 @@ namespace E_Shop
                
                 ticket.TextoCentro(this.ListaDeProductos[i].Nombre);
                  ticket.TextoCentro(
-                     this.ListaDeProductos[i].Bulto + " - " +
+                     //this.ListaDeProductos[i].Bulto + " - " +
                      this.ListaDeProductos[i].Cantidad + " - $" +
                      this.ListaDeProductos[i].Costo + " - $" +
                      this.ListaDeProductos[i].ImporteCosto()
@@ -264,9 +264,9 @@ namespace E_Shop
                     Producto pr = new Producto();
                     pr.Codigo = ListaProductos[i];
                     pr.Nombre = ListaProductos[i + 1];
-                    pr.Bulto= double.Parse(ListaProductos[i + 2]);
-                    pr.Cantidad = double.Parse(ListaProductos[i + 3]);
-                    pr.Costo = double.Parse(ListaProductos[i + 4]);
+                    //pr.Bulto= double.Parse(ListaProductos[i + 2]);
+                    pr.Cantidad = double.Parse(ListaProductos[i + 2]);
+                    pr.Costo = double.Parse(ListaProductos[i + 3]);
                     newRemito.ListaDeProductos.Add(pr);
                     
                 }

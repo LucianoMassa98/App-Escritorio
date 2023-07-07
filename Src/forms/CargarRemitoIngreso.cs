@@ -71,7 +71,7 @@ namespace E_Shop
 
                        
 
-                        p.Bulto = double.Parse(textBox1.Text);
+                        //p.Bulto = double.Parse(textBox1.Text);
                         p.Cantidad = double.Parse(textBox2.Text);
                     
 

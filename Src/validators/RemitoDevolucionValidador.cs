@@ -81,7 +81,7 @@ namespace E_Shop
 
             List<Producto> Stock = Producto.Buscar();
           
-            if (x.Bulto == 0) { return false; }
+           // if (x.Bulto == 0) { return false; }
             if (x.Cantidad == 0) { return false; }
 
             int i;

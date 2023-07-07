@@ -72,7 +72,7 @@ namespace E_Shop
                 i++;
                 newProducto.Nombre=lprd;
                 newProducto.Descripcion = "RubroX";
-                newProducto.Bulto = double.Parse(lblt);
+                //newProducto.Bulto = double.Parse(lblt);
                 newProducto.Cantidad = double.Parse(lcnt);
                 newProducto.Costo = double.Parse(lcost);
 

@@ -13,13 +13,11 @@ namespace E_Shop
     public partial class CargarPago : Form
     {
         Usuario xUsuario;
-        Form FormularioAnterior;
-        public CargarPago(object x, ref Form y)
+        public CargarPago(object x)
         {
             InitializeComponent();
             Pago.MostrarDataGrid(ref dataGridView1);
             xUsuario = (Usuario)x;
-            FormularioAnterior = y;
 
             if (xUsuario.Tipo != 1) { panel1.Visible = false; }
         }
@@ -62,21 +60,7 @@ namespace E_Shop
         // actualizar pago
         private void button3_Click(object sender, EventArgs e)
         {
-            Pago upPago = new Pago();
-            //nombre
-            upPago.Nombre = textBox6.Text;
-
-            try
-            { //cantidad
-                upPago.Importe = double.Parse(textBox7.Text);
-                
-
-                Pago.Actualizar(textBox5.Text, upPago);
-                Pago.MostrarDataGrid(ref dataGridView1);
-            }
-            catch (Exception)
-            {  //Error
-            }
+            
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -91,12 +75,30 @@ namespace E_Shop
 
         private void CargarPago_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Pago upPago = new Pago();
+            //nombre
+            upPago.Nombre = textBox6.Text;
+
+            try
+            { //cantidad
+                upPago.Importe = double.Parse(textBox7.Text);
+
+
+                Pago.Actualizar(textBox5.Text, upPago);
+                Pago.MostrarDataGrid(ref dataGridView1);
+            }
+            catch (Exception)
+            {  //Error
+            }
         }
     }
 }

@@ -145,7 +145,7 @@ namespace E_Shop
 
         private void CargarCliente_Load(object sender, EventArgs e)
         {
-            panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
+            //panel3.BackgroundImage = Image.FromFile(new Direcciones().Logo);
         }
 
         private void button2_Click_1(object sender, EventArgs e)

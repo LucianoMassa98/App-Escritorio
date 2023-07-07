@@ -48,3 +48,4 @@ C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarCobroEgreso.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.CargarRemitoIngreso.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.ListaIngresos.resources
 C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.seleccionarPagoIngreso.resources
+C:\Users\Luciano\E_Shop\obj\Debug\E_Shop.informeResultado.resources

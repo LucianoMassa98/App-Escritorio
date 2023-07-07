@@ -513,7 +513,7 @@
   <metadata name="Fabricante.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Cantidad.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Cnt.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="CantidadEst.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -525,42 +525,43 @@
   <metadata name="Precio.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="Precio2.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="precio3.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="CostoTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
+  <metadata name="Codigo.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Fabricante.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Cnt.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="CantidadEst.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Costo.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Precio.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Precio2.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="precio3.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="CostoTotal.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

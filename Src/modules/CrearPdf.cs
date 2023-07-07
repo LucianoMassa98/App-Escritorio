@@ -211,7 +211,7 @@ namespace E_Shop
 
             iTextSharp.text.Font StandarFont = new iTextSharp.text.Font(
                 iTextSharp.text.Font.FontFamily.HELVETICA,
-                8,
+                12,
                 iTextSharp.text.Font.NORMAL,
                 BaseColor.BLACK
                 );
@@ -225,114 +225,57 @@ namespace E_Shop
 
             //encabezado columnas
 
-            PdfPTable tableEjemplo = new PdfPTable(9);
-            tableEjemplo.WidthPercentage = 100;
+            PdfPTable tableEjemplo = new PdfPTable(2);
+            tableEjemplo.WidthPercentage = 60;
 
-            //configurando el titulo de las comunas
-            PdfPCell codigo = new PdfPCell(new Phrase("Código", StandarFont));
-            codigo.BorderWidth = 0;
-            codigo.BorderWidthBottom = 0.75f;
+         
 
             //configurando el titulo de las comunas
             PdfPCell producto = new PdfPCell(new Phrase("Producto", StandarFont));
             producto.BorderWidth = 0;
-            producto.BorderWidthBottom = 0.75f;
-
-            //configurando el titulo de las comunas
-            PdfPCell descri = new PdfPCell(new Phrase("Costo", StandarFont));
-            descri.BorderWidth = 0;
-            descri.BorderWidthBottom = 0.75f;
-
-
-            //configurando el titulo de las comunas
-            PdfPCell bulto = new PdfPCell(new Phrase("Bulto", StandarFont));
-            bulto.BorderWidth = 0;
-            bulto.BorderWidthBottom = 0.75f;
-
-            //configurando el titulo de las comunas
-            PdfPCell cnt = new PdfPCell(new Phrase("Cantidad", StandarFont));
-            cnt.BorderWidth = 0;
-            cnt.BorderWidthBottom = 0.75f;
+            producto.BorderWidthBottom = 2f;
 
 
 
             //configurando el titulo de las comunas
-            PdfPCell precio1 = new PdfPCell(new Phrase("Precio 1", StandarFont));
+            PdfPCell precio1 = new PdfPCell(new Phrase("Precio", StandarFont));
             precio1.BorderWidth = 0;
-            precio1.BorderWidthBottom = 0.75f;
-
-            PdfPCell precio2 = new PdfPCell(new Phrase("Precio 2", StandarFont));
-            precio2.BorderWidth = 0;
-            precio2.BorderWidthBottom = 0.75f;
-
-            PdfPCell precio3  = new PdfPCell(new Phrase("Precio 3", StandarFont));
-            precio3.BorderWidth = 0;
-            precio3.BorderWidthBottom = 0.75f;
+            precio1.BorderWidthBottom = 2f;
 
 
-            PdfPCell importe = new PdfPCell(new Phrase("Importe", StandarFont));
-            importe.BorderWidth = 0;
-            importe.BorderWidthBottom = 0.75f;
+
 
 
 
             //añadir las columnas a la tabla
 
-            tableEjemplo.AddCell(codigo);
+            
             tableEjemplo.AddCell(producto);
-            tableEjemplo.AddCell(descri);
-            tableEjemplo.AddCell(bulto);
-            tableEjemplo.AddCell(cnt);
             tableEjemplo.AddCell(precio1);
-            tableEjemplo.AddCell(precio2);
-            tableEjemplo.AddCell(precio3);
-            tableEjemplo.AddCell(importe);
             //agregando datos
 
             for (int i = 0; i < x.RowCount; i++)
             {
-                codigo = new PdfPCell(new Phrase("", StandarFont));
-                codigo.BorderWidth = 0;
-                codigo.BorderWidthBottom = 0.75f;
+
+                string cod = x.Rows[i].Cells[0].Value.ToString();
+
                 producto = new PdfPCell(new Phrase(x.Rows[i].Cells[1].Value.ToString(), StandarFont));
                 producto.BorderWidth = 0;
-                producto.BorderWidthBottom = 0.75f;
+                producto.BorderWidthBottom = 0.0001f;
 
-                descri = new PdfPCell(new Phrase(x.Rows[i].Cells[6].Value.ToString(), StandarFont));
-                descri.BorderWidth = 0;
-                descri.BorderWidthBottom = 0.75f;
+               
 
-                bulto = new PdfPCell(new Phrase(x.Rows[i].Cells[3].Value.ToString(), StandarFont));
-                bulto.BorderWidth = 0;
-                bulto.BorderWidthBottom = 0.75f;
-
-                cnt = new PdfPCell(new Phrase(x.Rows[i].Cells[4].Value.ToString(), StandarFont));
-                cnt.BorderWidth = 0;
-                cnt.BorderWidthBottom = 0.75f;
-
-                precio1 = new PdfPCell(new Phrase(x.Rows[i].Cells[7].Value.ToString(), StandarFont));
+                precio1 = new PdfPCell(new Phrase(
+                    Producto.BuscarPorCodigo(cod).CalcularPrecio(1).ToString()
+                    , StandarFont));
                 precio1.BorderWidth = 0;
-                precio1.BorderWidthBottom = 0.75f;
-                precio2 = new PdfPCell(new Phrase(x.Rows[i].Cells[8].Value.ToString(), StandarFont));
-                precio2.BorderWidth = 0;
-                precio2.BorderWidthBottom = 0.75f;
-                precio3 = new PdfPCell(new Phrase(x.Rows[i].Cells[9].Value.ToString(), StandarFont));
-                precio3.BorderWidth = 0;
-                precio3.BorderWidthBottom = 0.75f;
+                precio1.BorderWidthBottom = 0.0001f;
+                
 
-                importe = new PdfPCell(new Phrase(x.Rows[i].Cells[10].Value.ToString(), StandarFont));
-                importe.BorderWidth = 0;
-                importe.BorderWidthBottom = 0.75f;
-
-                tableEjemplo.AddCell(codigo);
+                
+;
                 tableEjemplo.AddCell(producto);
-                tableEjemplo.AddCell(descri);
-                tableEjemplo.AddCell(bulto);
-                tableEjemplo.AddCell(cnt);
                 tableEjemplo.AddCell(precio1);
-                tableEjemplo.AddCell(precio2);
-                tableEjemplo.AddCell(precio3);
-                tableEjemplo.AddCell(importe);
             }
             doc.Add(Chunk.NEWLINE);
             doc.Add(tableEjemplo);

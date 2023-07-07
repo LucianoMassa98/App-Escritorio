@@ -41,7 +41,7 @@ namespace E_Shop
             textBox4.Text = RemitoX.Emisor;
             comboBox3.Text = RemitoX.Receptor;
             comboBox3.Enabled = false;
-            button4.Visible = false;
+            
             button5.Visible = true;
             RemitoX.MostrarDataGrid(ref dataGridView1);
             label1.Text = "Total: $" + RemitoX.TotalCosto();
@@ -65,7 +65,7 @@ namespace E_Shop
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox4.Text == "aaa") { button3.Focus(); }
+            if (comboBox4.Text == "aaa") {  }
             else
             {
                 Producto n = Producto.BuscarPorNombre(comboBox4.Text);
@@ -81,6 +81,7 @@ namespace E_Shop
                 }
 
                 textBox1.Text = n.Costo.ToString();
+                textBox2.Focus();
                 //textBox5.Focus(); }
             }
 
@@ -220,6 +221,23 @@ namespace E_Shop
             if (e.KeyCode.ToString()=="Return") {
                 //LeerCodigo(comboBox4.Text);
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NuevoRemito();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form k = this;
+            if ((comboBox3.Enabled == false) && (dataGridView1.RowCount > 0)) { new seleccionaPago(RemitoX, ref k).Show(); }
+
         }
     }
 }

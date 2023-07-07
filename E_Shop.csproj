@@ -240,6 +240,12 @@
     <Compile Include="Src\forms\InformeVentas.Designer.cs">
       <DependentUpon>InformeVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Src\forms\InformeResultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\forms\InformeResultado.Designer.cs">
+      <DependentUpon>InformeResultado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\forms\informeYemasDelSol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\InformeVentas.resx">
       <DependentUpon>InformeVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\forms\InformeResultado.resx">
+      <DependentUpon>InformeResultado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\forms\informeYemasDelSol.resx">
       <DependentUpon>informeYemasDelSol.cs</DependentUpon>

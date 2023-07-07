@@ -33,7 +33,7 @@ namespace E_Shop
         {
             Pago.CargarComboBox(ref comboBox4, "1.1.1");
             comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.3").Nombre);
-            comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
+            //comboBox4.Items.Add(Pago.BuscarPorCodigo("aaaa").Nombre);
             // comboBox4.Items.Add(Pago.BuscarPorCodigo("1.1.4").Nombre);
             comboBox4.Items.Add("aaa");
         }
@@ -86,7 +86,7 @@ namespace E_Shop
         {
             if (comboBox4.Text == "aaa")
             {
-                button3.Focus();
+                button6.Focus();
             }
             else
             {
@@ -159,10 +159,21 @@ namespace E_Shop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount>0)
+            
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+           
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
             {
                 RemitoX.Pagos = listaCobros;
-                RemitoX.Directo = checkBox1.Checked;
+                RemitoX.Directo = true;
                 if (RemitoVenta.Crear(RemitoX))
                 {
                     try
@@ -173,8 +184,7 @@ namespace E_Shop
                         }
                         if (PdfImprimir.Checked == true)
                         {
-                            Form este = this;
-                            este.Enabled = false;
+                           
                             CrearPdf n = new CrearPdf();
                             n.GenerarPdfRemitoVenta(RemitoX);
                             Process abrirpdf = new Process();
@@ -198,14 +208,13 @@ namespace E_Shop
             }
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
             anterior.Visible = true;
             Form k = this;
             RemitoX.Pagos.Clear();
             listaCobros.Clear();
             k.Close();
-            
         }
     }
 }

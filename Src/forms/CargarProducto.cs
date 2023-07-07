@@ -31,9 +31,11 @@ namespace E_Shop
                 Producto.MostrarDataGrid(ref dataGridView1);
             }
             LoadCombobox();
+            LoadCombobox2();
         }
         public void LoadCombobox() {
 
+            comboBox1.Items.Clear();
             List<Producto> x = Producto.Buscar();
             for(int i= 0; i<x.Count();i++){
 
@@ -42,37 +44,35 @@ namespace E_Shop
             
 
          }
-      
+
+        public void LoadCombobox2()
+        {
+            comboBox2.Items.Clear();
+            List<Proveedor> x = Proveedor.Buscar();
+            for (int i = 0; i < x.Count(); i++)
+            {
+
+                comboBox2.Items.Add(x[i].Nombre);
+                comboBox3.Items.Add(x[i].Nombre);
+            }
+
+            List<Producto> y = Producto.Buscar();
+            for (int i = 0; i < y.Count(); i++)
+            {
+                if (!comboBox2.Items.Contains(y[i].Descripcion)) {
+                    comboBox2.Items.Add(y[i].Descripcion);
+                    comboBox3.Items.Add(y[i].Descripcion);
+                }
+                
+            }
+
+
+        }
+
         // crear PRoducto
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Producto c = new Producto();
-            c.Nombre = textBox1.Text;
-            c.Descripcion = textBox2.Text;
-            c.Codigo = textBox3.Text;
-
-            if (Producto.Crear(c))
-            {
-                // se creo correctamente y agregar al datagrid
-
-                if (xUsuario.Tipo != 1)
-                {
-                    Producto.MostrarDataGrid2(ref dataGridView1);
-                }
-                else
-                {
-                    Producto.MostrarDataGrid(ref dataGridView1);
-                }
-
-                textBox1.Text = textBox2.Text = textBox3.Text  = "";
-                textBox3.Focus();
-            }
-            else
-            {
-
-                // no se agrego corretamente el cliente
-            }
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
@@ -82,7 +82,9 @@ namespace E_Shop
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13) { textBox2.Focus(); }
+            if (e.KeyChar == 13) {
+                comboBox2.Focus();
+            }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -106,15 +108,15 @@ namespace E_Shop
                 //bulto
                // textBox11.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 //cantidad
-                textBox7.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                textBox7.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                 //cantida estandar
-                textBox8.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
+                textBox8.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
                 //costo
-                textBox9.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                textBox9.Text = dataGridView1.Rows[i].Cells[5].Value.ToString();
                 //Venta
-                textBox4.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                textBox4.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
                 //Venta2
-                textBox12.Text = dataGridView1.Rows[i].Cells[8].Value.ToString();
+                textBox12.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
                 //Venta3
                 //textBox13.Text = dataGridView1.Rows[i].Cells[9].Value.ToString();
 
@@ -124,44 +126,6 @@ namespace E_Shop
         // actualizar producto
         private void button3_Click(object sender, EventArgs e)
         {
-            Producto upProducto= new Producto();
-            //nombre
-            upProducto.Nombre = textBox5.Text;
-            //descipcion
-            upProducto.Descripcion = textBox6.Text;
-           
-            try
-            {
-                //cantidad
-                //upProducto.Bulto = double.Parse(textBox11.Text);
-                //cantidad
-                upProducto.Cantidad = double.Parse(textBox7.Text);
-                //cantidad estandar
-                upProducto.CantidadEstandar = double.Parse(textBox8.Text);
-                //costo
-                upProducto.Costo = double.Parse(textBox9.Text);
-                //venta
-                upProducto.Precio = double.Parse(textBox4.Text);
-                //venta
-                upProducto.Precio2 = double.Parse(textBox12.Text);
-                //venta
-                //upProducto.Precio3 = double.Parse(textBox13.Text);
-
-                Producto.Actualizar(textBox10.Text, upProducto);
-                if (xUsuario.Tipo != 1)
-                {
-                    Producto.MostrarDataGrid2(ref dataGridView1);
-                }
-                else
-                {
-                    Producto.MostrarDataGrid(ref dataGridView1);
-                }
-                label14.Text = "Stock: $"+Producto.SumaCostos(Producto.Buscar());
-            }
-            catch (Exception)
-            {  //Error
-                MessageBox.Show("Error en los campos del producto");
-            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -206,6 +170,143 @@ namespace E_Shop
         {
             CrearPdf n = new CrearPdf();
             n.GenerarPdfProductos(dataGridView1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            Producto c = new Producto();
+            c.Nombre = textBox1.Text;
+            c.Descripcion = comboBox2.Text;
+            c.Codigo = textBox3.Text;
+            c.Costo = double.Parse(textBox11.Text);
+            c.Precio = double.Parse(textBox2.Text);
+
+            if (Producto.Crear(c))
+            {
+                // se creo correctamente y agregar al datagrid
+                Producto.MostrarDataGrid(ref dataGridView1);
+                /*if (xUsuario.Tipo != 1)
+                {
+                    
+                }
+                else
+                {
+                    Producto.MostrarDataGrid(ref dataGridView1);
+                }*/
+
+               textBox11.Text=textBox2.Text= textBox1.Text = textBox2.Text = textBox3.Text = "";
+                textBox3.Focus();
+                dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.RowCount-1].Cells[0];
+            }
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            Producto upProducto = new Producto();
+            //nombre
+            upProducto.Nombre = textBox5.Text;
+            //descipcion
+            upProducto.Descripcion = textBox6.Text;
+
+            try
+            {
+                //cantidad
+                //upProducto.Bulto = double.Parse(textBox11.Text);
+                //cantidad
+                upProducto.Cantidad = double.Parse(textBox7.Text);
+                //cantidad estandar
+                upProducto.CantidadEstandar = double.Parse(textBox8.Text);
+                //costo
+                upProducto.Costo = double.Parse(textBox9.Text);
+                //venta
+                upProducto.Precio = double.Parse(textBox4.Text);
+                //venta
+                upProducto.Precio2 = double.Parse(textBox12.Text);
+                //venta
+                //upProducto.Precio3 = double.Parse(textBox13.Text);
+
+                Producto.Actualizar(textBox10.Text, upProducto);
+                if (xUsuario.Tipo != 1)
+                {
+                    Producto.MostrarDataGrid2(ref dataGridView1);
+                }
+                else
+                {
+                    Producto.MostrarDataGrid(ref dataGridView1);
+                }
+                label14.Text = "Stock: $" + Producto.SumaCostos(Producto.Buscar());
+            }
+            catch (Exception)
+            {  //Error
+                MessageBox.Show("Error en los campos del producto");
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox11.Focus();
+        }
+
+        private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==13) {
+                textBox2.Focus();
+            }
+        }
+
+        private void textBox2_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                button2.Focus();
+            }
+        }
+
+        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==13) { textBox11.Focus(); }
+        }
+
+        private void comboBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyChar == 13) { textBox11.Focus(); }
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string desc = comboBox3.Text;
+                double aumento = double.Parse(textBox13.Text);
+
+
+
+                List<Producto> listPrds = Producto.Buscar();
+                
+                foreach(Producto x in listPrds)
+                {
+                    if (x.Descripcion == desc)
+                    {
+                        x.Costo = x.Costo + ((aumento*x.Costo)/100);
+                    }
+                }
+                Producto.Guardar(listPrds);
+                if (xUsuario.Tipo != 1)
+                {
+                    Producto.MostrarDataGrid2(ref dataGridView1);
+                }
+                else
+                {
+                    Producto.MostrarDataGrid(ref dataGridView1);
+                }
+
+                comboBox3.Text = textBox13.Text = "";
+            }
+            catch (Exception) { }
         }
     }
 }

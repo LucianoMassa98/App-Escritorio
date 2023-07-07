@@ -104,24 +104,12 @@ namespace E_Shop
         //anterior venta
         private void button3_Click(object sender, EventArgs e)
         {
-            if ((RemitosX.Count() > 0) && ((indice - 1) > -1))
-            {
-                indice--;
-                RemitosX[indice].MostrarDataGrid(ref dataGridView1);
-                MostraRemito();
-
-            }
+            
         }
         //siguiente venta
         private void button2_Click(object sender, EventArgs e)
         {
-            if ((RemitosX.Count() > 0) && ((indice + 1 < RemitosX.Count())))
-            {
-                indice++;
-                RemitosX[indice].MostrarDataGrid(ref dataGridView1);
-                MostraRemito();
-
-            }
+            
         }
         //muestra datos de remito
         public void MostraRemito()
@@ -171,60 +159,12 @@ namespace E_Shop
         //borrar Remito De Venta
         private void button6_Click(object sender, EventArgs e)
         {
-            if (RemitosX.Count() > 0)
-            {
-                if (textBox3.Text == User.Nombre)
-                {
-                    BorraRemito();
-                }
-                else
-                {
-                    if (User.Tipo != 1)
-                    {
-                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
-                    }
-                    else
-                    {
-                        BorraRemito();
-                    }
-
-                }
-
-
-
-            }
+          
         }
         //eliminar producto x del remito y
         private void button7_Click(object sender, EventArgs e)
         {
-            if (RemitosX.Count() > 0)
-            {
-                if (textBox3.Text == User.Nombre) {
-                    Form k = this;
-                    CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
-                    y.Show();
-                    y.LoadRemitoX();
-                    k.Visible = false;
-
-                } else
-                {
-                    if (User.Tipo!=1) {
-                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
-                    }
-                    else
-                    {
-                        Form k = this;
-                        CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
-                        y.Show();
-                        y.LoadRemitoX();
-                        k.Visible = false;
-                    }
-                    
-                }
-
-               
-
-            }
+            
         }
 
         private void ListaVentas_Load(object sender, EventArgs e)
@@ -303,6 +243,89 @@ namespace E_Shop
                 }
 
 
+
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+                if (textBox3.Text == User.Nombre)
+                {
+                    BorraRemito();
+                }
+                else
+                {
+                    if (User.Tipo != 1)
+                    {
+                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
+                    }
+                    else
+                    {
+                        BorraRemito();
+                    }
+
+                }
+
+
+
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (RemitosX.Count() > 0)
+            {
+                if (textBox3.Text == User.Nombre)
+                {
+                    Form k = this;
+                    CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
+                    y.Show();
+                    y.LoadRemitoX();
+                    k.Visible = false;
+
+                }
+                else
+                {
+                    if (User.Tipo != 1)
+                    {
+                        MessageBox.Show("No puede modificar ventas cargadas por otro empleado");
+                    }
+                    else
+                    {
+                        Form k = this;
+                        CargarRemitoVenta y = new CargarRemitoVenta(User, ref k, RemitosX[indice]);
+                        y.Show();
+                        y.LoadRemitoX();
+                        k.Visible = false;
+                    }
+
+                }
+
+
+
+            }
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            if ((RemitosX.Count() > 0) && ((indice - 1) > -1))
+            {
+                indice--;
+                RemitosX[indice].MostrarDataGrid(ref dataGridView1);
+                MostraRemito();
+
+            }
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            if ((RemitosX.Count() > 0) && ((indice + 1 < RemitosX.Count())))
+            {
+                indice++;
+                RemitosX[indice].MostrarDataGrid(ref dataGridView1);
+                MostraRemito();
 
             }
         }

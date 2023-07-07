@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace E_Shop
 {
-    public partial class informeYemasDelSol : Form
+    public partial class informeResultado : Form
     {
         List<RemitoVenta> lventas;
         List<RemitoPagoProveedor> lpagos;
@@ -23,7 +23,7 @@ namespace E_Shop
         List<RemitoProduccion> lproducciones;
         List<RemitoRegistradora> lregistradoras;
         List<RemitoGasto> lgastos;
-        public informeYemasDelSol()
+        public informeResultado()
         {
             InitializeComponent();
         }
@@ -39,60 +39,81 @@ namespace E_Shop
             label65.Text = "Ventas: " + lventas.Count();
             lcompras = RemitoCompra.BuscarPorFecha(desde,hasta);
             label68.Text = "Compras: " + lcompras.Count();
+            lregistradoras = RemitoRegistradora.BuscarPorFecha(desde,hasta);
 
-            lpagos = RemitoPagoProveedor.BuscarPorFecha(desde,hasta);
-            lcobros = RemitoCobroCliente.BuscarPorFecha(desde, hasta);
-            lgastos = RemitoGasto.BuscarPorFecha(desde, hasta);
+
             listBox1.Items.Clear();
 
-           
+            // estado cliente
+            for (int i =0; i<lventas.Count();i++) {
+
+                if (listBox2.Items.Contains(lventas[i].Receptor) == false) { 
+                    listBox2.Items.Add(
+                        lventas[i].Receptor + "|"+
+                        lventas[i].Codigo
+                        ); 
+                }
+
+
+                foreach (Pago p in lventas[i].Pagos) {
+                    if (p.Codigo == "1.1.3")
+                    {
+
+                        listBox1.Items.Add(
+                            lventas[i].Receptor + " \t " +
+                            "$" + p.Importe);
+                    }
+                }
+            }
 
 
             //VENTAS
             List<Pago> lista  = RemitoVenta.Egreso(lventas,true);
             dataGridView3.Rows.Clear();
+            dataGridView3.Rows.Add("Galpón",calcularTotal(lista).ToString());
+            dataGridView3.Rows[dataGridView3.RowCount - 1].DefaultCellStyle.BackColor = Color.DeepSkyBlue;
             for (int i =0; i<lista.Count();i++) {
                 dataGridView3.Rows.Add(lista[i].Nombre,lista[i].Importe);
             }
+            lista = RemitoVenta.Egreso(lventas, false);
+            dataGridView3.Rows.Add("Reparto", calcularTotal(lista).ToString());
+            dataGridView3.Rows[dataGridView3.RowCount - 1].DefaultCellStyle.BackColor = Color.PaleVioletRed;
+            
+            for (int i = 0; i < lista.Count(); i++)
+            {
+                dataGridView3.Rows.Add(lista[i].Nombre, lista[i].Importe);
+            }
+
+
             dataGridView5.Rows.Add("Costo Total:",RemitoVenta.CostoTotal(lventas).ToString());
+
             dataGridView5.Rows.Add("Venta Total:", RemitoVenta.VentaTotal(lventas).ToString());
-            dataGridView5.Rows.Add("Ganancia bruta:", (RemitoVenta.VentaTotal(lventas)-RemitoVenta.CostoTotal(lventas)).ToString());
+
+            dataGridView5.Rows.Add("Ganancia:", (RemitoVenta.VentaTotal(lventas)-RemitoVenta.CostoTotal(lventas)).ToString());
 
 
-           // Producto.Consolidar(ref dataGridView1, lventas, lregistradoras);
-            RemitoVenta.ConsolidarMostrar(lventas,ref dataGridView1);
+
+            //Registradora
+            /* double impRegistradora = RemitoRegistradora.Egreso(lregistradoras);
+             dataGridView3.Rows.Add("Registradora", impRegistradora);*/
+
+
 
             //COMPRAS
             List<Pago> lista2 = RemitoCompra.Ingreso(lcompras);
             dataGridView4.Rows.Clear();
-            dataGridView4.Rows.Add("Costo total:","00");
             for (int i = 0; i < lista2.Count(); i++)
             {
                 dataGridView4.Rows.Add(lista2[i].Nombre, lista2[i].Importe);
             }
-            RemitoCompra.ConsolidarMostrar(lcompras,ref dataGridView2);
 
-            //COBROS
-            List<Pago> lista3 = RemitoCobroCliente.Ingreso(lcobros);
-            dataGridView7.Rows.Clear();
-            for (int i = 0; i < lista3.Count(); i++)
-            {
-                dataGridView7.Rows.Add(lista3[i].Nombre, lista3[i].Importe);
-            }
-            //PAGOS
-            List<Pago> lista4 = RemitoPagoProveedor.Egreso(lpagos);
-            dataGridView6.Rows.Clear();
-            for (int i = 0; i < lista4.Count(); i++)
-            {
-                dataGridView6.Rows.Add(lista4[i].Nombre, lista4[i].Importe);
-            }
-            //GASTOS
-           /* List<Pago> lista5 = RemitoGasto.Egreso(lpagos);
-            dataGridView10.Rows.Clear();
-            for (int i = 0; i < lista5.Count(); i++)
-            {
-                dataGridView10.Rows.Add(lista5[i].Nombre, lista5[i].Importe);
-            }*/
+
+
+            //consolidado de ventas y registradora
+            // RemitoVenta.ConsolidarMostrar(lventas, ref dataGridView1);
+           
+            RemitoCompra.ConsolidarMostrar(lcompras,ref dataGridView2);
+            Producto.Consolidar(ref dataGridView1,lventas,lregistradoras);
         }
         public void BorrarTodo() {
 
@@ -118,14 +139,7 @@ namespace E_Shop
       // click borrar
         private void button4_Click(object sender, EventArgs e)
         {
-
-            DialogResult result = MessageBox.Show("¿Deseas eliminar toda la base de datos?", "Precaución!!!", MessageBoxButtons.OKCancel);
-
-            if (result == DialogResult.OK)
-            {
-                BorrarTodo();
-            }
-            
+            BorrarTodo();
         }
         // click imprimir
         private void button5_Click(object sender, EventArgs e)
@@ -244,7 +258,7 @@ namespace E_Shop
 
 
         }
-        /*
+
         public void pdfInformeVenta(ref Document doc, iTextSharp.text.Font StandarFont)
         {
            
@@ -312,7 +326,6 @@ namespace E_Shop
             doc.Add(tableVentas);
 
         }
-        */
         public void pdfInformeCompra(ref Document doc, iTextSharp.text.Font StandarFont)
         {
 
@@ -772,7 +785,7 @@ namespace E_Shop
             doc.Add(Chunk.NEWLINE);
             pdfInformeCompra(ref doc, StandarFont);
             doc.Add(Chunk.NEXTPAGE);
-           // pdfInformeVenta(ref doc, StandarFont);
+            pdfInformeVenta(ref doc, StandarFont);
             doc.Add(Chunk.NEXTPAGE);
             pdfCuentaCorriente(ref doc, StandarFont);
             doc.Add(Chunk.NEXTPAGE);
@@ -803,9 +816,9 @@ namespace E_Shop
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*
+            
             string[] dat = listBox2.Items[listBox2.SelectedIndex].ToString().Split('|');
-            dataGridView10.Rows.Clear();
+            dataGridView6.Rows.Clear();
             RemitoVenta x = RemitoVenta.BuscarPorCodigo(dat[1]);
            
             if (x!=null) {
@@ -813,7 +826,7 @@ namespace E_Shop
                 label8.Text = "Cliente: " + x.Receptor;
                 label10.Text = "Total: $" + x.TotalVenta();
                 x.MostrarDataGrid(ref dataGridView6);
-            }*/
+            }
             
         }
     }
